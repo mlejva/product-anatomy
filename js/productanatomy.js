@@ -16,13 +16,44 @@ $(document).ready(function() {
     this.technologyWindows = technologyWindows;
     this.technologyWebsite = technologyWebsite;
   }
+  /* ----- CONSTANTS ----- */
+  const SPREAD_SHEET_KEY = '1itsXofYV9YOf-VtLO8Gr9goNzaRyCGAOUgFWV1wbK38';
+  const SPREAD_SHEET_URL = 'https://spreadsheets.google.com/feeds/list/' + SPREAD_SHEET_KEY + '/od6/public/values?alt=json';
 
+  const JSON_NAME_KEY = 'gsx$name';
+  const JSON_URL_KEY = 'gsx$url';
+  const JSON_TWITTER_KEY = 'gsx$twitter';
+  const JSON_FOUNDERS_KEY = 'gsx$founders';
+  const JSON_FOUNDERS_TWITTER_KEY = 'gsx$foundersTwitter';
+  const JSON_ALSO_CREATED_KEY = 'gsx$alsoCreated';
+  const JSON_DESCRIPTION_KEY = 'gsx$description';
+  const JSON_LAUNCHED_KEY = 'gsx$launched';
+  const JSON_FONTS_KEY = 'gsx$fonts';
+  const JSON_COLORS_KEY = 'gsx$colors';
+  const JSON_PLATFORMS_KEY = 'gsx$platforms';
+  const JSON_TECHNOLOGY_IOS_KEY = 'gsx$technologyIOS';
+  const JSON_TECHNOLOGY_ANDROID_KEY = 'gsx$technologyAndroid';
+  const JSON_TECHNOLOGY_WINDOWS_KEY = 'gsx$technologyWindows';
+  const JSON_TECHNOLOGY_WEBSITE_KEY = 'gsx$technologyWebsite';
 
-  // TODO: Error handling - work with json only if status == 200
-  var spreadsheetKey = '1itsXofYV9YOf-VtLO8Gr9goNzaRyCGAOUgFWV1wbK38';
-  $.getJSON('https://spreadsheets.google.com/feeds/list/' + spreadsheetKey + '/od6/public/values?alt=json', function(data) {
+  const DIV_CARD_ID = 'card';
+
+  const DIV_CLASS_PRODUCT_DESCRIPTION = 'product-description';
+  const DIV_CLASS_PRODUCT_PLATFORMS = 'product-platforms';
+  const DIV_CLASS_PRODUCT_FONTS = 'product-fonts';
+  const DIV_CLASS_PRODUCT_COLORS = 'product-colors';
+  const DIV_CLASS_PRODUCT_COLORS_WRAPPER = 'product-colors-wrapper'
+  const DIV_CLASS_PRODUCT_COLORS_TEXT = 'product-colors-text';
+
+  const DIV_TEXT_PRODUCT_PLATFORMS = 'Platforms ';
+  const DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
+  /* ----------- */
+
+  $.getJSON(SPREAD_SHEET_URL)
+  .done(function(data) {
+    console.log('getJSON request succeeded!');
+
     var entry = data.feed.entry;
-
     var cardNumber = 0;
     var rowHTML = '<div class=\"row content\"></div>';
     var cardInfo = '';
@@ -33,7 +64,6 @@ $(document).ready(function() {
 
       var product = new Product('', '', '', [], [], [], '', '', [], [], [], [], [], [], []);
       // TODO: Should add HTML only once inside each loop so search for specific element is done only once
-      // TODO: key strings should be variables
       $.each(jsonObject, function(key, value) {
         // Parse data of next entry into a variable so it can be passed into the new card we are going to create
         if (value.$t !== '') {
@@ -41,68 +71,61 @@ $(document).ready(function() {
             cardInfo += '<b>' + key.substring(4) + '</b>' + ': ' + value.$t + '<br/>';
           }
           switch (key) {
-            case 'gsx$name':
+            case JSON_NAME_KEY:
               product.name = value.$t;
               break;
-            case 'gsx$url':
+            case JSON_URL_KEY:
               product.url = value.$t;
               break;
-            case 'gsx$twitter':
+            case JSON_TWITTER_KEY:
               product.twitter = value.$t;
               break;
-            case 'gsx$founders':
+            case JSON_FOUNDERS_KEY:
               product.founders = value.$t.split('$');
               break;
-            case 'gsx$foundersTwitter':
+            case JSON_FOUNDERS_TWITTER_KEY:
               product.foundersTwitter = value.$t.split('$');
               break;
-            case 'gsx$alsoCreated':
+            case JSON_ALSO_CREATED_KEY:
               product.alsoCreated = value.$t.split('$');
               break;
-            case 'gsx$description':
+            case JSON_DESCRIPTION_KEY:
               product.description = value.$t;
               break;
-            case 'gsx$launched':
+            case JSON_LAUNCHED_KEY:
               product.launched = value.$t;
               break;
-            case 'gsx$fonts':
+            case JSON_FONTS_KEY:
               product.fonts = value.$t.split('$');
               break;
-            case 'gsx$colors':
+            case JSON_COLORS_KEY:
               product.colors = value.$t.split('$');
               break;
-            case 'gsx$platforms':
+            case JSON_PLATFORMS_KEY:
               product.platforms = value.$t.split('$');
               break;
-            case 'gsx$technologyIOS':
+            case JSON_TECHNOLOGY_IOS_KEY:
               product.technologyIOS = value.$t.split('$');
               break;
-            case 'gsx$technologyAndroid':
+            case JSON_TECHNOLOGY_ANDROID_KEY:
               product.technologyAndroid = value.$t.split('$');
               break;
-            case 'gsx$technologyWindows':
+            case JSON_TECHNOLOGY_WINDOWS_KEY:
               product.technologyWindows = value.$t.split('$');
               break;
-            case 'gsx$technologyWebsite':
+            case JSON_TECHNOLOGY_WEBSITE_KEY:
               product.technologyWebsite = value.$t.split('$');
               break;
           }
         }
       }); // $.each END(jsonObject,…)
 
-      var cardHTML = '<div data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"col-lg-4\">' +
+      var cardHTML = '<div data-toggle=\"modal\" data-target=\"#' + DIV_CARD_ID + cardNumber + '\" class=\"col-lg-4\">' +
                       '<div class=\"card\">' +
                         '<img class=\"card-img-top\" src=\"https://brandfolder.com/slack/logo/slack-primary-logo.png\" alt=\"\" style=\"width:105px; height:30px; margin-top:20px; margin-left:20px;\">' +
                         '<div class=\"card-block\">';
-      /*if (product.name.length != 0) {
-        cardHTML += '<div class=\"product-logo\">' +
-                      '<div class=\"row\">' +
-                        product.name +
-                      '</div>' +
-                    '</div>';
-      }*/
       if (product.description.length != 0) {
-        cardHTML += '<div class=\"product-description\">' +
+        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_DESCRIPTION + '\">' +
                       '<div class=\"row\">' +
                           product.description +
                       '</div>' +
@@ -110,27 +133,30 @@ $(document).ready(function() {
       }
       if (product.platforms.length != 0) {
         var platformsPrintable = product.platforms.join(', ');
-        cardHTML += '<div class=\"product-font\">' +
+        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORMS + '\">' +
                       '<div class=\"row\">' +
-                        '<b>Platforms </b>' + platformsPrintable +
+                        '<b>' + DIV_TEXT_PRODUCT_PLATFORMS + '</b>' + platformsPrintable +
                       '</div>' +
                     '</div>';
       }
       if (product.fonts.length != 0) {
         var fontsPrintable = product.fonts.join(', ');
-        cardHTML += '<div class=\"product-font\">' +
+        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FONTS + '\">' +
                       '<div class=\"row\">' +
-                        '<b>Font </b>' + fontsPrintable +
+                        '<b>' + DIV_TEXT_PRODUCT_FONTS + '</b>' + fontsPrintable +
                       '</div>' +
                     '</div>';
       }
       // Add div for colors
-      cardHTML += '<div class=\"product-colors\">' +
+      cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_WRAPPER + '\">' +
                   '</div>';
       // Close divs
       cardHTML += '</div></div></div>';
 
-      var cardModalHTML = '<div id=\"card' + cardNumber + '\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">' +
+
+
+
+      var cardModalHTML = '<div id=\"' + DIV_CARD_ID + cardNumber + '\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">' +
                         '<div class=\"modal-dialog\">' +
                           '<div class=\"modal-content\">' +
                             '<div class=\"modal-header\">' +
@@ -161,24 +187,26 @@ $(document).ready(function() {
           inCurrentRow++;
         }
         productColorsHTML += '<div class=\"col-xs-5\">' +
-                                '<div class=\"product-color\" style=\"background-color:#' + product.colors[i] + '\">' +
-                                  '<div class=\"product-color-text\">' +
+                                '<div class=\"' + DIV_CLASS_PRODUCT_COLORS + '\" style=\"background-color:#' + product.colors[i] + '\">' +
+                                  '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_TEXT + '\">' +
                                     product.colors[i].toUpperCase() +
                                   '</div>' +
                                 '</div>' +
-
                               '</div>';
-                              //'<div class=\"col-xs-2\">' +
-                                //'<div class=\"product-color-text\">' +
-                                  //product.colors[i].toUpperCase() +
-                                //'</div>' +
-                              //'</div>';
       }
       productColorsHTML += '</div>'; // Close the last row (may not be full)
-      $('div.product-colors').last().append(productColorsHTML);
+      $('div.' + DIV_CLASS_PRODUCT_COLORS_WRAPPER).last().append(productColorsHTML);
       $('div.content').last().append(cardModalHTML);
       cardInfo = ''; // Clear card data for next product
     }); // $.each(data,…) END
+
+  })
+  .fail(function(jqXHR, textStatus, errorThrown) {
+    console.log('getJSON request failed! ' + textStatus);
+    // TODO: Present user with some UX friendly error page
+  })
+  .always(function() {
+    console.log('getJSON request ended!');
 
     // Get the tallest card and then set height of every card to the tallest one
     // TODO: How to solve height for different screen size?
@@ -195,9 +223,10 @@ $(document).ready(function() {
       // Set each height to the max height
       $('div.card').height(maxHeight);
     });
-  }); // $.getJSON END
+  });
 
-  /* ----- Search ----- */
+
+  /* ----- SEARCH ----- */
   var products = document.getElementsByClassName('card');
   var search = function() {
     var query = document.getElementById('searchbox').value;
@@ -220,6 +249,5 @@ $(document).ready(function() {
       }
     }
   }
-
   document.getElementById('searchbox').addEventListener('input', search);
-}); // page load END
+}); // page loaded END
