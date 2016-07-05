@@ -14,7 +14,10 @@ body {
   background: #ffffff;
 }
 
-/* ------------------------------------------------------ */
+a {
+  color: #c8c1a6;
+}
+/* ----------- */
 
 .header {
   padding-top: 20px;
@@ -54,7 +57,7 @@ body {
   font-size: 16px; /* TODO: replace 'rem' to 'pixels' */
 }
 
-/* Input placeholder color */
+/* ----- Input placeholder color ----- */
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #c8c1a6;
 }
@@ -80,7 +83,7 @@ body {
   padding-bottom: 20px;
 }
 
-/* Helper classes */
+/* ----- Helper classes ----- */
 .text-center {
   text-align: center;
 }
