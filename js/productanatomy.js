@@ -2,6 +2,11 @@
 const SPREAD_SHEET_KEY = '1itsXofYV9YOf-VtLO8Gr9goNzaRyCGAOUgFWV1wbK38';
 const SPREAD_SHEET_URL = 'https://spreadsheets.google.com/feeds/list/' + SPREAD_SHEET_KEY + '/od6/public/values?alt=json';
 
+const COLORS_PER_ROW = 2;
+const COLORS_PER_ROW_MODAL = 2;
+
+const BOOTSTRAP_MAX_WIDTH = 12;
+
 const JSON_ARRAY_DELIMITER = '$';
 const JSON_NAME_KEY = 'gsx$name';
 const JSON_LOGO_URL_KEY = 'gsx$logourl';
@@ -132,7 +137,7 @@ $(document).ready(function() {
         html += '<div class=\"row\">';
         inCurrentRow++;
       }
-      var widthOfColumn = 12 / maxInRow;
+      var widthOfColumn = BOOTSTRAP_MAX_WIDTH / maxInRow;
       html += '<div class=\"col-xs-' + widthOfColumn + '\">' +
                               '<div class=\"' + DIV_CLASS_PRODUCT_COLORS + '\" style=\"background-color:#' + colors[i] + '\">' +
                                 '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_TEXT + '\">' +
@@ -259,37 +264,8 @@ $(document).ready(function() {
       cardHTML += '</div></div></div>'; // Close divs
       // Create new card for next entry (always three cards per row)
       $('div.content').last().append(cardHTML);
-      /* ----------- */
-
-      /* ----- COLORS FOR CARD HTML ----- */
-      /*
-      // Dynamically add colors to cardHTML
-      var productColorsHTML = '<div class=\"row\">';
-      var inCurrentRow = 0;
-      for (var i = 0; i < product.colors.length; i++) {
-        if (inCurrentRow < 2) {
-          // Add next color to the currently opened row
-          inCurrentRow++;
-        }
-        else {
-          productColorsHTML += '</div>'; // Close the last full row
-          // Create a new row and add one color
-          inCurrentRow = 0;
-          productColorsHTML += '<div class=\"row\">';
-          inCurrentRow++;
-        }
-        productColorsHTML += '<div class=\"col-xs-5\">' +
-                                '<div class=\"' + DIV_CLASS_PRODUCT_COLORS + '\" style=\"background-color:#' + product.colors[i] + '\">' +
-                                  '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_TEXT + '\">' +
-                                    product.colors[i].toUpperCase() +
-                                  '</div>' +
-                                '</div>' +
-                              '</div>';
-      }
-
-      productColorsHTML += '</div>'; // Close the last row (may not be full)
-      */
-      var productColorsHTML = generateDynamicColorsHTML(2, product.colors);
+      cardInfo = ''; // Clear card data for next product
+      var productColorsHTML = generateDynamicColorsHTML(COLORS_PER_ROW, product.colors);
       $('div.' + DIV_CLASS_PRODUCT_COLORS_WRAPPER).last().append(productColorsHTML);
       /* ----------- */
 
@@ -482,13 +458,13 @@ $(document).ready(function() {
       }
       /* ----- Design Colors ----- */
       if (product.colors.length != 0) {
-        cardModalHTML += generateDynamicColorsHTML(4, product.colors);
+        cardModalHTML += '<div class=\"colors-modal-wrapper\">';
+        cardModalHTML += generateDynamicColorsHTML(COLORS_PER_ROW_MODAL, product.colors);
+        cardModalHTML += '</div>';
       }
-
-      /* ----------- */
       cardModalHTML += '</div></div></div></div>'; // Close divs
       $('div.content').last().append(cardModalHTML);
-      cardInfo = ''; // Clear card data for next product
+      /* ----------- */
     }); // $.each(data,…) END
 
   })

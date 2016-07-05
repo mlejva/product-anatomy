@@ -115,6 +115,7 @@
   margin-bottom: 8px;
 }
 
+/* --------- */
 
 .design-delimiter-modal {
   width: 500px;
@@ -123,5 +124,9 @@
 .product-fonts-modal {
   padding-left: 35px;
   margin-bottom: 8px;
+}
+
+.colors-modal-wrapper {
+  margin-left: 13px;
 }
 /* ----------- */
