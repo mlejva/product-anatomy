@@ -228,7 +228,7 @@ $(document).ready(function() {
       /* ----- CARD HTML ----- */
       var cardHTML = '<div class=\"col-lg-4 bottom-buffer\">' +
                       '<div data-toggle=\"modal\" data-target=\"#' + DIV_CARD_ID + cardNumber + '\" class=\"card\">' +
-                        '<img class=\"card-img-top\" src=\"' + product.logoURL + '\" alt=\"Product Logo\" style=\"width:105px; height:30px; margin-top:20px; margin-left:20px;\">' +
+                        '<img class=\"card-img-top\" src=\"' + product.logoURL + '\" alt=\"Product Logo\">' +
                         '<div class=\"card-block\">';
       if (product.description.length != 0) {
         cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_DESCRIPTION + '\">' +
