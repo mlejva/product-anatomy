@@ -1,0 +1,91 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  color: #4a473d;  
+}
+
+html {
+  color: #ffffff;
+}
+
+body {
+  background: #ffffff;
+}
+
+/* ------------------------------------------------------ */
+
+.header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.headline {
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+.headline-delimiter {
+  width: 250px;
+}
+
+.annotation {
+  padding-top: 40px;
+  margin-bottom: 30px;
+}
+
+.baseline {
+  font-size: 22px;
+}
+
+.search input[type="text"] {
+  width: 100%;
+  padding: 0px 20px;
+
+  line-height: 40px;
+  border-radius: 20px;
+
+  background-color: #fefefc;
+  border: 1px solid #000;
+  outline: none;
+
+  color: #4a473d;
+  font-size: 16px; /* TODO: replace 'rem' to 'pixels' */
+}
+
+/* Input placeholder color */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #c8c1a6;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #c8c1a6
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #c8c1a6
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #c8c1a6
+}
+/* ----------- */
+
+.container {
+  margin-top: 40px;
+  background: #ffffff;
+  font-size: 16px;
+}
+
+.content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Helper classes */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+/* ----------- */
