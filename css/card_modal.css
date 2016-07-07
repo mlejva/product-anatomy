@@ -45,78 +45,28 @@
   margin-bottom: 8px;
 }
 
+/* Technology */
+
 .technology-delimiter-modal {
   width: 500px;
 }
 
-/* ----- Technology iOS ----- */
-.technology-ios-header-modal {
+.technology-wrapper {
+  background-color: pink;
   padding-left: 35px;
-  margin-bottom: 8px;
 }
 
-.technology-ios-wrapper {
-  padding-left: 50px;
-  margin-bottom: 8px;
+.technology-name {
+  color: red;
 }
 
-/* ----- Technology macOS ----- */
-.technology-macos-header-modal  {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-
-.technology-macos-wrapper {
-  padding-left: 50px;
-  margin-bottom: 8px;
-}
-
-/* ----- Technology Android ----- */
-.technology-android-header-modal  {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-
-.technology-android-wrapper {
-  padding-left: 50px;
-  margin-bottom: 8px;
-}
-
-/* ----- Technology Windows ----- */
-.technology-windows-header-modal {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-
-.technology-windows-wrapper {
-  padding-left: 50px;
-  margin-bottom: 8px;
-}
-
-/* ----- Technology Linux ----- */
-.technology-linux-header-modal {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-
-.technology-linux-wrapper {
-  padding-left: 50px;
-  margin-bottom: 8px;
-}
-
-/* ----- Technology Website ----- */
-.technology-website-header-modal {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-
-.technology-website-wrapper {
-  padding-left: 50px;
-  margin-bottom: 8px;
+.subtechnology {
+  color: blue;
 }
 
 /* --------- */
 
+/* Design */
 .design-delimiter-modal {
   width: 500px;
 }

@@ -173,375 +173,213 @@ $(document).ready(function() {
     }
   }
 
-  $(window).bind('resize',function(){
-    changeHeightOfCards();
-});
+  var config = {
+    apiKey: "AIzaSyBJf4MX7uWsGQfoleAnoj7T2vg5boS1FUs",
+    authDomain: "product-anatomy.firebaseapp.com",
+    databaseURL: "https://product-anatomy.firebaseio.com",
+    storageBucket: "product-anatomy.appspot.com",
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
+  firebase.database().ref('/products').once('value').then(function(snapshot) {
 
-  $.getJSON(SPREAD_SHEET_URL)
-  .done(function(data) {
-    // Initialize Firebase
-    /*
-    var config = {
-      apiKey: "AIzaSyBJf4MX7uWsGQfoleAnoj7T2vg5boS1FUs",
-      authDomain: "product-anatomy.firebaseapp.com",
-      databaseURL: "https://product-anatomy.firebaseio.com",
-      storageBucket: "product-anatomy.appspot.com",
-    };
-    firebase.initializeApp(config);
-    var database = firebase.database();
-    firebase.database().ref('/products').once('value').then(function(snapshot) {
-
-      var products = snapshot.val();
-      //console.log(snapshot.val());
-      for (var product in products) {
-
-        var product_technology = products[product]['technology'];
-        for (var technology in product_technology) {
-
-          var particular_technology = product_technology[technology];
-          //console.log(particular_technology);
-
-          for (var subtechnology in particular_technology) {
-            console.log(particular_technology[subtechnology]);
-          }
-
-
-        }
-
-        if ('android' in products[product]['technology']) {
-          console.log('YES');
-        }
-        else {
-          console.log('NO');
-        }
-        //console.log(products[product]['technology']['android']);
-      }
-    });
-    */
-
-    console.log('getJSON request succeeded!');
-
-    var entry = data.feed.entry;
+    var products = snapshot.val();
     var cardNumber = 0;
-    var rowHTML = '<div class=\"row content\"></div>';
-    var cardInfo = '';
-
-    $.each(entry, function(key, val) {
-      var jsonObject = JSON.parse(JSON.stringify(val));
-
+    for (var product_property in products) {
+      var product = products[product_property];
       cardNumber++;
-      var product = new Product('', '', '', '', [], [], [], '', '', [], [], [], '', [], [], [], [], [], [], []);
-      $.each(jsonObject, function(key, value) {
-        // Parse data of next entry into a variable so it can be passed into the new card we are going to create
-        if (value.$t !== '') {
-          switch (key) {
-            case JSON_NAME_KEY:
-              product.name = value.$t;
-              break;
-            case JSON_LOGO_URL_KEY:
-              product.logoURL = value.$t;
-              break
-            case JSON_URL_KEY:
-              product.url = value.$t;
-              break;
-            case JSON_TWITTER_KEY:
-              product.twitter = value.$t;
-              break;
-            case JSON_FOUNDERS_KEY:
-              product.founders = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_FOUNDERS_TWITTER_KEY:
-              product.foundersTwitter = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_ALSO_CREATED_KEY:
-              product.alsoCreated = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_DESCRIPTION_KEY:
-              product.description = value.$t;
-              break;
-            case JSON_LAUNCHED_KEY:
-              product.launched = value.$t;
-              break;
-            case JSON_FONTS_KEY:
-              product.fonts = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_COLORS_KEY:
-              product.colors = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_PLATFORMS_KEY:
-              product.platforms = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_API_KEY:
-              product.api = value.$t;
-              break;
-            case JSON_TECHNOLOGY_MACOS:
-              product.technologyMacOS = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_TECHNOLOGY_IOS_KEY:
-              product.technologyIOS = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_TECHNOLOGY_ANDROID_KEY:
-              product.technologyAndroid = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_TECHNOLOGY_WINDOWS_KEY:
-              product.technologyWindows = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_TECHNOLOGY_WEBSITE_KEY:
-              product.technologyWebsite = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-            case JSON_TECHNOLOGY_LINUX_KEY:
-              product.technologyLinux = value.$t.split(JSON_ARRAY_DELIMITER);
-              break;
-          }
-        }
-      }); // $.each END(jsonObject,…)
 
-      /* ----- CARD HTML ----- */
+      /* CARD HTML */
       var cardHTML = '<div class=\"col-lg-4 bottom-buffer\">' +
                       '<div data-toggle=\"modal\" data-target=\"#' + DIV_CARD_ID + cardNumber + '\" class=\"card\">' +
-                        '<img class=\"card-img-top\" src=\"' + product.logoURL + '\" alt=\"Product Logo\">' +
-                        '<div class=\"card-block\">';
-      if (product.description.length != 0) {
-        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_DESCRIPTION + '\">' +
-                      '<div class=\"row\">' +
-                          product.description +
-                      '</div>' +
-                    '</div>';
-      }
-      if (product.platforms.length != 0) {
-        var platformsPrintable = product.platforms.join(', ');
+                        '<img class=\"card-img-top\" src=\"' + product['logo-url'] + '\" alt=\"Product Logo\">' +
+                        '<div class=\"card-block\">' +
+                          '<div class=\"' + DIV_CLASS_PRODUCT_DESCRIPTION + '\">' +
+                            '<div class=\"row\">' +
+                              product['description'] +
+                            '</div>' +
+                          '</div>';
+
+      if ('platforms' in product) {
+        var platforms = [];
+        for (var platform_property in product['platforms']) {
+          platforms.push(product['platforms'][platform_property]);
+        }
+        platformsPrintable = platforms.join(', ');
         cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORMS + '\">' +
                       '<div class=\"row\">' +
                         '<b>' + DIV_TEXT_PRODUCT_PLATFORMS + '</b>' + platformsPrintable +
                       '</div>' +
                     '</div>';
       }
-      if (product.fonts.length != 0) {
-        var fontsPrintable = product.fonts.join(', ');
+      if ('fonts' in product) {
+        var fonts = [];
+        for (var font_property in product['fonts']) {
+          fonts.push(product['fonts'][font_property]);
+        }
+        var fontsPrintable = fonts.join(', ');
         cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FONTS + '\">' +
                       '<div class=\"row\">' +
                         '<b>' + DIV_TEXT_PRODUCT_FONTS + '</b>' + fontsPrintable +
                       '</div>' +
                     '</div>';
       }
-      // Add div wrapper for colors
-      cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_WRAPPER + '\">' +
-                  '</div>';
-      cardHTML += '</div></div></div>'; // Close divs
-      // Create new card for next entry (always three cards per row)
-      $('div.content').last().append(cardHTML);
-      cardInfo = ''; // Clear card data for next product
-      var productColorsHTML = generateDynamicColorsHTML(COLORS_PER_ROW, product.colors);
-      $('div.' + DIV_CLASS_PRODUCT_COLORS_WRAPPER).last().append(productColorsHTML);
-      /* ----------- */
+      if ('colors' in product) {
+        var colors = [];
+        for (var color_property in product['colors']) {
+          colors.push(product['colors'][color_property]);
+        }
+        var productColorsHTML = generateDynamicColorsHTML(COLORS_PER_ROW, colors);
+        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_WRAPPER + '\">' + '</div>';
+        cardHTML += productColorsHTML;
 
-      /* ----- CARD MODAL HTML ----- */
+      }
+
+      cardHTML += '</div></div></div>'; // Close divs
+      // Append this card
+      $('div.content').last().append(cardHTML);
+      /* ----- */
+
+      /* CARD MODAL HTML */
       var cardModalHTML = '<div id=\"' + DIV_CARD_ID + cardNumber + '\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">' +
                             '<div class=\"modal-dialog modal-md\">' +
                               '<div class=\"modal-content\">' +
                                 '<div class=\"modal-header\">' +
-                                  '<img class=\"img-responsive\" src=\"' + product.logoURL + '\" alt=\"image\"/>' +
+                                  '<img class=\"img-responsive\" src=\"' + product['logo-url'] + '\" alt=\"image\"/>' +
                                   '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>' +
                                 '</div>' +
                                 '<div class=\"modal-body\">';
-      if (product.url.length != 0) {
+
+
+      if ('url' in product) {
         cardModalHTML += '<div class=\"row\">' +
                           '<div class=\"' + DIV_CLASS_PRODUCT_URL_MODAL + '\">' +
-                            '<a href=\"'+ product.url +'\">' + product.url + '</a>' +
+                            '<a href=\"'+ product['url'] +'\">' + product['url'] + '</a>' +
                           '</div>' +
                         '</div>';
       }
-      if (product.description.length != 0) {
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_DESCRIPTION_MODAL + '\">' +
-                            product.description +
-                          '</div>' +
-                        '</div>';
+      // Add description
+      cardModalHTML += '<div class=\"row\">' +
+                        '<div class=\"' + DIV_CLASS_PRODUCT_DESCRIPTION_MODAL + '\">' +
+                          product['description'] +
+                        '</div>' +
+                      '</div>';
+      // Add launched
+      cardModalHTML += '<div class=\"row\">' +
+                        '<div class=\"' + DIV_CLASS_PRODUCT_LAUNCHED_MODAL + '\">' +
+                          '<b>' + DIV_TEXT_PRODUCT_LAUNCHED_MODAL + '</b>' + product['launched'] +
+                        '</div>' +
+                      '</div>';
+      // Add founders
+      var founders = [];
+      for (var founder_property in product['founders']) {
+        founders.push(product['founders'][founder_property]);
       }
-      if (product.launched.length != 0) {
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_LAUNCHED_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_PRODUCT_LAUNCHED_MODAL + '</b>' + product.launched +
-                          '</div>' +
-                        '</div>';
-      }
-      if (product.founders.length != 0) {
-        var foundersPrintable = product.founders.join(', ');
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_PRODUCT_FOUNDERS_MODAL + '</b>' + foundersPrintable +
-                          '</div>' +
-                        '</div>';
-      }
-      if (product.platforms.length != 0) {
-        var platformsPrintable = product.platforms.join(', ');
+      var foundersPrintable = founders.join(', ');
+      cardModalHTML += '<div class=\"row\">' +
+                        '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_MODAL + '\">' +
+                          '<b>' + DIV_TEXT_PRODUCT_FOUNDERS_MODAL + '</b>' + foundersPrintable +
+                        '</div>' +
+                      '</div>';
+      if ('platforms' in product) {
+        var platforms = [];
+        for (var platform_property in product['platforms']) {
+          platforms.push(product['platforms'][platform_property]);
+        }
+        platformsPrintable = platforms.join(', ');
         cardModalHTML += '<div class=\"row\">' +
                           '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORMS_MODAL + '\">' +
                             '<b>' + DIV_TEXT_PRODUCT_PLATFORMS_MODAL + '</b>' + platformsPrintable +
                           '</div>' +
                         '</div>';
       }
-      if (product.api.length != 0) {
+      if ('api' in product) {
         cardModalHTML += '<div class=\"row\">' +
                           '<div class=\"' + DIV_CLASS_PRODUCT_API_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_PRODUCT_API_MODAL + '</b>' + '<a href=\"'+ product.api +'\">' + product.api + '</a>' +
+                            '<b>' + DIV_TEXT_PRODUCT_API_MODAL + '</b>' + '<a href=\"'+ product['api'] +'\">' + product['api'] + '</a>' +
                           '</div>' +
                         '</div>';
       }
-
-      // Add delimiter for technology if at least one technology property isn't empty
-      if (product.technologyIOS.length != 0 || product.technologyAndroid.length != 0 ||
-          product.technologyMacOS.length != 0 || product.technologyWindows.length != 0 ||
-          product.technologyWebsite.length != 0) {
+      // Add all technologies
+      if ('technology' in product) {
           cardModalHTML += '<hr class=\"' + DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL + '\">';
+          cardModalHTML += '<div class=\"technology-wrapper\">'; // TODO: CONSTANT
+
+          var product_technology = product['technology'];
+          for (var technology_property in product_technology) {
+            var subtechnology = product_technology[technology_property];
+
+            // Specific platforms
+            var html = '';
+            for (var subtechnology_property in subtechnology) {
+              if (subtechnology_property == 'name') {
+                cardModalHTML += '<div class=\"row\">' +
+                                  '<div class=\"' + 'technology-name' + '\">' + // TODO: CONSTANT
+                                    '<b>' + subtechnology[subtechnology_property] + '</b>' +
+                                  '</div>' +
+                                '</div>';
+              }
+              else {
+                // Specific technologies of platform
+                var platform_technology = subtechnology[subtechnology_property];
+                var platform_subtech = [];
+                for (var platform_subtechnology_property in platform_technology) {
+
+                  var display_text = '';
+                  if (platform_subtechnology_property == 'name') {
+                    display_text = platform_technology[platform_subtechnology_property];
+                    html += '<div class=\"' + 'subtechnology' + '\">' + // TODO: CONSTANT
+                              '<b>' + display_text + '</b>';
+                  }
+                  else {
+                    platform_subtech.push(platform_technology[platform_subtechnology_property]);
+                  }
+                }
+                var platform_subtech_printable = platform_subtech.join(', ');
+                html += platform_subtech_printable + '</div>';
+              }
+            }
+            cardModalHTML += html;
+          }
+          cardModalHTML += '</div>'; // Close technology wrapper div
       }
-      /* ----- Technology Website ----- */
-      if (product.technologyWebsite.length != 0) {
-        // Add Website header
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_TECHNOLOGY_WEBSITE_HEADER_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_TECHNOLOGY_WEBSITE_HEADER_MODAL + '</b>' +
-                          '</div>' +
-                        '</div>';
-
-        // Add every technology in Website
-        cardModalHTML += '<div class=\"' + DIV_CLASS_TECHNOLOGY_WEBSITE_WRAPPER_MODAL + '\">';
-        for (var i = 0; i < product.technologyWebsite.length; i++) {
-            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_TECHNOLOGY_WEBSITE_MODAL + '\">' +
-                              product.technologyWebsite[i] +
-                            '</div>';
-        }
-        cardModalHTML += '</div>'; // Close Website technology wrapper
-      }
-
-      /* ----- Technology iOS ----- */
-      if (product.technologyIOS.length != 0) {
-        // Add iOS header
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_TECHNOLOGY_IOS_HEADER_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_TECHNOLOGY_IOS_HEADER_MODAL + '</b>' +
-                          '</div>' +
-                        '</div>';
-
-        // Add every technology in iOS
-        cardModalHTML += '<div class=\"' + DIV_CLASS_TECHNOLOGY_IOS_WRAPPER_MODAL + '\">';
-        for (var i = 0; i < product.technologyIOS.length; i++) {
-            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_TECHNOLOGY_IOS_MODAL + '\">' +
-                              product.technologyIOS[i] +
-                            '</div>';
-        }
-        cardModalHTML += '</div>'; // Close iOS technology wrapper
-      }
-
-      /* ----- Technology macOS ----- */
-      if (product.technologyMacOS.length != 0) {
-        // Add macOS header
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_TECHNOLOGY_MACOS_HEADER_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_TECHNOLOGY_MACOS_HEADER_MODAL + '</b>' +
-                          '</div>' +
-                        '</div>';
-
-        // Add every technology in macOS
-        cardModalHTML += '<div class=\"' + DIV_CLASS_TECHNOLOGY_MACOS_WRAPPER_MODAL + '\">';
-        for (var i = 0; i < product.technologyMacOS.length; i++) {
-            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_TECHNOLOGY_MACOS_MODAL + '\">' +
-                              product.technologyMacOS[i] +
-                            '</div>';
-        }
-        cardModalHTML += '</div>'; // Close macOS technology wrapper
-      }
-
-      /* ----- Technology Android ----- */
-      if (product.technologyAndroid.length != 0) {
-        // Add Android header
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_TECHNOLOGY_ANDROID_HEADER_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_TECHNOLOGY_ANDROID_HEADER_MODAL + '</b>' +
-                          '</div>' +
-                        '</div>';
-
-        // Add every technology in Android
-        cardModalHTML += '<div class=\"' + DIV_CLASS_TECHNOLOGY_ANDROID_WRAPPER_MODAL + '\">';
-        for (var i = 0; i < product.technologyAndroid.length; i++) {
-            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_TECHNOLOGY_ANDROID_MODAL + '\">' +
-                              product.technologyAndroid[i] +
-                            '</div>';
-        }
-        cardModalHTML += '</div>'; // Close Android technology wrapper
-      }
-
-      /* ----- Technology Windows ----- */
-      if (product.technologyWindows.length != 0) {
-        // Add Windows header
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_TECHNOLOGY_WINDOWS_HEADER_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_TECHNOLOGY_WINDOWS_HEADER_MODAL + '</b>' +
-                          '</div>' +
-                        '</div>';
-
-        // Add every technology in Windows
-        cardModalHTML += '<div class=\"' + DIV_CLASS_TECHNOLOGY_WINDOWS_WRAPPER_MODAL + '\">';
-        for (var i = 0; i < product.technologyWindows.length; i++) {
-            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_TECHNOLOGY_WINDOWS_MODAL + '\">' +
-                              product.technologyWindows[i] +
-                            '</div>';
-        }
-        cardModalHTML += '</div>'; // Close Windows technology wrapper
-      }
-
-      /* ----- Technology Linux ----- */
-      if (product.technologyLinux.length != 0) {
-        // Add Linux header
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_TECHNOLOGY_LINUX_HEADER_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_TECHNOLOGY_LINUX_HEADER_MODAL + '</b>' +
-                          '</div>' +
-                        '</div>';
-
-        // Add every technology in Linux
-        cardModalHTML += '<div class=\"' + DIV_CLASS_TECHNOLOGY_LINUX_WRAPPER_MODAL + '\">';
-        for (var i = 0; i < product.technologyLinux.length; i++) {
-            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_TECHNOLOGY_LINUX_MODAL + '\">' +
-                              product.technologyLinux[i] +
-                            '</div>';
-        }
-        cardModalHTML += '</div>'; // Close Linux technology wrapper
-      }
-
-      // Add delimiter for design if at least one design property isn't empty
-      if (product.fonts.length != 0 || product.colors.length != 0) {
+      // Add design part
+      if (('fonts' in product) || ('colors' in product)) {
           cardModalHTML += '<hr class=\"' + DIV_CLASS_DESIGN_DELIMITER_MODAL + '\">';
+          if ('fonts' in product) {
+            var fonts = [];
+            for (var font_property in product['fonts']) {
+              fonts.push(product['fonts'][font_property]);
+            }
+            var fontsPrintable = fonts.join(', ');
+            cardModalHTML += '<div class=\"row\">' +
+                              '<div class=\"' + DIV_CLASS_PRODUCT_FONTS_MODAL + '\">' +
+                                '<b>' + DIV_TEXT_PRODUCT_FONTS_MODAL + '</b>' + fontsPrintable +
+                              '</div>' +
+                            '</div>';
+          }
+          if ('colors' in product) {
+            var colors = [];
+            for (var color_property in product['colors']) {
+              colors.push(product['colors'][color_property]);
+            }
+            var productColorsHTML = generateDynamicColorsHTML(COLORS_PER_ROW_MODAL, colors);
+            cardModalHTML += '<div class=\"colors-modal-wrapper\">';
+            cardModalHTML += productColorsHTML;
+            cardModalHTML += '</div>';
+          }
       }
-      /* ----- Design Fonts ----- */
-      if (product.fonts.length != 0) {
-        var fontsPrintable = product.fonts.join(', ');
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_FONTS_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_PRODUCT_FONTS_MODAL + '</b>' + fontsPrintable +
-                          '</div>' +
-                        '</div>';
-      }
-      /* ----- Design Colors ----- */
-      if (product.colors.length != 0) {
-        cardModalHTML += '<div class=\"colors-modal-wrapper\">';
-        cardModalHTML += generateDynamicColorsHTML(COLORS_PER_ROW_MODAL, product.colors);
-        cardModalHTML += '</div>';
-      }
-      cardModalHTML += '</div></div></div></div>'; // Close divs
+      cardModalHTML += '</div></div></div>'; // Close divs
+      console.log(cardModalHTML);
       $('div.content').last().append(cardModalHTML);
-      /* ----------- */
-    }); // $.each(data,…) END
-
-  })
-  .fail(function(jqXHR, textStatus, errorThrown) {
-    console.log('getJSON request failed! ' + textStatus);
-    // TODO: Present user with some UX friendly error page
-  })
-  .always(function() {
-    console.log('getJSON request ended!');
-    changeHeightOfCards();
+      /* ----- */
+    }
   });
+
+  changeHeightOfCards();
+  $(window).bind('resize',function(){
+    changeHeightOfCards();
+});
 
   /* ----- SEARCH ----- */
   var products = document.getElementsByClassName('card');
