@@ -151,8 +151,74 @@ $(document).ready(function() {
     return html;
   }
 
+  function changeHeightOfCards() {
+    if ($(window).width() > 992) {
+      // Get the tallest card and then set height of every card to the tallest one
+      $(document).ready(function() {
+        // Get an array of all element heights
+        var elementHeights = $('div.card').map(function() {
+          return $(this).height();
+        }).get();
+
+        // Math.max takes a variable number of arguments
+        // `apply` is equivalent to passing each height as an argument
+        var maxHeight = Math.max.apply(null, elementHeights);
+
+        // Set each height to the max height
+        $('div.card').height(maxHeight);
+      });
+    }
+    else {
+      $('div.card').css('height', '100%');
+    }
+  }
+
+  $(window).bind('resize',function(){
+    changeHeightOfCards();
+});
+
   $.getJSON(SPREAD_SHEET_URL)
   .done(function(data) {
+    // Initialize Firebase
+    /*
+    var config = {
+      apiKey: "AIzaSyBJf4MX7uWsGQfoleAnoj7T2vg5boS1FUs",
+      authDomain: "product-anatomy.firebaseapp.com",
+      databaseURL: "https://product-anatomy.firebaseio.com",
+      storageBucket: "product-anatomy.appspot.com",
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+    firebase.database().ref('/products').once('value').then(function(snapshot) {
+
+      var products = snapshot.val();
+      //console.log(snapshot.val());
+      for (var product in products) {
+
+        var product_technology = products[product]['technology'];
+        for (var technology in product_technology) {
+
+          var particular_technology = product_technology[technology];
+          //console.log(particular_technology);
+
+          for (var subtechnology in particular_technology) {
+            console.log(particular_technology[subtechnology]);
+          }
+
+
+        }
+
+        if ('android' in products[product]['technology']) {
+          console.log('YES');
+        }
+        else {
+          console.log('NO');
+        }
+        //console.log(products[product]['technology']['android']);
+      }
+    });
+    */
+
     console.log('getJSON request succeeded!');
 
     var entry = data.feed.entry;
@@ -474,22 +540,7 @@ $(document).ready(function() {
   })
   .always(function() {
     console.log('getJSON request ended!');
-
-    // Get the tallest card and then set height of every card to the tallest one
-    // TODO: How to solve height for different screen size?
-    $(document).ready(function() {
-      // Get an array of all element heights
-      var elementHeights = $('div.card').map(function() {
-        return $(this).height();
-      }).get();
-
-      // Math.max takes a variable number of arguments
-      // `apply` is equivalent to passing each height as an argument
-      var maxHeight = Math.max.apply(null, elementHeights);
-
-      // Set each height to the max height
-      $('div.card').height(maxHeight);
-    });
+    changeHeightOfCards();
   });
 
   /* ----- SEARCH ----- */
