@@ -80,13 +80,7 @@
 
 /* ----- Technology ----- */
 .technology-delimiter-modal {
-  width: 500px;
-}
-
-@media (max-width: 991px) {
-  .technology-delimiter-modal {
-    width: 250px;
-  }
+  width: 85%;
 }
 
 .technology-wrapper {
@@ -101,13 +95,7 @@
 
 /* ----- Design ----- */
 .design-delimiter-modal {
-  width: 500px;
-}
-
-@media (max-width: 991px) {
-  .design-delimiter-modal {
-    width: 250px;
-  }
+  width: 85%;
 }
 
 .product-fonts-modal {
@@ -123,9 +111,9 @@
 /* ----- Tags ----- */
 .tag {
   display: inline-block;
-  padding: 5px 12px;
+  padding: 3px 12px;
   margin-right: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   border-radius: 15px;
 
   color: white;
