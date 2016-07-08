@@ -40,16 +40,27 @@
   margin-bottom: 8px;
 }
 
+
 .product-founders-modal {
   padding-left: 35px;
   padding-right: 35px;
   margin-bottom: 8px;
 }
 
+/* ----- Founders ----- */
 .founders-names-wrapper {
-  padding-left: 15px;
-  background-color: red;
+  margin-top: 5px;
+  padding-left: 35px;
 }
+
+.fa-twitter {
+  color: #c8c8c4;
+}
+
+.fa-twitter:hover {
+  color: #4099ff;
+}
+/* ---------- */
 
 .product-platforms-modal {
   padding-left: 35px;
@@ -95,11 +106,36 @@
 }
 
 .product-fonts-modal {
-  padding-left: 35px;
   margin-bottom: 12px;
+  padding-left: 5px;
 }
 
 .colors-modal-wrapper {
-  margin-left: 18px;
+  /*margin-left: 18px;*/
+}
+/* ---------- */
+
+/* ----- Tags ----- */
+.tag {
+  display: inline-block;
+  padding: 5px 12px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+
+  color: white;
+
+  cursor: pointer;
+  transition: transform .1s linear;
+}
+
+.tag:hover {
+    transform: translate(0px, -1px) scale(1.05);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,.2);
+}
+
+.tag:active {
+    transform: translate(0px, 1px) scale(0.95);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,.3);
 }
 /* ---------- */
