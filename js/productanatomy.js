@@ -24,6 +24,8 @@ const DIV_CLASS_PRODUCT_COLORS_TEXT = 'product-colors-text';
 /* ---------- */
 
 /* ----- Constant for modal product card ----- */
+const DIV_CLASS_PRODUCT_TWITTER_LOGO = 'twitter-logo';
+
 const DIV_CLASS_PRODUCT_URL_MODAL = 'product-url-modal';
 
 const DIV_CLASS_PRODUCT_DESCRIPTION_MODAL = 'product-description-modal';
@@ -74,6 +76,7 @@ const FIREBASE_PRODUCT_FOUNDERS_TWITTER = 'founders-twitter';
 const FIREBASE_PRODUCT_API = 'api';
 const FIREBASE_PRODUCT_TECHNOLOGY = 'technology';
 const FIREBASE_PRODUCT_LOGO_URL = 'logo-url'
+const FIREBASE_PRODUCT_TWITTER_USERNAME = 'twitter-username';
 /* ---------- */
 
 /* Constants for Twitter */
@@ -133,13 +136,13 @@ function changeHeightOfCards() {
 }
 // TODO: Make my own
 var tag_colors = ['orange', 'teal', 'cyan', 'goldenrod', 'purple', 'blue', 'pink', 'brown'];
+var platform_tag_colors  = ['#ff7473', '#ffc952', '#47b8e0', '#58C9B9', '#D1B6E1', '#CE6D39'];
 var randomColorFromString = function (str, colors) {
     function digitize (str) {
         var code = 0;
         if (str === undefined) { return code; }
         for (var i = 0; i < str.length; i++)
             code += str.toLowerCase().charCodeAt(i);
-        console.log(code);
         return code;
     }
 
@@ -147,7 +150,6 @@ var randomColorFromString = function (str, colors) {
     return colors[(code % colors.length)];
 };
 /* ---------- */
-
 
 $(document).ready(function() {
   var config = {
@@ -225,10 +227,30 @@ $(document).ready(function() {
                             '<div class=\"modal-dialog modal-md\">' +
                               '<div class=\"modal-content\">' +
                                 '<div class=\"modal-header\">' +
-                                  '<img class=\"img-responsive\" src=\"' + product['logo-url'] + '\" alt=\"image\"/>' +
-                                  '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>' +
-                                '</div>' +
-                                '<div class=\"modal-body\">';
+                                  '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>';
+
+      cardModalHTML += '<div class=\"media\">';
+      // Add product logo //
+      if (FIREBASE_PRODUCT_LOGO_URL in product) {
+        cardModalHTML += '<span class=\"media-left\">' +
+                            '<img class=\"img-responsive\" src=\"' + product[FIREBASE_PRODUCT_LOGO_URL] + '\" alt=\"Product Logo\"/>' +
+                          '</span>';
+      }
+
+      // Add product twitter url //
+      if (FIREBASE_PRODUCT_TWITTER_USERNAME in product) {
+        var product_twitter_username = product[FIREBASE_PRODUCT_TWITTER_USERNAME];
+        var twitter_url = TWITTER_BASE_ADDRESS + product_twitter_username;
+
+        cardModalHTML += '<div class=\"media-body\">' +
+                            '<div class=\"' + DIV_CLASS_PRODUCT_TWITTER_LOGO + '\">' +
+                              '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>' +
+                            '</div>' +
+                          '</div>';
+      }
+
+      cardModalHTML += '</div>'; // Close div 'media'
+      cardModalHTML += '</div> <div class=\"modal-body\">'; // Close div 'modal-header' and open div 'modal-body'
 
       // Add product URL //
       if (FIREBASE_PRODUCT_URL in product) {
@@ -278,7 +300,7 @@ $(document).ready(function() {
           html_founders += '<span class=\"' + DIV_CLASS_TAG + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
           if (index < founders_twitter_url.length) {
             var twitter_url = founders_twitter_url[index];
-            var twitter_url_href = '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>'
+            var twitter_url_href = '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>';
             html_founders += ' ' + twitter_url_href + '<br/>';
             //html_founders += product[FIREBASE_PRODUCT_FOUNDERS][founder_property] + ' ' + twitter_url_href + '<br/>';
           }
@@ -306,8 +328,28 @@ $(document).ready(function() {
         var platforms = [];
         for (var platform_property in product[FIREBASE_PRODUCT_PLATFORMS]) {
           var platform = product[FIREBASE_PRODUCT_PLATFORMS][platform_property];
-          var platform_color = randomColorFromString(platform, tag_colors);
-          cardModalHTML += '<span class=\"' + DIV_CLASS_TAG + '\" style=\"background-color:goldenrod' /*+ platform_color*/ + '\">' + platform + '</span>';
+          var platform_color;
+          switch (platform.toLocaleLowerCase()) {
+            case 'website':
+              platform_color = platform_tag_colors[0];
+              break;
+            case 'ios':
+              platform_color = platform_tag_colors[1];
+              break;
+            case 'android':
+              platform_color = platform_tag_colors[2];
+              break;
+            case 'macos':
+              platform_color = platform_tag_colors[3];
+              break;
+            case 'windows':
+              platform_color = platform_tag_colors[4];
+              break;
+            case 'linux':
+              platform_color = platform_tag_colors[5];
+              break;
+          }
+          cardModalHTML += '<span class=\"' + DIV_CLASS_TAG + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
         }
         cardModalHTML += '</div></div>';
       }
@@ -440,7 +482,7 @@ $(document).ready(function() {
     }
     document.getElementById(SEARCHBOX_ID).addEventListener('input', search);
 
-    /* ----- Search using tags in modal ----- */
+    /* ----- Search using tags ----- */
     var tags = document.getElementsByClassName(DIV_CLASS_TAG);
     for (var i = 0; i < tags.length; i++) (function (tag) {
       tag.addEventListener('click', function (e) {
