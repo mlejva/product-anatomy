@@ -35,6 +35,11 @@
   margin-bottom: 8px;
 }
 
+.founders-names-wrapper {
+  padding-left: 15px;
+  background-color: red;
+}
+
 .product-platforms-modal {
   padding-left: 35px;
   margin-bottom: 8px;
@@ -46,7 +51,6 @@
 }
 
 /* Technology */
-
 .technology-delimiter-modal {
   width: 500px;
 }
@@ -63,7 +67,6 @@
 .subtechnology {
   color: blue;
 }
-
 /* --------- */
 
 /* Design */
