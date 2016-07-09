@@ -166,23 +166,36 @@ var randomColorFromString = function (str, colors) {
 function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
-/* ---------- */
-
-$(document).ready(function() {
+// Instead of deleting all elements it should move elements to next row according to max in row
+function resizeGlobalTags() {
+  $('div.tag-wrapper').children('.row').empty();
+  var maxInRow = 0;
+  var offset = 0;
+  if ($(window).width() > 567) {
+    //$('div.tag-wrapper').children('.row').children().removeClass('col-lg-2 col-lg-offset-5');
+    //$('div.tag-wrapper').children('.row').children().addClass('col-lg-6 col-lg-offset-3');
+    maxInRow = 6;
+    offset = 3;
+  }
+  else {
+    //$('div.tag-wrapper').children('.row').children().removeClass('col-lg-6 col-lg-offset-3');
+    //$('div.tag-wrapper').children('.row').children().addClass('col-lg-2 col-lg-offset-5');
+    maxInRow = 2;
+    offset = 5;
+  }
 
   // Add tags under searchbar
-  var global_tags_html = '<div class=\"col-lg-6 col-lg-offset-3\">';
+  var global_tags_html = '<div class=\"col-lg-' + maxInRow + ' col-lg-offset-' + offset + '\">';
   global_tags_html += '<div class=\"tag-row\">';
   var in_current_row = 0;
   for (var i = 0; i < global_tags.length; i++) {
-
-    if (in_current_row < 6) {
+    if (in_current_row < maxInRow) {
       in_current_row++;
     }
     else {
       in_current_row = 0;
       global_tags_html += '</div> </div>';
-      global_tags_html += '<div class=\"col-lg-6 col-lg-offset-3\">'
+      global_tags_html += '<div class=\"col-lg-' + maxInRow + ' col-lg-offset-' + offset + '\">';
       global_tags_html += '<div class=\"tag-row\">';
       in_current_row++;
     }
@@ -198,6 +211,14 @@ $(document).ready(function() {
   }
   global_tags_html += '</div> </div>'
   $('div.tag-wrapper').children('.row').append(global_tags_html);
+}
+/* ---------- */
+
+$(document).ready(function() {
+
+
+
+  resizeGlobalTags();
 
 
   var config = {
@@ -523,10 +544,12 @@ $(document).ready(function() {
   }); // firebase END
 
 
+  /* ----- Global Events ---- */
   // We want to change height of cards according to the size of window (e.g. different for mobile)
   $(window).bind('resize',function() {
     changeHeightOfCards();
+    resizeGlobalTags();
   });
-
+  /* ---------- */
 
 }); // page loaded END
