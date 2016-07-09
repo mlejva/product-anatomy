@@ -107,28 +107,3 @@
   /*margin-left: 18px;*/
 }
 /* ---------- */
-
-/* ----- Tags ----- */
-.tag {
-  display: inline-block;
-  padding: 3px 12px;
-  margin-right: 5px;
-  margin-bottom: 8px;
-  border-radius: 15px;
-
-  color: white;
-
-  cursor: pointer;
-  transition: transform .1s linear;
-}
-
-.tag:hover {
-    transform: translate(0px, -1px) scale(1.05);
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,.2);
-}
-
-.tag:active {
-    transform: translate(0px, 1px) scale(0.95);
-    box-shadow: 0px 0px 0px 0px rgba(0,0,0,.3);
-}
-/* ---------- */

@@ -57,7 +57,7 @@ const DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL = 'technology-delimiter-modal';
 const DIV_CLASS_DESIGN_DELIMITER_MODAL = 'design-delimiter-modal';
 /* ---------- */
 
-/* Constants for Firebase */
+/* ----- Constants for Firebase ----- */
 const FIREBASE_API_KEY = 'AIzaSyBJf4MX7uWsGQfoleAnoj7T2vg5boS1FUs';
 const FIREBASE_AUTH_DOMAIN = 'product-anatomy.firebaseapp.com';
 const FIREBASE_DATABASE_URL = 'https://product-anatomy.firebaseio.com';
@@ -81,6 +81,22 @@ const FIREBASE_PRODUCT_TWITTER_USERNAME = 'twitter-username';
 
 /* Constants for Twitter */
 const TWITTER_BASE_ADDRESS = 'https://www.twitter.com/';
+/* ---------- */
+
+/* Global variable */
+var tag_colors = ['orange', 'teal', 'cyan', 'goldenrod', 'purple', 'blue', 'pink', 'brown'];
+//var platform_tag_colors  = ['#ff7473', '#ffc952', '#47b8e0', '#58C9B9', '#D1B6E1', '#CE6D39'];
+var platform_tag_colors = {
+  website: '#ff7473',
+  ios: '#ffc952',
+  macos: '#47b8e0',
+  windows: '#58c9b9',
+  android: '#d1b6e1',
+  linux: '#ce6d39'
+}
+var global_tags = ['Website', 'iOS', 'macOS', 'Windows', 'Android', 'Linux', 'Javascript', 'C', 'Objective-C', 'C++', 'Go', 'Java', 'Python', 'Hack', 'PHP', 'Erlang', 'Swift', 'Haskell', 'Perl'];
+Array.prototype.push.apply(global_tags, ['Scala', 'Ruby on Rails', 'C#']);
+var platforms = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
 /* ---------- */
 
 /* ----- Functions ----- */
@@ -135,8 +151,6 @@ function changeHeightOfCards() {
   }
 }
 // TODO: Make my own
-var tag_colors = ['orange', 'teal', 'cyan', 'goldenrod', 'purple', 'blue', 'pink', 'brown'];
-var platform_tag_colors  = ['#ff7473', '#ffc952', '#47b8e0', '#58C9B9', '#D1B6E1', '#CE6D39'];
 var randomColorFromString = function (str, colors) {
     function digitize (str) {
         var code = 0;
@@ -149,9 +163,43 @@ var randomColorFromString = function (str, colors) {
     var code = digitize(str);
     return colors[(code % colors.length)];
 };
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
+}
 /* ---------- */
 
 $(document).ready(function() {
+
+  // Add tags under searchbar
+  var global_tags_html = '<div class=\"col-lg-6 col-lg-offset-3\">';
+  global_tags_html += '<div class=\"tag-row\">';
+  var in_current_row = 0;
+  for (var i = 0; i < global_tags.length; i++) {
+
+    if (in_current_row < 6) {
+      in_current_row++;
+    }
+    else {
+      in_current_row = 0;
+      global_tags_html += '</div> </div>';
+      global_tags_html += '<div class=\"col-lg-6 col-lg-offset-3\">'
+      global_tags_html += '<div class=\"tag-row\">';
+      in_current_row++;
+    }
+    var tag_name = global_tags[i];
+    var tag_color;
+    if (isInArray(tag_name.toLocaleLowerCase(), platforms)) {
+        tag_color = platform_tag_colors[tag_name.toLocaleLowerCase()];
+    }
+    else {
+      tag_color = randomColorFromString(tag_name, tag_colors);
+    }
+    global_tags_html += '<span class=\"' + DIV_CLASS_TAG + '\" style=\"background-color:' + tag_color + '\">' + tag_name + '</span>';
+  }
+  global_tags_html += '</div> </div>'
+  $('div.tag-wrapper').children('.row').append(global_tags_html);
+
+
   var config = {
     apiKey: FIREBASE_API_KEY,
     authDomain: FIREBASE_AUTH_DOMAIN,
@@ -328,27 +376,7 @@ $(document).ready(function() {
         var platforms = [];
         for (var platform_property in product[FIREBASE_PRODUCT_PLATFORMS]) {
           var platform = product[FIREBASE_PRODUCT_PLATFORMS][platform_property];
-          var platform_color;
-          switch (platform.toLocaleLowerCase()) {
-            case 'website':
-              platform_color = platform_tag_colors[0];
-              break;
-            case 'ios':
-              platform_color = platform_tag_colors[1];
-              break;
-            case 'android':
-              platform_color = platform_tag_colors[2];
-              break;
-            case 'macos':
-              platform_color = platform_tag_colors[3];
-              break;
-            case 'windows':
-              platform_color = platform_tag_colors[4];
-              break;
-            case 'linux':
-              platform_color = platform_tag_colors[5];
-              break;
-          }
+          var platform_color = platform_tag_colors[platform.toLocaleLowerCase()];
           cardModalHTML += '<span class=\"' + DIV_CLASS_TAG + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
         }
         cardModalHTML += '</div></div>';
