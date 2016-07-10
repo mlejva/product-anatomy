@@ -1,106 +1,11 @@
 
-const COLORS_PER_ROW = 2;
-const COLORS_PER_ROW_MODAL = 2;
-
-const BOOTSTRAP_MAX_WIDTH = 12;
-
-const SEARCHBOX_ID = 'searchbox';
-
-const DIV_CLASS_TAG_WRAPPER = 'tag-wrapper';
-const DIV_CLASS_TAG = 'tag';
-
-/* ----- Constant for static product card ----- */
-const DIV_CLASS_PRODUCT_DESCRIPTION = 'product-description';
-
-const DIV_CLASS_PRODUCT_PLATFORMS = 'product-platforms';
-const DIV_TEXT_PRODUCT_PLATFORMS = 'Platforms ';
-
-const DIV_CLASS_PRODUCT_FONTS = 'product-fonts';
-const DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
-
-const DIV_CLASS_PRODUCT_COLORS_WRAPPER = 'product-colors-wrapper'
-const DIV_CLASS_PRODUCT_COLORS = 'product-colors';
-const DIV_CLASS_PRODUCT_COLORS_TEXT = 'product-colors-text';
-/* ---------- */
-
-/* ----- Constant for modal product card ----- */
-const DIV_CLASS_PRODUCT_TWITTER_LOGO = 'twitter-logo';
-
-const DIV_CLASS_PRODUCT_URL_MODAL = 'product-url-modal';
-
-const DIV_CLASS_PRODUCT_DESCRIPTION_MODAL = 'product-description-modal';
-
-const DIV_CLASS_PRODUCT_LAUNCHED_MODAL = 'product-launched-modal';
-const DIV_TEXT_PRODUCT_LAUNCHED_MODAL = 'Launched on ';
-
-const DIV_CLASS_PRODUCT_FOUNDERS_MODAL = 'product-founders-modal';
-const DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER_MODAL = 'founders-names-wrapper';
-const FOUNDER_TAG_COLOR = '#d0021b';
-const DIV_TEXT_PRODUCT_FOUNDERS_MODAL = 'Founded by ';
-
-const DIV_CLASS_PRODUCT_PLATFORMS_MODAL = 'product-platforms-modal';
-const DIV_TEXT_PRODUCT_PLATFORMS_MODAL = 'Platforms ';
-
-const DIV_CLASS_PRODUCT_API_MODAL = 'product-api-modal';
-const DIV_TEXT_PRODUCT_API_MODAL = 'API ';
-
-const DIV_CLASS_PRODUCT_FONTS_MODAL = 'product-fonts-modal';
-const DIV_TEXT_PRODUCT_FONTS_MODAL = 'Fonts ';
-
-const DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER_MODAL = 'technology-wrapper';
-const DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL = 'technology-name';
-const DIV_CLASS_PRODUCT_SUBTECHNOLOGY_MODAL = 'subtechnology';
-
-const DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'colors-modal-wrapper';
-
-const DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL = 'technology-delimiter-modal';
-const DIV_CLASS_DESIGN_DELIMITER_MODAL = 'design-delimiter-modal';
-/* ---------- */
-
-/* ----- Constants for Firebase ----- */
-const FIREBASE_API_KEY = 'AIzaSyBJf4MX7uWsGQfoleAnoj7T2vg5boS1FUs';
-const FIREBASE_AUTH_DOMAIN = 'product-anatomy.firebaseapp.com';
-const FIREBASE_DATABASE_URL = 'https://product-anatomy.firebaseio.com';
-const FIREBASE_STORAGE_BUCKET = 'product-anatomy.appspot.com';
-
-const FIREBASE_PRODUCTS_PATH = '/products';
-
-const FIREBASE_PRODUCT_PLATFORMS = 'platforms';
-const FIREBASE_PRODUCT_FONTS = 'fonts';
-const FIREBASE_PRODUCT_COLORS = 'colors';
-const FIREBASE_PRODUCT_URL = 'url';
-const FIREBASE_PRODUCT_DESCRIPTION = 'description';
-const FIREBASE_PRODUCT_LAUNCHED = 'launched';
-const FIREBASE_PRODUCT_FOUNDERS = 'founders';
-const FIREBASE_PRODUCT_FOUNDERS_TWITTER = 'founders-twitter';
-const FIREBASE_PRODUCT_API = 'api';
-const FIREBASE_PRODUCT_TECHNOLOGY = 'technology';
-const FIREBASE_PRODUCT_LOGO_URL = 'logo-url'
-const FIREBASE_PRODUCT_TWITTER_USERNAME = 'twitter-username';
-/* ---------- */
-
-/* Constants for Twitter */
-const TWITTER_BASE_ADDRESS = 'https://www.twitter.com/';
-/* ---------- */
-
 /* Global variable */
-var tag_colors = ['orange', 'teal', 'cyan', 'goldenrod', 'purple', 'blue', 'pink', 'brown'];
-//var platform_tag_colors  = ['#ff7473', '#ffc952', '#47b8e0', '#58C9B9', '#D1B6E1', '#CE6D39'];
-var platform_tag_colors = {
-  website: '#ff7473',
-  ios: '#ffc952',
-  macos: '#47b8e0',
-  windows: '#58c9b9',
-  android: '#d1b6e1',
-  linux: '#ce6d39'
-}
-var global_tags = ['Website', 'iOS', 'macOS', 'Windows', 'Android', 'Linux', 'Javascript', 'C', 'Objective-C', 'C++', 'Go', 'Java', 'Python', 'Hack', 'PHP', 'Erlang', 'Swift', 'Haskell', 'Perl'];
-Array.prototype.push.apply(global_tags, ['Scala', 'Ruby on Rails', 'C#']);
-var platforms = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
+const platforms = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
+var tag_pressed = false;
 /* ---------- */
 
 /* ----- Functions ----- */
-function generateDynamicColorsHTML(maxInRow, colors) {
+var generateDynamicColorsHTML = function(maxInRow, colors) {
   // Dynamically add colors to cardHTML
   var html = '<div class=\"row\">';
   var inCurrentRow = 0;
@@ -129,7 +34,7 @@ function generateDynamicColorsHTML(maxInRow, colors) {
   html += '</div>'; // Close the last row (may not be full)
   return html;
 }
-function changeHeightOfCards() {
+var changeHeightOfCards = function() {
   if ($(window).width() > 992) {
     // Get the tallest card and then set height of every card to the tallest one
     $(document).ready(function() {
@@ -150,77 +55,8 @@ function changeHeightOfCards() {
     $('div.card').css('height', '100%');
   }
 }
-// TODO: Make my own
-var randomColorFromString = function (str, colors) {
-    function digitize (str) {
-        var code = 0;
-        if (str === undefined) { return code; }
-        for (var i = 0; i < str.length; i++)
-            code += str.toLowerCase().charCodeAt(i);
-        return code;
-    }
 
-    var code = digitize(str);
-    return colors[(code % colors.length)];
-};
-function isInArray(value, array) {
-  return array.indexOf(value) > -1;
-}
-// Instead of deleting all elements it should move elements to next row according to max in row
-function resizeGlobalTags() {
-  $('div.tag-wrapper').children('.row').empty();
-  var maxInRow = 0;
-  var offset = 0;
-  if ($(window).width() > 567) {
-    //$('div.tag-wrapper').children('.row').children().removeClass('col-lg-2 col-lg-offset-5');
-    //$('div.tag-wrapper').children('.row').children().addClass('col-lg-6 col-lg-offset-3');
-    maxInRow = 6;
-    offset = 3;
-  }
-  else {
-    //$('div.tag-wrapper').children('.row').children().removeClass('col-lg-6 col-lg-offset-3');
-    //$('div.tag-wrapper').children('.row').children().addClass('col-lg-2 col-lg-offset-5');
-    maxInRow = 2;
-    offset = 5;
-  }
-
-  // Add tags under searchbar
-  var global_tags_html = '<div class=\"col-lg-' + maxInRow + ' col-lg-offset-' + offset + '\">';
-  global_tags_html += '<div class=\"tag-row\">';
-  var in_current_row = 0;
-  for (var i = 0; i < global_tags.length; i++) {
-    if (in_current_row < maxInRow) {
-      in_current_row++;
-    }
-    else {
-      in_current_row = 0;
-      global_tags_html += '</div> </div>';
-      global_tags_html += '<div class=\"col-lg-' + maxInRow + ' col-lg-offset-' + offset + '\">';
-      global_tags_html += '<div class=\"tag-row\">';
-      in_current_row++;
-    }
-    var tag_name = global_tags[i];
-    var tag_color;
-    if (isInArray(tag_name.toLocaleLowerCase(), platforms)) {
-        tag_color = platform_tag_colors[tag_name.toLocaleLowerCase()];
-    }
-    else {
-      tag_color = randomColorFromString(tag_name, tag_colors);
-    }
-    global_tags_html += '<span class=\"' + DIV_CLASS_TAG + '\" style=\"background-color:' + tag_color + '\">' + tag_name + '</span>';
-  }
-  global_tags_html += '</div> </div>'
-  $('div.tag-wrapper').children('.row').append(global_tags_html);
-}
-/* ---------- */
-
-$(document).ready(function() {
-
-
-
-  resizeGlobalTags();
-
-
+var initializeFirebase = function() {
   var config = {
     apiKey: FIREBASE_API_KEY,
     authDomain: FIREBASE_AUTH_DOMAIN,
@@ -228,7 +64,18 @@ $(document).ready(function() {
     storageBucket: FIREBASE_STORAGE_BUCKET,
   };
   firebase.initializeApp(config);
-  var database = firebase.database();
+
+  return firebase.database();
+}
+/* ---------- */
+
+$(document).ready(function() {
+
+  // Resize tags according to the actual screen size
+  resizeGlobalTags();
+
+
+  var database = initializeFirebase();
   firebase.database().ref(FIREBASE_PRODUCTS_PATH).once('value').then(function(snapshot) {
     var products = snapshot.val();
     var cardNumber = 0;
@@ -366,7 +213,7 @@ $(document).ready(function() {
 
           html_founders += '<div class=\"row\">';
           // Check wether we have twitter url for this founder
-          html_founders += '<span class=\"' + DIV_CLASS_TAG + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
+          html_founders += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
           if (index < founders_twitter_url.length) {
             var twitter_url = founders_twitter_url[index];
             var twitter_url_href = '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>';
@@ -397,8 +244,8 @@ $(document).ready(function() {
         var platforms = [];
         for (var platform_property in product[FIREBASE_PRODUCT_PLATFORMS]) {
           var platform = product[FIREBASE_PRODUCT_PLATFORMS][platform_property];
-          var platform_color = platform_tag_colors[platform.toLocaleLowerCase()];
-          cardModalHTML += '<span class=\"' + DIV_CLASS_TAG + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
+          var platform_color = PLATFORM_TAG_COLORS[platform.toLocaleLowerCase()];
+          cardModalHTML += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
         }
         cardModalHTML += '</div></div>';
       }
@@ -449,8 +296,8 @@ $(document).ready(function() {
                 }
                 for (var i = 0; i < platform_subtech.length; i++) {
                   var elem = platform_subtech[i];
-                  var elem_color = randomColorFromString(elem, tag_colors);
-                  html += '<span class=\"' + DIV_CLASS_TAG + '\" style=\"background-color:' + elem_color + '\">' + elem + '</span>';
+                  var elem_color = randomColorFromString(elem, TAG_COLORS);
+                  html += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + elem_color + '\">' + elem + '</span>';
                 }
                 var platform_subtech_printable = platform_subtech.join(', ');
 
@@ -494,55 +341,20 @@ $(document).ready(function() {
       /* ----- */
     }
 
-
-
-
-
-
-
-    // After cards are load we either want to set the height of cards for same size or let them act dynamically.
+    // After cards are loaded we either want to set the height of cards for same size or let them act dynamically.
     changeHeightOfCards();
-    /* ----- Search ----- */
-    var products_modal = document.getElementsByClassName('modal'); // We want to search in modals
-    var products_static = document.getElementsByClassName('card'); // But we want to hide statics
-    var search = function() {
-      var query = document.getElementById(SEARCHBOX_ID).value;
-      var match = new Function;
-
-      if (!query.length) {
-        match = function() { return true; }
-      }
-      else if (query.substr(0, query.indexOf(':')) == ':' ) {
-
-      }
-      else {
-        match = function (product) {
-          return (product.textContent.toLowerCase().indexOf(query.toLowerCase()) >= 0);
-        }
-      }
-
-      for (var i = 0; i < products_modal.length; i++) {
-        if (match(products_modal[i]))
-          products_static[i].parentElement.style.display = '';
-        else {
-          products_static[i].parentElement.style.display = 'none';
-        }
-      }
-    }
     document.getElementById(SEARCHBOX_ID).addEventListener('input', search);
+    // Add search feature to each tag we created
+    tag_search();
 
-    /* ----- Search using tags ----- */
-    var tags = document.getElementsByClassName(DIV_CLASS_TAG);
-    for (var i = 0; i < tags.length; i++) (function (tag) {
-      tag.addEventListener('click', function (e) {
-        $(this).closest('.modal').modal('toggle');
-        document.getElementById(SEARCHBOX_ID).value = tag.textContent;
-        search();
-      })
-    })(tags[i]);
-    /* ---------- */
+    // Scroll to the top when modal is closed
+    $('.modal').on('hidden.bs.modal', function () {
+      if (tag_pressed) {
+        window.scrollTo(0, 0);
+        tag_pressed = false;
+      }
+    });
   }); // firebase END
-
 
   /* ----- Global Events ---- */
   // We want to change height of cards according to the size of window (e.g. different for mobile)
