@@ -34,29 +34,10 @@ var generateDynamicColorsHTML = function(maxInRow, colors) {
   html += '</div>'; // Close the last row (may not be full)
   return html;
 }
-var changeHeightOfCards = function() {
-  if ($(window).width() > 992) {
-    // Get the tallest card and then set height of every card to the tallest one
-    $(document).ready(function() {
-      // Get an array of all element heights
-      var elementHeights = $('div.card').map(function() {
-        return $(this).height();
-      }).get();
+/* ---------- */
 
-      // Math.max takes a variable number of arguments
-      // `apply` is equivalent to passing each height as an argument
-      var maxHeight = Math.max.apply(null, elementHeights);
-
-      // Set each height to the max height
-      $('div.card').height(maxHeight);
-    });
-  }
-  else {
-    $('div.card').css('height', '100%');
-  }
-}
-
-var initializeFirebase = function() {
+/* ----- Firebase functions ----- */
+var initializeFirebase = function() {
   var config = {
     apiKey: FIREBASE_API_KEY,
     authDomain: FIREBASE_AUTH_DOMAIN,
@@ -64,8 +45,12 @@ var initializeFirebase = function() {
     storageBucket: FIREBASE_STORAGE_BUCKET,
   };
   firebase.initializeApp(config);
-
+}
+var getDatabaseReference = function() {
   return firebase.database();
+}
+var getStorageReference = function() {
+  return firebase.storage();
 }
 /* ---------- */
 
@@ -74,8 +59,11 @@ $(document).ready(function() {
   // Resize tags according to the actual screen size
   resizeGlobalTags();
 
+  // Always call this before any Firebase reference
+  initializeFirebase();
 
-  var database = initializeFirebase();
+  var database = getDatabaseReference();
+  var storage = getStorageReference();
   firebase.database().ref(FIREBASE_PRODUCTS_PATH).once('value').then(function(snapshot) {
     var products = snapshot.val();
     var cardNumber = 0;
@@ -83,116 +71,92 @@ $(document).ready(function() {
       var product = products[product_property];
       cardNumber++;
 
-      /* ----- Card HTML ----- */
-      var cardHTML = '<div class=\"col-lg-4\">' +
-                      '<div data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"card\">';
-
-      if (FIREBASE_PRODUCT_LOGO_URL in product) {
-        cardHTML += '<img class=\"card-img-top\" src=\"' + product[FIREBASE_PRODUCT_LOGO_URL] + '\" alt=\"Product Logo\">';
-      }
+      // Prepare static card for product
+      var cardID = product[FIREBASE_PRODUCT_NAME].toLocaleLowerCase().replace(/ /g, '-'); // TODO: Should first check whether product has a name
+      var cardHTML = /*'<div class=\"col-lg-4\">' +*/
+                      /*'<div id=\"' + cardID + '\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"card\">';*/
+                      '<div id=\"' + cardID + '\" class=\"card\">';
       cardHTML += '<div class=\"card-block\">';
+
+      // Prepare modal card for product
+      var cardModalHTML = '<div id=\"card' + cardNumber + '\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">' +
+                            '<div class=\"modal-dialog modal-md\">' +
+                              '<div class=\"modal-content\">' +
+                                '<div class=\"modal-header\">' +
+                                  '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>';
+      var classForLogo = product[FIREBASE_PRODUCT_NAME].toLocaleLowerCase().replace(/ /g, '-') + '-modal'; // TODO: Should first check whether product has a name
+      cardModalHTML += '<div class=\"media ' + classForLogo + '\">';
+
+      // TODO: Add twitter url
+
+      cardModalHTML += '</div>'; // Close div 'media'
+      cardModalHTML += '</div> <div class=\"modal-body\">'; // Close div 'modal-header' and open div 'modal-body'
+
+      /* ----- Parsing product into static and modal cards  ----- */
+      // Add product name //
+      if (FIREBASE_PRODUCT_NAME in product) {
+        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_NAME + '\">' +
+                      '<div class=\"row\">' +
+                        product[FIREBASE_PRODUCT_NAME] +
+                      '</div>' +
+                    '</div>';
+
+        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_NAME_MODAL + '\">' +
+                          '<div class=\"row\">' +
+                            product[FIREBASE_PRODUCT_NAME] +
+                          '</div>' +
+                        '</div>';
+      }
+
+      // Add product website URL //
+      if (FIREBASE_PRODUCT_URL in product) {
+        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_URL + '\">' +
+                      '<div class=\"row\">' +
+                        '<a target="_blank" href=\"' + product[FIREBASE_PRODUCT_URL] + '\">' + product[FIREBASE_PRODUCT_URL] + '</a>' +
+                      '</div>' +
+                    '</div>';
+
+        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_URL_MODAL + '\">' +
+                          '<div class=\"row\">' +
+                            '<a target="_blank" href=\"' + product[FIREBASE_PRODUCT_URL] + '\">' + product[FIREBASE_PRODUCT_URL] + '</a>' +
+                          '</div>' +
+                        '</div>';
+
+      }
+
+      // Add description //
       if (FIREBASE_PRODUCT_DESCRIPTION in product) {
         cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_DESCRIPTION + '\">' +
                       '<div class=\"row\">' +
                         product[FIREBASE_PRODUCT_DESCRIPTION] +
                       '</div>' +
                     '</div>';
-      }
-      if (FIREBASE_PRODUCT_PLATFORMS in product) {
-        var platforms = [];
-        for (var platform_property in product[FIREBASE_PRODUCT_PLATFORMS]) {
-          platforms.push(product[FIREBASE_PRODUCT_PLATFORMS][platform_property]);
-        }
-        platformsPrintable = platforms.join(', ');
-        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORMS + '\">' +
-                      '<div class=\"row\">' +
-                        '<b>' + DIV_TEXT_PRODUCT_PLATFORMS + '</b>' + platformsPrintable +
-                      '</div>' +
-                    '</div>';
-      }
-      if (FIREBASE_PRODUCT_FONTS in product) {
-        var fonts = [];
-        for (var font_property in product[FIREBASE_PRODUCT_FONTS]) {
-          fonts.push(product[FIREBASE_PRODUCT_FONTS][font_property]);
-        }
-        var fontsPrintable = fonts.join(', ');
-        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FONTS + '\">' +
-                      '<div class=\"row\">' +
-                        '<b>' + DIV_TEXT_PRODUCT_FONTS + '</b>' + fontsPrintable +
-                      '</div>' +
-                    '</div>';
-      }
-      if (FIREBASE_PRODUCT_COLORS in product) {
-        var colors = [];
-        for (var color_property in product[FIREBASE_PRODUCT_COLORS]) {
-          colors.push(product[FIREBASE_PRODUCT_COLORS][color_property]);
-        }
-        var productColorsHTML = generateDynamicColorsHTML(COLORS_PER_ROW, colors);
-        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_WRAPPER + '\">' + '</div>';
-        cardHTML += productColorsHTML;
 
-      }
-
-      cardHTML += '</div></div></div>'; // Close divs
-      // Append this card
-      $('div.content').last().append(cardHTML);
-      /* ---------- */
-
-      /* ----- Card modal HTML ----- */
-      var cardModalHTML = '<div id=\"card' + cardNumber + '\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">' +
-                            '<div class=\"modal-dialog modal-md\">' +
-                              '<div class=\"modal-content\">' +
-                                '<div class=\"modal-header\">' +
-                                  '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>';
-
-      cardModalHTML += '<div class=\"media\">';
-      // Add product logo //
-      if (FIREBASE_PRODUCT_LOGO_URL in product) {
-        cardModalHTML += '<span class=\"media-left\">' +
-                            '<img class=\"img-responsive\" src=\"' + product[FIREBASE_PRODUCT_LOGO_URL] + '\" alt=\"Product Logo\"/>' +
-                          '</span>';
-      }
-
-      // Add product twitter url //
-      if (FIREBASE_PRODUCT_TWITTER_USERNAME in product) {
-        var product_twitter_username = product[FIREBASE_PRODUCT_TWITTER_USERNAME];
-        var twitter_url = TWITTER_BASE_ADDRESS + product_twitter_username;
-
-        cardModalHTML += '<div class=\"media-body\">' +
-                            '<div class=\"' + DIV_CLASS_PRODUCT_TWITTER_LOGO + '\">' +
-                              '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>' +
-                            '</div>' +
-                          '</div>';
-      }
-
-      cardModalHTML += '</div>'; // Close div 'media'
-      cardModalHTML += '</div> <div class=\"modal-body\">'; // Close div 'modal-header' and open div 'modal-body'
-
-      // Add product URL //
-      if (FIREBASE_PRODUCT_URL in product) {
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_URL_MODAL + '\">' +
-                            '<a target="_blank" href=\"' + product[FIREBASE_PRODUCT_URL] + '\">' + product[FIREBASE_PRODUCT_URL] + '</a>' +
-                          '</div>' +
-                        '</div>';
-      }
-
-      // Add description //
-      if (FIREBASE_PRODUCT_DESCRIPTION in product) {
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_DESCRIPTION_MODAL + '\">' +
+        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_DESCRIPTION_MODAL + '\">' +
+                          '<div class=\"row\">' +
                             product[FIREBASE_PRODUCT_DESCRIPTION] +
                           '</div>' +
                         '</div>';
       }
 
-      // Add launched //
-      if (FIREBASE_PRODUCT_LAUNCHED in product) {
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_LAUNCHED_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_PRODUCT_LAUNCHED_MODAL + '</b>' + product[FIREBASE_PRODUCT_LAUNCHED] +
-                          '</div>' +
-                        '</div>';
+      // Add platforms //
+      if (FIREBASE_PRODUCT_PLATFORMS in product) {
+        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORMS + '\">' +
+                      '<div class=\"row\">' +
+                        '<b>' + DIV_TEXT_PRODUCT_PLATFORMS + '</b>';
+
+        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORMS_MODAL + '\">' +
+                          '<div class=\"row\">' +
+                            '<b>' + DIV_TEXT_PRODUCT_PLATFORMS_MODAL + '</b>';
+        var platforms = [];
+        for (var platform_property in product[FIREBASE_PRODUCT_PLATFORMS]) {
+          var platform = product[FIREBASE_PRODUCT_PLATFORMS][platform_property];
+          var platform_color = PLATFORM_TAG_COLORS[platform.toLocaleLowerCase()];
+          cardHTML += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
+          cardModalHTML += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
+        }
+        cardModalHTML += '</div></div>';
+        cardHTML += '</div></div>';
       }
 
       // Add founders //
@@ -206,48 +170,46 @@ $(document).ready(function() {
           }
         }
 
-        var html_founders = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER_MODAL + '\">';
+        var html_founders_modal = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER_MODAL + '\">';
+        // TODO: static version
+        var html_founders_static = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER + '\">';
         var index = 0;
+        html_founders_static += '<div class=\"row\">';
         for (var founder_property in product[FIREBASE_PRODUCT_FOUNDERS]) {
           var founder = product[FIREBASE_PRODUCT_FOUNDERS][founder_property]; // Replace 'product[FIREBASE_PRODUCT_FOUNDERS][founder_property]' with 'founder'
 
-          html_founders += '<div class=\"row\">';
+          html_founders_modal += '<div class=\"row\">';
           // Check wether we have twitter url for this founder
-          html_founders += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
+          html_founders_static += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
+          html_founders_modal += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
           if (index < founders_twitter_url.length) {
             var twitter_url = founders_twitter_url[index];
             var twitter_url_href = '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>';
-            html_founders += ' ' + twitter_url_href + '<br/>';
-            //html_founders += product[FIREBASE_PRODUCT_FOUNDERS][founder_property] + ' ' + twitter_url_href + '<br/>';
+            html_founders_modal += ' ' + twitter_url_href + '<br/>';
           }
-          else {
-            //html_founders += product[FIREBASE_PRODUCT_FOUNDERS][founder_property] + '<br/>';
-          }
-          html_founders += '</div>';
+
+
+          html_founders_modal += '</div>'; // Close row
           index++;
         }
+        html_founders_static += '</div>'; // Close row
 
-        html_founders += '</div>'; // Close founders-names-wrapper
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_MODAL + '\">' +
+        html_founders_modal += '</div>'; // Close founders-names-wrapper-modal
+        html_founders_static += '</div>'; // Close founders-names-wrapper-static
+
+        cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS + '\">' +
+                      '<div class=\"row\">' +
+                        '<b>' + DIV_TEXT_PRODUCT_FOUNDERS + '</b>' +
+                          html_founders_static +
+                      '</div>' +
+                    '</div>';
+
+        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_MODAL + '\">' +
+                          '<div class=\"row\">' +
                             '<b>' + DIV_TEXT_PRODUCT_FOUNDERS_MODAL + '</b>' +
-                              html_founders +
+                              html_founders_modal +
                           '</div>' +
                         '</div>';
-      }
-
-      // Add platforms //
-      if (FIREBASE_PRODUCT_PLATFORMS in product) {
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORMS_MODAL + '\">' +
-                            '<b>' + DIV_TEXT_PRODUCT_PLATFORMS_MODAL + '</b>';
-        var platforms = [];
-        for (var platform_property in product[FIREBASE_PRODUCT_PLATFORMS]) {
-          var platform = product[FIREBASE_PRODUCT_PLATFORMS][platform_property];
-          var platform_color = PLATFORM_TAG_COLORS[platform.toLocaleLowerCase()];
-          cardModalHTML += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
-        }
-        cardModalHTML += '</div></div>';
       }
 
       // Add API //
@@ -336,32 +298,92 @@ $(document).ready(function() {
           }
       }
 
+      cardHTML += '</div>';
+      cardHTML += '<div class=\"card-footer\" style=\"background-color:#5bc0de; height:40px; cursor:pointer;\">' +
+                    '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-default btn-block\" style=\"background-color:red; opacit:0.3; width:100; %margin:0 auto; color:white;\">Hello there</a>' +
+                  '</div>';
+
+      cardHTML += '</div></div>'; // Close divs
+      //$('div.content').last().append(cardHTML);
+      $('div.card-columns').last().append(cardHTML);
+
       cardModalHTML += '</div></div></div>'; // Close divs
       $('div.content').last().append(cardModalHTML);
-      /* ----- */
+      /* ---------- */
+
+
     }
 
-    // After cards are loaded we either want to set the height of cards for same size or let them act dynamically.
-    changeHeightOfCards();
-    document.getElementById(SEARCHBOX_ID).addEventListener('input', search);
-    // Add search feature to each tag we created
-    tag_search();
 
-    // Scroll to the top when modal is closed
-    $('.modal').on('hidden.bs.modal', function () {
-      if (tag_pressed) {
-        window.scrollTo(0, 0);
-        tag_pressed = false;
+    for (var product_property in products) {
+      var product = products[product_property];
+
+      /* ----- Add product logo for both static and modal card ----- */
+      if (FIREBASE_PRODUCT_LOGO_URL in product) {
+        var logo_url = product[FIREBASE_PRODUCT_LOGO_URL];
+
+        var storageRef = storage.ref();
+        // Get logo reference from Firebase storage
+        var logoRef = storageRef.child(logo_url);
+        logoRef.getMetadata().then(function(metadata) {
+          var logoName = metadata.name;
+          var productNameFromLogo = logoName.slice(0, logoName.indexOf('.'));
+
+          var downloadURL = metadata.downloadURLs[0];
+
+          // Add logo URL to static card
+          // Check whether a product card for this logo is loaded in the html of a page
+          if ( $('#' + productNameFromLogo).length > 0 ) {
+            var logoHTML = '<img class=\"card-img-top\" src=\"' + downloadURL + '\" alt=\"Product Logo\">';
+            $('#' + productNameFromLogo).last().prepend(logoHTML);
+          }
+          else { /* TODO: Is else branch needed?  */ }
+
+          // Add logo URL to modal card
+          // Check whether a modal product card for this logo is loaded in the html of a page
+          if ( $('div.' + productNameFromLogo + '-modal').length > 0 ) {
+            var logoHTML = '<span class=\"media-left\">' +
+                              '<img class=\"img-responsive\" src=\"' + downloadURL + '\" alt=\"Product Logo\"/>' +
+                            '</span>';
+            $('div.' + productNameFromLogo + '-modal').last().prepend(logoHTML);
+          }
+          else { /* TODO: Is else branch needed?  */ }
+        })
+        .catch(function(error) {
+          // TODO: Add error handling when retrieving download URL of logo from storage
+          alert('Error while retrieving download URL of \'' + logo_url + '\': ' + error.code);
+        });
       }
-    });
+      /* ---------- */
+    }
+
   }); // firebase END
 
+
+
+
+
+
+
+
+
+
+  // Scroll to the top when modal is closed
+  $('.modal').on('hidden.bs.modal', function () {
+    if (tag_pressed) {
+      window.scrollTo(0, 0);
+      tag_pressed = false;
+    }
+  });
+
   /* ----- Global Events ---- */
-  // We want to change height of cards according to the size of window (e.g. different for mobile)
+  // Add search functionality
+  document.getElementById(SEARCHBOX_ID).addEventListener('input', search);
+  // Add search feature to each tag we created
+  tag_search();
+
   $(window).bind('resize',function() {
-    changeHeightOfCards();
     resizeGlobalTags();
   });
   /* ---------- */
-
 }); // page loaded END

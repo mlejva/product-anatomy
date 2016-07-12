@@ -25,9 +25,14 @@
   margin-left: 20px;
 }
 
-.twitter-logo {
+.twitter-logo-modal {
   margin-top: 36px;
   margin-left: 5px;
+}
+
+.product-name-modal {
+  padding-left: 35px;
+  margin-bottom: 8px;
 }
 
 .product-url-modal {
@@ -53,7 +58,7 @@
 }
 
 /* ----- Founders ----- */
-.founders-names-wrapper {
+.founders-names-wrapper-modal {
   margin-top: 5px;
   padding-left: 35px;
 }
@@ -107,3 +112,7 @@
   /*margin-left: 18px;*/
 }
 /* ---------- */
+
+.tag-modal {
+  display: inline-block;
+}

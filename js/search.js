@@ -14,15 +14,18 @@ var search = function() {
   }
   else {
     match = function (product) {
+      console.log( product.textContent.toLowerCase().indexOf(query.toLowerCase()) >= 0 );
       return (product.textContent.toLowerCase().indexOf(query.toLowerCase()) >= 0);
     }
   }
 
   for (var i = 0; i < products_modal.length; i++) {
     if (match(products_modal[i]))
-      products_static[i].parentElement.style.display = '';
+      //products_static[i].parentElement.style.display = '';
+      products_static[i].style.display = '';
     else {
-      products_static[i].parentElement.style.display = 'none';
+      //products_static[i].parentElement.style.display = 'none';
+      products_static[i].style.display = 'none';
     }
   }
 }

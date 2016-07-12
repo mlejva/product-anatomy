@@ -6,13 +6,23 @@ const BOOTSTRAP_MAX_WIDTH = 12;
 const SEARCHBOX_ID = 'searchbox';
 
 /* ----- Constant for static product card ----- */
+const DIV_CLASS_PRODUCT_URL = 'product-url';
+
+const DIV_CLASS_PRODUCT_NAME = 'product-name';
+const DIV_TEXT_PRODUCT_NAME = 'Name ';
+
 const DIV_CLASS_PRODUCT_DESCRIPTION = 'product-description';
 
 const DIV_CLASS_PRODUCT_PLATFORMS = 'product-platforms';
 const DIV_TEXT_PRODUCT_PLATFORMS = 'Platforms ';
 
-const DIV_CLASS_PRODUCT_FONTS = 'product-fonts';
-const DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
+const DIV_CLASS_PRODUCT_FOUNDERS = 'product-founders';
+const DIV_TEXT_PRODUCT_FOUNDERS = 'Founded by ';
+
+const DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER = 'founders-names-wrapper';
+
+//const DIV_CLASS_PRODUCT_FONTS = 'product-fonts';
+//const DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
 
 const DIV_CLASS_PRODUCT_COLORS_WRAPPER = 'product-colors-wrapper'
 const DIV_CLASS_PRODUCT_COLORS = 'product-colors';
@@ -20,7 +30,10 @@ const DIV_CLASS_PRODUCT_COLORS_TEXT = 'product-colors-text';
 /* ---------- */
 
 /* ----- Constant for modal product card ----- */
-const DIV_CLASS_PRODUCT_TWITTER_LOGO = 'twitter-logo';
+const DIV_CLASS_PRODUCT_NAME_MODAL = 'product-name-modal';
+const DIV_TEXT_PRODUCT_NAME_MODAL = 'Name ';
+
+const DIV_CLASS_PRODUCT_TWITTER_LOGO_MODAL = 'twitter-logo-modal';
 
 const DIV_CLASS_PRODUCT_URL_MODAL = 'product-url-modal';
 
@@ -30,7 +43,7 @@ const DIV_CLASS_PRODUCT_LAUNCHED_MODAL = 'product-launched-modal';
 const DIV_TEXT_PRODUCT_LAUNCHED_MODAL = 'Launched on ';
 
 const DIV_CLASS_PRODUCT_FOUNDERS_MODAL = 'product-founders-modal';
-const DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER_MODAL = 'founders-names-wrapper';
+const DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER_MODAL = 'founders-names-wrapper-modal';
 const FOUNDER_TAG_COLOR = '#d0021b';
 const DIV_TEXT_PRODUCT_FOUNDERS_MODAL = 'Founded by ';
 
@@ -61,6 +74,7 @@ const FIREBASE_STORAGE_BUCKET = 'product-anatomy.appspot.com';
 
 const FIREBASE_PRODUCTS_PATH = '/products';
 
+const FIREBASE_PRODUCT_NAME = 'name';
 const FIREBASE_PRODUCT_PLATFORMS = 'platforms';
 const FIREBASE_PRODUCT_FONTS = 'fonts';
 const FIREBASE_PRODUCT_COLORS = 'colors';
@@ -83,8 +97,10 @@ const TWITTER_BASE_ADDRESS = 'https://www.twitter.com/';
 const DIV_CLASS_TAG_WRAPPER = 'tag-wrapper';
 const DIV_CLASS_TAG = 'tag';
 const DIV_CLASS_TAG_GLOBAL = 'tag-global';
-const DIV_CLASS_TAG_MODAL = 'tag-modal';
 const DIV_CLASS_TAG_ROW = 'tag-row';
+const DIV_CLASS_TAG_STATIC = 'tag-static';
+const DIV_CLASS_TAG_MODAL = 'tag-modal';
+
 
 const TAG_COLORS = ['orange', 'teal', 'cyan', 'goldenrod', 'purple', 'blue', 'pink', 'brown'];
 const PLATFORM_TAG_COLORS = {
