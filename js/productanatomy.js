@@ -97,13 +97,13 @@ $(document).ready(function() {
       if (FIREBASE_PRODUCT_NAME in product) {
         cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_NAME + '\">' +
                       '<div class=\"row\">' +
-                        product[FIREBASE_PRODUCT_NAME] +
+                        '<b>' + product[FIREBASE_PRODUCT_NAME] + '</b>' +
                       '</div>' +
                     '</div>';
 
         cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_NAME_MODAL + '\">' +
                           '<div class=\"row\">' +
-                            product[FIREBASE_PRODUCT_NAME] +
+                            '<b>' + product[FIREBASE_PRODUCT_NAME] + '</b>' +
                           '</div>' +
                         '</div>';
       }
@@ -299,8 +299,8 @@ $(document).ready(function() {
       }
 
       cardHTML += '</div>';
-      cardHTML += '<div class=\"card-footer\" style=\"background-color:#5bc0de; height:40px; cursor:pointer;\">' +
-                    '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-default btn-block\" style=\"background-color:red; opacit:0.3; width:100; %margin:0 auto; color:white;\">Hello there</a>' +
+      cardHTML += '<div class=\"card-footer bottom-button-wrapper\">' +
+                    '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-info btn-block bottom-button\">About product</a>' +
                   '</div>';
 
       cardHTML += '</div></div>'; // Close divs

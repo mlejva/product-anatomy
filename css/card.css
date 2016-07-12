@@ -1,11 +1,12 @@
 .card {
-  border-color: #c8c8c4;
-  border-width: 2px;
+  /*border-color: #c8c8c4;*/
+  border-width: 0px;
+  border-radius: 7px;
 }
 
 .card:hover {
-  border-color: #74726a;
-  /*cursor: pointer;*/
+  /*border-color: #74726a;
+  cursor: pointer;*/
 }
 
 
@@ -79,5 +80,26 @@
   */
   margin: 6px;
   border-radius: 15px;
+}
+
+.bottom-button-wrapper {
+  padding: 0px 0px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.bottom-button {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+
+  color: white;
+  background-color: #5bc0de;
+
+  border-radius: 0 0 4px 4px;
+}
+
+.bottom-button:hover {
+  color: white;
 }
 /* ----------- */
