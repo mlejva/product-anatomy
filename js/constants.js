@@ -1,20 +1,18 @@
+/* ----- General constants ----- */
+const BOOTSTRAP_MAX_WIDTH = 12;
 const COLORS_PER_ROW = 2;
 const COLORS_PER_ROW_MODAL = 2;
-
-const BOOTSTRAP_MAX_WIDTH = 12;
 
 const SEARCHBOX_ID = 'searchbox';
 
 const PLATFORMS = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
+/* ---------- */
 
-/* ----- Constant for static product card ----- */
-const DIV_CLASS_BOTTOM_BUTTON_WRAPPER = 'bottom-button-wrapper';
-const BOTTOM_BUTTON = 'bottom-button';
-
-const DIV_CLASS_PRODUCT_URL = 'product-url';
-
+/* ----- Constants for static product card ----- */
 const DIV_CLASS_PRODUCT_NAME = 'product-name';
 const DIV_TEXT_PRODUCT_NAME = 'Name ';
+
+const DIV_CLASS_PRODUCT_URL = 'product-url';
 
 const DIV_CLASS_PRODUCT_DESCRIPTION = 'product-description';
 
@@ -22,53 +20,46 @@ const DIV_CLASS_PRODUCT_PLATFORMS = 'product-platforms';
 const DIV_TEXT_PRODUCT_PLATFORMS = 'Platforms ';
 
 const DIV_CLASS_PRODUCT_FOUNDERS = 'product-founders';
+const DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER = 'founders-names-wrapper';
 const DIV_TEXT_PRODUCT_FOUNDERS = 'Founded by ';
 
-const DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER = 'founders-names-wrapper';
-
-//const DIV_CLASS_PRODUCT_FONTS = 'product-fonts';
-//const DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
-
-const DIV_CLASS_PRODUCT_COLORS_WRAPPER = 'product-colors-wrapper'
-const DIV_CLASS_PRODUCT_COLORS = 'product-colors';
-const DIV_CLASS_PRODUCT_COLORS_TEXT = 'product-colors-text';
+const DIV_CLASS_BOTTOM_BUTTON_WRAPPER = 'bottom-button-wrapper';
+const BOTTOM_BUTTON = 'bottom-button';
 /* ---------- */
 
 /* ----- Constant for modal product card ----- */
 const DIV_CLASS_PRODUCT_NAME_MODAL = 'product-name-modal';
 const DIV_TEXT_PRODUCT_NAME_MODAL = 'Name ';
 
-const DIV_CLASS_PRODUCT_TWITTER_LOGO_MODAL = 'twitter-logo-modal';
-
 const DIV_CLASS_PRODUCT_URL_MODAL = 'product-url-modal';
 
 const DIV_CLASS_PRODUCT_DESCRIPTION_MODAL = 'product-description-modal';
 
-const DIV_CLASS_PRODUCT_LAUNCHED_MODAL = 'product-launched-modal';
-const DIV_TEXT_PRODUCT_LAUNCHED_MODAL = 'Launched on ';
-
-const DIV_CLASS_PRODUCT_FOUNDERS_MODAL = 'product-founders-modal';
-const DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER_MODAL = 'founders-names-wrapper-modal';
-const FOUNDER_TAG_COLOR = '#d0021b';
-const DIV_TEXT_PRODUCT_FOUNDERS_MODAL = 'Founded by ';
-
 const DIV_CLASS_PRODUCT_PLATFORMS_MODAL = 'product-platforms-modal';
 const DIV_TEXT_PRODUCT_PLATFORMS_MODAL = 'Platforms ';
+
+const DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER_MODAL = 'product-founders-wrapper-modal';
+const DIV_CLASS_PRODUCT_FOUNDERS_NAMES_MODAL = 'product-founders-names-modal';
+const DIV_TEXT_PRODUCT_FOUNDERS_MODAL = 'Founded by ';
+const FOUNDER_TAG_COLOR = '#d0021b';
 
 const DIV_CLASS_PRODUCT_API_MODAL = 'product-api-modal';
 const DIV_TEXT_PRODUCT_API_MODAL = 'API ';
 
+const DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL = 'product-technology-delimiter-modal';
+
+const DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER_MODAL = 'product-technology-wrapper';
+const DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL = 'product-technology-name';
+const DIV_CLASS_PRODUCT_SUBTECHNOLOGY_MODAL = 'product-subtechnology';
+
+const DIV_CLASS_DESIGN_DELIMITER_MODAL = 'product-design-delimiter-modal';
+
 const DIV_CLASS_PRODUCT_FONTS_MODAL = 'product-fonts-modal';
 const DIV_TEXT_PRODUCT_FONTS_MODAL = 'Fonts ';
 
-const DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER_MODAL = 'technology-wrapper';
-const DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL = 'technology-name';
-const DIV_CLASS_PRODUCT_SUBTECHNOLOGY_MODAL = 'subtechnology';
-
-const DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'colors-modal-wrapper';
-
-const DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL = 'technology-delimiter-modal';
-const DIV_CLASS_DESIGN_DELIMITER_MODAL = 'design-delimiter-modal';
+const DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'product-colors-modal-wrapper';
+const DIV_CLASS_PRODUCT_COLORS_MODAL = 'product-colors-modal';
+const DIV_CLASS_PRODUCT_COLORS_TEXT_MODAL = 'product-colors-text-modal';
 /* ---------- */
 
 /* ----- Constants for Firebase ----- */
@@ -99,13 +90,14 @@ const TWITTER_BASE_ADDRESS = 'https://www.twitter.com/';
 /* ---------- */
 
 /* ----- Constants for tags ----- */
-const DIV_CLASS_TAG_WRAPPER = 'tag-wrapper';
 const DIV_CLASS_TAG = 'tag';
+
 const DIV_CLASS_TAG_GLOBAL = 'tag-global';
 const DIV_CLASS_TAG_ROW = 'tag-row';
-const DIV_CLASS_TAG_STATIC = 'tag-static';
-const DIV_CLASS_TAG_MODAL = 'tag-modal';
 
+const DIV_CLASS_TAG_STATIC = 'tag-static';
+
+const DIV_CLASS_TAG_MODAL = 'tag-modal';
 
 const TAG_COLORS = ['orange', 'teal', 'cyan', 'goldenrod', 'purple', 'blue', 'pink', 'brown'];
 const PLATFORM_TAG_COLORS = {

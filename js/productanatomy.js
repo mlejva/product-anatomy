@@ -22,8 +22,8 @@ var generateDynamicColorsHTML = function(maxInRow, colors) {
     }
     var widthOfColumn = BOOTSTRAP_MAX_WIDTH / maxInRow;
     html += '<div class=\"col-xs-' + widthOfColumn + '\">' +
-                            '<div class=\"' + DIV_CLASS_PRODUCT_COLORS + '\" style=\"background-color:#' + colors[i] + '\">' +
-                              '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_TEXT + '\">' +
+                            '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_MODAL + '\" style=\"background-color:#' + colors[i] + '\">' +
+                              '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_TEXT_MODAL + '\">' +
                                 colors[i].toUpperCase() +
                               '</div>' +
                             '</div>' +
@@ -212,7 +212,7 @@ $(document).ready(function() {
           return ( a.toLowerCase() > b.toLowerCase() );
         });
 
-        var html_founders_modal = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER_MODAL + '\">';
+        var html_founders_modal = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_MODAL + '\">';
         // TODO: static version
         var html_founders_static = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER + '\">';
         var index = 0;
@@ -264,7 +264,7 @@ $(document).ready(function() {
                       '</div>' +
                     '</div>';
 
-        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_MODAL + '\">' +
+        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER_MODAL + '\">' +
                           '<div class=\"row\">' +
                             '<b>' + DIV_TEXT_PRODUCT_FOUNDERS_MODAL + '</b>' +
                               html_founders_modal +
@@ -367,7 +367,7 @@ $(document).ready(function() {
               // TODO: Constants
               cardModalHTML += '<div class=\"product-platforms-fonts-modal\">' +
                                   '<div class=\"row\">' +
-                                    fontsPrintable +
+                                    '<b>' + DIV_TEXT_PRODUCT_FONTS_MODAL + '</b>' + fontsPrintable +
                                   '</div>' +
                                 '</div>';
 
@@ -383,9 +383,7 @@ $(document).ready(function() {
 
             for (var colors_platform_property in product[FIREBASE_PRODUCT_COLORS]) {
               var colors_platform = product[FIREBASE_PRODUCT_COLORS][colors_platform_property];
-              console.log(colors_platform);
-              console.log('----------');
-
+            
               var colors = []
               for (var color_property in colors_platform) {
                 if (color_property != 'name') {
@@ -393,7 +391,7 @@ $(document).ready(function() {
                 }
                 else {
                   // TODO: Constants
-                  cardModalHTML += '<div class=\"product-platform-fonts-name-modal\">' +
+                  cardModalHTML += '<div class=\"product-platform-colors-name-modal\">' +
                                     '<div class=\"row\">' +
                                       '<b>' + colors_platform[color_property] + '</b>' +
                                     '</div>' +
