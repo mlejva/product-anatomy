@@ -310,8 +310,6 @@ $(document).ready(function() {
       cardModalHTML += '</div></div></div>'; // Close divs
       $('div.content').last().append(cardModalHTML);
       /* ---------- */
-
-
     }
 
 
@@ -367,7 +365,6 @@ $(document).ready(function() {
 
 
 
-
   // Scroll to the top when modal is closed
   $('.modal').on('hidden.bs.modal', function () {
     if (tag_pressed) {
@@ -382,7 +379,7 @@ $(document).ready(function() {
   // Add search feature to each tag we created
   tag_search();
 
-  $(window).bind('resize',function() {
+  $(window).bind('resize', function() {
     resizeGlobalTags();
   });
   /* ---------- */

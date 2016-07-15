@@ -102,7 +102,7 @@ const DIV_CLASS_TAG_STATIC = 'tag-static';
 const DIV_CLASS_TAG_MODAL = 'tag-modal';
 
 
-const TAG_COLORS = ['orange', 'teal', 'cyan', 'goldenrod', 'purple', 'blue', 'pink', 'brown'];
+const TAG_COLORS = ['orange', 'goldenrod', 'purple', 'blue', 'brown', '#0000CD', '#5F9EA0', '#808000', '#D2691E', 'red'];
 const PLATFORM_TAG_COLORS = {
   website: '#ff7473',
   ios: '#ffc952',
@@ -111,6 +111,4 @@ const PLATFORM_TAG_COLORS = {
   android: '#d1b6e1',
   linux: '#ce6d39'
 }
-const GLOBAL_TAGS = ['Website', 'iOS', 'macOS', 'Windows', 'Android', 'Linux', 'Javascript', 'C', 'Objective-C', 'C++', 'Go', 'Java', 'Python', 'Hack', 'PHP', 'Erlang', 'Swift', 'Haskell', 'Perl'];
-Array.prototype.push.apply(GLOBAL_TAGS, ['Scala', 'Ruby on Rails', 'C#']);
-/* ---------- */
+const GLOBAL_TAGS = ['Android', 'iOS', 'Linux', 'macOS', 'Website', 'Windows'];
