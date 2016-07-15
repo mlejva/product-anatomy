@@ -9,7 +9,6 @@
   cursor: pointer;*/
 }
 
-
 @media (min-width: 544px) {
   .card-columns {
     -webkit-column-count: 2;
@@ -96,7 +95,7 @@
   color: white;
   background-color: #5bc0de;
 
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 5px 5px;
 }
 
 .bottom-button:hover {

@@ -1,6 +1,5 @@
 
 /* Global variable */
-const platforms = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
 var tag_pressed = false;
 /* ---------- */
 
@@ -66,6 +65,8 @@ $(document).ready(function() {
   var storage = getStorageReference();
   firebase.database().ref(FIREBASE_PRODUCTS_PATH).once('value').then(function(snapshot) {
     var products = snapshot.val();
+
+    /* ----- Parsing product into static and modal cards  ----- */
     var cardNumber = 0;
     for (var product_property in products) {
       var product = products[product_property];
@@ -92,7 +93,7 @@ $(document).ready(function() {
       cardModalHTML += '</div>'; // Close div 'media'
       cardModalHTML += '</div> <div class=\"modal-body\">'; // Close div 'modal-header' and open div 'modal-body'
 
-      /* ----- Parsing product into static and modal cards  ----- */
+
       // Add product name //
       if (FIREBASE_PRODUCT_NAME in product) {
         cardHTML += '<div class=\"' + DIV_CLASS_PRODUCT_NAME + '\">' +
@@ -148,13 +149,35 @@ $(document).ready(function() {
         cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORMS_MODAL + '\">' +
                           '<div class=\"row\">' +
                             '<b>' + DIV_TEXT_PRODUCT_PLATFORMS_MODAL + '</b>';
-        var platforms = [];
+
+        // Create array of platforms for given product
+        var product_platforms = [];
+        for (var platform_property in product[FIREBASE_PRODUCT_PLATFORMS]) {
+          product_platforms.push(product[FIREBASE_PRODUCT_PLATFORMS][platform_property]);
+        }
+
+        // Sort platforms
+        product_platforms = product_platforms.sort(function(a, b) {
+          return (a.toLowerCase() > b.toLowerCase());
+        });
+
+        // Display platforms
+        for (var i = 0; i < product_platforms.length; i++) {
+          var platform = product_platforms[i];
+          var platform_color = PLATFORM_TAG_COLORS[platform.toLocaleLowerCase()];
+          cardHTML += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
+          cardModalHTML += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
+        }
+
+        /*
         for (var platform_property in product[FIREBASE_PRODUCT_PLATFORMS]) {
           var platform = product[FIREBASE_PRODUCT_PLATFORMS][platform_property];
           var platform_color = PLATFORM_TAG_COLORS[platform.toLocaleLowerCase()];
           cardHTML += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
           cardModalHTML += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + platform_color + '\">' + platform + '</span>';
         }
+        */
+
         cardModalHTML += '</div></div>';
         cardHTML += '</div></div>';
       }
@@ -170,11 +193,47 @@ $(document).ready(function() {
           }
         }
 
+        var product_founders = [];
+        var foundersObject = {};
+        var index = 0;
+        for (var founder_property in product[FIREBASE_PRODUCT_FOUNDERS]) {
+          var founder = product[FIREBASE_PRODUCT_FOUNDERS][founder_property];
+          product_founders.push(founder);
+          if (index < founders_twitter_url.length) {
+            var twitter_url = founders_twitter_url[index];
+            foundersObject[founder] = twitter_url;
+          }
+          else {
+            foundersObject[founder] = '';
+          }
+          index++;
+        }
+        product_founders = product_founders.sort(function(a, b) {
+          return ( a.toLowerCase() > b.toLowerCase() );
+        });
+
         var html_founders_modal = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER_MODAL + '\">';
         // TODO: static version
         var html_founders_static = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER + '\">';
         var index = 0;
         html_founders_static += '<div class=\"row\">';
+
+        for (var product_founder in foundersObject) {
+          html_founders_modal += '<div class=\"row\">';
+          // Check wether we have twitter url for this founder
+          html_founders_static += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + product_founder + '</span>';
+          html_founders_modal += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + product_founder + '</span>';
+          if (foundersObject[product_founder] != '') {
+            var twitter_url = foundersObject[product_founder];
+            var twitter_url_href = '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>';
+            html_founders_modal += ' ' + twitter_url_href + '<br/>';
+          }
+
+          html_founders_modal += '</div>'; // Close row
+          index++;
+        }
+
+        /*
         for (var founder_property in product[FIREBASE_PRODUCT_FOUNDERS]) {
           var founder = product[FIREBASE_PRODUCT_FOUNDERS][founder_property]; // Replace 'product[FIREBASE_PRODUCT_FOUNDERS][founder_property]' with 'founder'
 
@@ -192,6 +251,7 @@ $(document).ready(function() {
           html_founders_modal += '</div>'; // Close row
           index++;
         }
+        */
         html_founders_static += '</div>'; // Close row
 
         html_founders_modal += '</div>'; // Close founders-names-wrapper-modal
@@ -214,8 +274,8 @@ $(document).ready(function() {
 
       // Add API //
       if (FIREBASE_PRODUCT_API in product) {
-        cardModalHTML += '<div class=\"row\">' +
-                          '<div class=\"' + DIV_CLASS_PRODUCT_API_MODAL + '\">' +
+        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_API_MODAL + '\">' +
+                          '<div class=\"row\">' +
                             '<b>' + DIV_TEXT_PRODUCT_API_MODAL + '</b>' + '<a target="_blank" href=\"' + product[FIREBASE_PRODUCT_API] + '\">' + product[FIREBASE_PRODUCT_API] + '</a>' +
                           '</div>' +
                         '</div>';
@@ -234,8 +294,8 @@ $(document).ready(function() {
             var html = '';
             for (var subtechnology_property in subtechnology) {
               if (subtechnology_property == 'name') {
-                cardModalHTML += '<div class=\"row\">' +
-                                  '<div class=\"' + DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL + '\">' +
+                cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL + '\">' +
+                                  '<div class=\"row\">' +
                                     '<b>' + subtechnology[subtechnology_property] + '</b>' +
                                   '</div>' +
                                 '</div>';
@@ -256,13 +316,16 @@ $(document).ready(function() {
                     platform_subtech.push(platform_technology[platform_subtechnology_property]);
                   }
                 }
+                platform_subtech = platform_subtech.sort(function(a, b) {
+                  return ( a.toLowerCase() > b.toLowerCase() );
+                });
                 for (var i = 0; i < platform_subtech.length; i++) {
                   var elem = platform_subtech[i];
                   var elem_color = randomColorFromString(elem, TAG_COLORS);
                   html += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + elem_color + '\">' + elem + '</span>';
                 }
-                var platform_subtech_printable = platform_subtech.join(', ');
-
+                html += '</div>';
+                //var platform_subtech_printable = platform_subtech.join(', ');
                 //html += platform_subtech_printable + '</div>';
               }
             }
@@ -272,35 +335,114 @@ $(document).ready(function() {
       }
 
       // Add design part //
-      if ( (FIREBASE_PRODUCT_FONTS in product) || (FIREBASE_PRODUCT_COLORS in product))  {
+      if ( (FIREBASE_PRODUCT_FONTS in product) || (FIREBASE_PRODUCT_COLORS in product) )  {
           cardModalHTML += '<hr class=\"' + DIV_CLASS_DESIGN_DELIMITER_MODAL + '\">';
+
           if (FIREBASE_PRODUCT_FONTS in product) {
-            var fonts = [];
-            for (var font_property in product[FIREBASE_PRODUCT_FONTS]) {
-              fonts.push(product[FIREBASE_PRODUCT_FONTS][font_property]);
+            // TODO: Constants
+            cardModalHTML += '<div class=\"product-fonts-wrapper-modal\">';
+
+            for (var fonts_platform_property in product[FIREBASE_PRODUCT_FONTS]) {
+              var fonts_platform = product[FIREBASE_PRODUCT_FONTS][fonts_platform_property];
+
+              var fonts = [];
+              for (var font_property in fonts_platform) {
+                if (font_property != 'name') {
+                    fonts.push(fonts_platform[font_property]);
+                }
+                else {
+                  // TODO: Constants
+                  cardModalHTML += '<div class=\"product-platform-fonts-name-modal\">' +
+                                    '<div class=\"row\">' +
+                                      '<b>' + fonts_platform[font_property] + '</b>' +
+                                    '</div>' +
+                                   '</div>';
+                }
+              }
+              fonts = fonts.sort(function(a, b) {
+                return ( a.toLowerCase() > b.toLowerCase() );
+              });
+              var fontsPrintable = fonts.join(' ');
+              // Add fonts for given platform
+              // TODO: Constants
+              cardModalHTML += '<div class=\"product-platforms-fonts-modal\">' +
+                                  '<div class=\"row\">' +
+                                    fontsPrintable +
+                                  '</div>' +
+                                '</div>';
+
             }
-            var fontsPrintable = fonts.join(', ');
-            cardModalHTML += '<div class=\"row\">' +
-                              '<div class=\"' + DIV_CLASS_PRODUCT_FONTS_MODAL + '\">' +
-                                '<b>' + DIV_TEXT_PRODUCT_FONTS_MODAL + '</b>' + fontsPrintable +
-                              '</div>' +
-                            '</div>';
+
+            cardModalHTML += '</div>'; // TODO: close product-fonts-wrapper-modal div
           }
+
           if (FIREBASE_PRODUCT_COLORS in product) {
+
+            // TODO: Constants
+            cardModalHTML += '<div class=\"product-colors-wrapper-modal\">';
+
+            for (var colors_platform_property in product[FIREBASE_PRODUCT_COLORS]) {
+              var colors_platform = product[FIREBASE_PRODUCT_COLORS][colors_platform_property];
+              console.log(colors_platform);
+              console.log('----------');
+
+              var colors = []
+              for (var color_property in colors_platform) {
+                if (color_property != 'name') {
+                    colors.push(colors_platform[color_property]);
+                }
+                else {
+                  // TODO: Constants
+                  cardModalHTML += '<div class=\"product-platform-fonts-name-modal\">' +
+                                    '<div class=\"row\">' +
+                                      '<b>' + colors_platform[color_property] + '</b>' +
+                                    '</div>' +
+                                   '</div>';
+                }
+              }
+              colors.sort(function(a, b) {
+                return ( a.toLowerCase() > b.toLowerCase() );
+              });
+              var productColorsHTML = generateDynamicColorsHTML(COLORS_PER_ROW_MODAL, colors);
+              cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL + '\">';
+              cardModalHTML += productColorsHTML;
+              cardModalHTML += '</div>';
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
             var colors = [];
             for (var color_property in product[FIREBASE_PRODUCT_COLORS]) {
               colors.push(product[FIREBASE_PRODUCT_COLORS][color_property]);
             }
+            colors.sort(function(a, b) {
+              return ( a.toLowerCase() > b.toLowerCase() );
+            });
             var productColorsHTML = generateDynamicColorsHTML(COLORS_PER_ROW_MODAL, colors);
             cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL + '\">';
             cardModalHTML += productColorsHTML;
             cardModalHTML += '</div>';
+            */
           }
       }
 
-      cardHTML += '</div>';
-      cardHTML += '<div class=\"card-footer bottom-button-wrapper\">' +
-                    '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-info btn-block bottom-button\">About product</a>' +
+      cardHTML += '</div>'; // Close div modal-body
+
+      // Add bottom button to static card //
+      cardHTML += '<div class=\"card-footer ' + DIV_CLASS_BOTTOM_BUTTON_WRAPPER + '\">' +
+                    '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-info btn-block ' + BOTTOM_BUTTON + '\">About product</a>' +
                   '</div>';
 
       cardHTML += '</div></div>'; // Close divs
@@ -309,16 +451,14 @@ $(document).ready(function() {
 
       cardModalHTML += '</div></div></div>'; // Close divs
       $('div.content').last().append(cardModalHTML);
-      /* ---------- */
-
-
     }
+    /* ---------- */
 
 
+    /* ----- Add product logo for both static and modal card ----- */
     for (var product_property in products) {
       var product = products[product_property];
 
-      /* ----- Add product logo for both static and modal card ----- */
       if (FIREBASE_PRODUCT_LOGO_URL in product) {
         var logo_url = product[FIREBASE_PRODUCT_LOGO_URL];
 
@@ -354,20 +494,15 @@ $(document).ready(function() {
           alert('Error while retrieving download URL of \'' + logo_url + '\': ' + error.code);
         });
       }
-      /* ---------- */
     }
+    /* ---------- */
 
+    // Add search feature to each tag we created
+    tag_search();
   }); // firebase END
 
 
-
-
-
-
-
-
-
-
+  /* ----- Global Events ---- */
   // Scroll to the top when modal is closed
   $('.modal').on('hidden.bs.modal', function () {
     if (tag_pressed) {
@@ -376,13 +511,10 @@ $(document).ready(function() {
     }
   });
 
-  /* ----- Global Events ---- */
   // Add search functionality
   document.getElementById(SEARCHBOX_ID).addEventListener('input', search);
-  // Add search feature to each tag we created
-  tag_search();
 
-  $(window).bind('resize',function() {
+  $(window).bind('resize', function() {
     resizeGlobalTags();
   });
   /* ---------- */

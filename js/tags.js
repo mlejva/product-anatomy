@@ -26,7 +26,10 @@ var resizeGlobalTags = function() {
   global_tags_html += '<div class=\"col-lg-' + maxInRow + ' col-lg-offset-' + offset + '\">';
   global_tags_html += '<div class=\"' + DIV_CLASS_TAG_ROW + '\">';
   var in_current_row = 0;
-  for (var i = 0; i < GLOBAL_TAGS.length; i++) {
+  tags = GLOBAL_TAGS.sort(function(a, b) {
+    return (a.toLowerCase() > b.toLowerCase());
+  });
+  for (var i = 0; i < tags.length; i++) {
     if (in_current_row < maxInRow) {
       in_current_row++;
     }
@@ -40,7 +43,7 @@ var resizeGlobalTags = function() {
     }
     var tag_name = GLOBAL_TAGS[i];
     var tag_color;
-    if (isInArray(tag_name.toLocaleLowerCase(), platforms)) {
+    if (isInArray(tag_name.toLocaleLowerCase(), PLATFORMS)) {
         tag_color = PLATFORM_TAG_COLORS[tag_name.toLocaleLowerCase()];
     }
     else {

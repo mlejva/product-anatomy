@@ -5,7 +5,12 @@ const BOOTSTRAP_MAX_WIDTH = 12;
 
 const SEARCHBOX_ID = 'searchbox';
 
+const PLATFORMS = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
+
 /* ----- Constant for static product card ----- */
+const DIV_CLASS_BOTTOM_BUTTON_WRAPPER = 'bottom-button-wrapper';
+const BOTTOM_BUTTON = 'bottom-button';
+
 const DIV_CLASS_PRODUCT_URL = 'product-url';
 
 const DIV_CLASS_PRODUCT_NAME = 'product-name';
@@ -111,6 +116,5 @@ const PLATFORM_TAG_COLORS = {
   android: '#d1b6e1',
   linux: '#ce6d39'
 }
-const GLOBAL_TAGS = ['Website', 'iOS', 'macOS', 'Windows', 'Android', 'Linux', 'Javascript', 'C', 'Objective-C', 'C++', 'Go', 'Java', 'Python', 'Hack', 'PHP', 'Erlang', 'Swift', 'Haskell', 'Perl'];
-Array.prototype.push.apply(GLOBAL_TAGS, ['Scala', 'Ruby on Rails', 'C#']);
+const GLOBAL_TAGS = ['Website', 'iOS', 'macOS', 'Windows', 'Android', 'Linux'];
 /* ---------- */
