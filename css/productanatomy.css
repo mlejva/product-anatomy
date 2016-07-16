@@ -5,6 +5,7 @@ html, body {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   color: #4a473d;
+  background-color: #f1f1f1;
 }
 /* ----------- */
 
@@ -31,7 +32,7 @@ html, body {
 
 
 
-/* ----- Headlines Media Styling ----- */
+/* ----- Headlines media styling ----- */
 @media (max-width: 991px) {
   .headline {
     margin: 15px;
@@ -67,7 +68,9 @@ html, body {
   width: 100%;
   padding: 0px 25px;
   margin: 25px 0 0;
+
   line-height: 40px;
+
   border-radius: 20px;
   background-color: #fff;
   border: 1px solid #4a473d;
@@ -80,11 +83,24 @@ html, body {
   box-shadow: 0px 0px 0px 1px #4a473d;
   font-weight: 400;
 }
+
+.search-results {
+  text-align: center;
+}
+
+.nothing-found {
+  margin: 60px 0 0 0;
+
+  text-align: center;
+
+  font-weight: 400;
+  font-size: 22px;
+}
 /* ---------- */
 
 
 
-/* ----- Search Media Styling ----- */
+/* ----- Search media styling ----- */
 @media (max-width: 991px) {
   .search {
     width: 250px;
@@ -95,7 +111,7 @@ html, body {
 
 
 
-/* ----- Search Cancel (for mobile) ----- */
+/* ----- Search cancel (for mobile) ----- */
 @media (max-width: 750px) {
   input[type="search"]::-webkit-search-cancel-button {
     position: relative;
@@ -140,7 +156,7 @@ html, body {
 }
 
 .content {
-  padding: 60px 0 20px;
+  padding: 30px 0 20px 0;
 }
 /* ---------- */
 
