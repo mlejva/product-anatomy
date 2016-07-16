@@ -2,6 +2,7 @@
 .card {
   border-width: 0px;
   border-radius: 7px;
+  position: relative;
 }
 
 @media (min-width: 544px) {
@@ -34,10 +35,15 @@
   margin: 0 25px 0;
 }
 
-.card-img-top {
-  width: 105px;
-  height: 30px;
-  margin: 30px 0 0 25px;
+.logo-img-wrapper {
+    margin: 30px 20px 0;
+}
+
+.logo-img {
+  height: 45px;
+  overflow: hidden;
+  max-width: 100%;
+  border-radius: 0;
 }
 
 .product-name, .product-description, .product-platforms, .founders-names-wrapper, .product-url, .product-founders {

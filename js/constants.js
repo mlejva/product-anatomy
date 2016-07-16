@@ -9,6 +9,12 @@ const PLATFORMS = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
 /* ---------- */
 
 /* ----- Constants for static product card ----- */
+const DIV_CLASS_PRODUCT_LOGO_WRAPPER = 'logo-img-wrapper';
+const DIV_CLASS_PRODUCT_LOGO = 'logo-img';
+
+const DIV_CLASS_PRODUCT_LOGO_WRAPPER_MODAL = 'logo-img-wrapper-modal';
+const DIV_CLASS_PRODUCT_LOGO_MODAL = 'logo-img-modal';
+
 const DIV_CLASS_PRODUCT_NAME = 'product-name';
 const DIV_TEXT_PRODUCT_NAME = 'Name ';
 

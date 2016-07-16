@@ -412,7 +412,9 @@ $(document).ready(function() {
           // Add logo URL to static card
           // Check whether a product card for this logo is loaded in the html of a page
           if ( $('#' + productNameFromLogo).length > 0 ) {
-            var logoHTML = '<img class=\"card-img-top\" src=\"' + downloadURL + '\" alt=\"Product Logo\">';
+            var logoHTML = '<div class=\"' + DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
+                              '<img class=\"' + DIV_CLASS_PRODUCT_LOGO + '\" class=\"logo-img\" src=\"' + downloadURL + '\" alt=\"Product Logo\"/>' +
+                           '</div>';
             $('#' + productNameFromLogo).last().prepend(logoHTML);
           }
           else { /* TODO: Is else branch needed?  */ }
@@ -420,9 +422,9 @@ $(document).ready(function() {
           // Add logo URL to modal card
           // Check whether a modal product card for this logo is loaded in the html of a page
           if ( $('div.' + productNameFromLogo + '-modal').length > 0 ) {
-            var logoHTML = '<span class=\"media-left\">' +
-                              '<img class=\"img-responsive\" src=\"' + downloadURL + '\" alt=\"Product Logo\"/>' +
-                            '</span>';
+            var logoHTML = '<div class=\"media-left' + ' ' + DIV_CLASS_PRODUCT_LOGO_WRAPPER_MODAL + '\">' +
+                              '<img class=\"img-responsive' + ' ' + DIV_CLASS_PRODUCT_LOGO_MODAL + '\" src=\"' + downloadURL + '\" alt=\"Product Logo\"/>' +
+                            '</div>';
             $('div.' + productNameFromLogo + '-modal').last().prepend(logoHTML);
           }
           else { /* TODO: Is else branch needed?  */ }
