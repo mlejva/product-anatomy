@@ -74,9 +74,7 @@ $(document).ready(function() {
 
       // Prepare static card for product
       var cardID = product[FIREBASE_PRODUCT_NAME].toLocaleLowerCase().replace(/ /g, '-'); // TODO: Should first check whether product has a name
-      var cardHTML = /*'<div class=\"col-lg-4\">' +*/
-                      /*'<div id=\"' + cardID + '\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"card\">';*/
-                      '<div id=\"' + cardID + '\" class=\"card\">';
+      var cardHTML = '<div id=\"' + cardID + '\" class=\"card\">';
       cardHTML += '<div class=\"card-block\">';
 
       // Prepare modal card for product
@@ -91,7 +89,7 @@ $(document).ready(function() {
       // TODO: Add twitter url
 
       cardModalHTML += '</div>'; // Close div 'media'
-      cardModalHTML += '</div> <div class=\"modal-body\">'; // Close div 'modal-header' and open div 'modal-body'
+      cardModalHTML += '</div><div class=\"modal-body\">'; // Close div 'modal-header' and open div 'modal-body'
 
 
       // Add product name //
@@ -233,25 +231,6 @@ $(document).ready(function() {
           index++;
         }
 
-        /*
-        for (var founder_property in product[FIREBASE_PRODUCT_FOUNDERS]) {
-          var founder = product[FIREBASE_PRODUCT_FOUNDERS][founder_property]; // Replace 'product[FIREBASE_PRODUCT_FOUNDERS][founder_property]' with 'founder'
-
-          html_founders_modal += '<div class=\"row\">';
-          // Check wether we have twitter url for this founder
-          html_founders_static += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
-          html_founders_modal += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
-          if (index < founders_twitter_url.length) {
-            var twitter_url = founders_twitter_url[index];
-            var twitter_url_href = '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>';
-            html_founders_modal += ' ' + twitter_url_href + '<br/>';
-          }
-
-
-          html_founders_modal += '</div>'; // Close row
-          index++;
-        }
-        */
         html_founders_static += '</div>'; // Close row
 
         html_founders_modal += '</div>'; // Close founders-names-wrapper-modal
@@ -339,8 +318,7 @@ $(document).ready(function() {
           cardModalHTML += '<hr class=\"' + DIV_CLASS_DESIGN_DELIMITER_MODAL + '\">';
 
           if (FIREBASE_PRODUCT_FONTS in product) {
-            // TODO: Constants
-            cardModalHTML += '<div class=\"product-fonts-wrapper-modal\">';
+            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FONTS_WRAPPER_MODAL + '\">';
 
             for (var fonts_platform_property in product[FIREBASE_PRODUCT_FONTS]) {
               var fonts_platform = product[FIREBASE_PRODUCT_FONTS][fonts_platform_property];
@@ -351,8 +329,7 @@ $(document).ready(function() {
                     fonts.push(fonts_platform[font_property]);
                 }
                 else {
-                  // TODO: Constants
-                  cardModalHTML += '<div class=\"product-platform-fonts-name-modal\">' +
+                  cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORM_FONTS_NAME_MODAL + '\">' +
                                     '<div class=\"row\">' +
                                       '<b>' + fonts_platform[font_property] + '</b>' +
                                     '</div>' +
@@ -364,8 +341,7 @@ $(document).ready(function() {
               });
               var fontsPrintable = fonts.join(' ');
               // Add fonts for given platform
-              // TODO: Constants
-              cardModalHTML += '<div class=\"product-platforms-fonts-modal\">' +
+              cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORMS_FONTS_MODAL + '\">' +
                                   '<div class=\"row\">' +
                                     fontsPrintable +
                                   '</div>' +
@@ -373,18 +349,14 @@ $(document).ready(function() {
 
             }
 
-            cardModalHTML += '</div>'; // TODO: close product-fonts-wrapper-modal div
+            cardModalHTML += '</div>'; // Close product-fonts-wrapper-modal div
           }
 
           if (FIREBASE_PRODUCT_COLORS in product) {
-
-            // TODO: Constants
-            cardModalHTML += '<div class=\"product-colors-wrapper-modal\">';
+            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL + '\">';
 
             for (var colors_platform_property in product[FIREBASE_PRODUCT_COLORS]) {
               var colors_platform = product[FIREBASE_PRODUCT_COLORS][colors_platform_property];
-              console.log(colors_platform);
-              console.log('----------');
 
               var colors = []
               for (var color_property in colors_platform) {
@@ -392,8 +364,7 @@ $(document).ready(function() {
                     colors.push(colors_platform[color_property]);
                 }
                 else {
-                  // TODO: Constants
-                  cardModalHTML += '<div class=\"product-platform-fonts-name-modal\">' +
+                  cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_PLATFORM_FONTS_NAME_MODAL + '\">' +
                                     '<div class=\"row\">' +
                                       '<b>' + colors_platform[color_property] + '</b>' +
                                     '</div>' +
@@ -408,33 +379,6 @@ $(document).ready(function() {
               cardModalHTML += productColorsHTML;
               cardModalHTML += '</div>';
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
-            var colors = [];
-            for (var color_property in product[FIREBASE_PRODUCT_COLORS]) {
-              colors.push(product[FIREBASE_PRODUCT_COLORS][color_property]);
-            }
-            colors.sort(function(a, b) {
-              return ( a.toLowerCase() > b.toLowerCase() );
-            });
-            var productColorsHTML = generateDynamicColorsHTML(COLORS_PER_ROW_MODAL, colors);
-            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL + '\">';
-            cardModalHTML += productColorsHTML;
-            cardModalHTML += '</div>';
-            */
           }
       }
 
@@ -490,7 +434,7 @@ $(document).ready(function() {
           else { /* TODO: Is else branch needed?  */ }
         })
         .catch(function(error) {
-          // TODO: Add error handling when retrieving download URL of logo from storage
+          // TODO: Add an error handling when retrieving download URL of logo from storage
           alert('Error while retrieving download URL of \'' + logo_url + '\': ' + error.code);
         });
       }

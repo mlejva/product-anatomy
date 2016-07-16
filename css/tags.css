@@ -1,22 +1,10 @@
 /* ----- Tag positioning----- */
-.tag-global {
-  display: inline-block;
-}
-
 .tag-row {
   text-align: center;
 }
 
 .tag-wrapper {
-  margin-top: 25px;
-}
-
-.tag-static {
-  display: inline-block;
-  
-  padding: 2px 8px;
-  margin: 6px;
-  border-radius: 15px;
+  margin: 25px 0 0;
 }
 /* ---------- */
 
@@ -24,19 +12,14 @@
 
 /* ----- Tag styling ----- */
 .tag {
-  padding: 5px 14px;
-  margin: 8px;
+  display: inline-block;
+  padding: 3px 12px;
+  margin: 0 5px 8px 0;
   border-radius: 20px;
   box-shadow: 0px 1px 2px 0px rgba(0,0,0,.2);
-
   color: white;
-
   cursor: pointer;
   transition: transform .1s linear;
-}
-
-.tag-modal {
-  display: inline-block;
 }
 
 .tag:hover {
@@ -45,7 +28,7 @@
 }
 
 .tag:active {
-  box-shadow: 0px 0px 0px 0px rgba(0,0,0,.3);
+  box-shadow: 0 rgba(0,0,0,.3);
   transform: translate(0px, 1px) scale(0.98);
 }
 /* ---------- */

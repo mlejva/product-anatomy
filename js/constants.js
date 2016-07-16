@@ -35,6 +35,14 @@ const DIV_CLASS_PRODUCT_COLORS_TEXT = 'product-colors-text';
 /* ---------- */
 
 /* ----- Constant for modal product card ----- */
+const DIV_CLASS_PRODUCT_FONTS_WRAPPER_MODAL = 'product-fonts-wrapper-modal';
+
+const DIV_CLASS_PRODUCT_PLATFORM_FONTS_NAME_MODAL = 'product-platform-fonts-name-modal';
+const DIV_CLASS_PRODUCT_PLATFORMS_FONTS_MODAL = 'product-platforms-fonts-modal';
+
+const DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'product-colors-wrapper-modal';
+const DIV_CLASS_PRODUCT_PLATFORM_COLORS_NAME_MODAL = 'product-platform-colors-name-modal';
+
 const DIV_CLASS_PRODUCT_NAME_MODAL = 'product-name-modal';
 const DIV_TEXT_PRODUCT_NAME_MODAL = 'Name ';
 
@@ -64,8 +72,6 @@ const DIV_TEXT_PRODUCT_FONTS_MODAL = 'Fonts ';
 const DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER_MODAL = 'technology-wrapper';
 const DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL = 'technology-name';
 const DIV_CLASS_PRODUCT_SUBTECHNOLOGY_MODAL = 'subtechnology';
-
-const DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'colors-modal-wrapper';
 
 const DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL = 'technology-delimiter-modal';
 const DIV_CLASS_DESIGN_DELIMITER_MODAL = 'design-delimiter-modal';
