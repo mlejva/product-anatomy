@@ -57,7 +57,7 @@ const DIV_CLASS_DESIGN_DELIMITER_MODAL = 'product-design-delimiter-modal';
 const DIV_CLASS_PRODUCT_FONTS_MODAL = 'product-fonts-modal';
 const DIV_TEXT_PRODUCT_FONTS_MODAL = 'Fonts ';
 
-const DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'product-colors-modal-wrapper';
+const DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'product-colors-wrapper-modal';
 const DIV_CLASS_PRODUCT_COLORS_MODAL = 'product-colors-modal';
 const DIV_CLASS_PRODUCT_COLORS_TEXT_MODAL = 'product-colors-text-modal';
 /* ---------- */
