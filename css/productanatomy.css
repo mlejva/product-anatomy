@@ -1,77 +1,47 @@
+/* ------ Document attributes ----- */
 html, body {
-  margin: 0;
   padding: 0;
+  margin: 0;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   color: #4a473d;
 }
-
-html {
-  color: #ffffff;
-}
-
-body {
-  background-color: #ffffff;
-}
 /* ----------- */
 
+
+
+/* ------ Headlines ----- */
 .headline {
-  margin-bottom: 25px;
+  margin: 15px 0 25px;
   font-size: 38px;
   letter-spacing: 3px;
 }
 
 .headline-delimiter {
-  color: #4a473d;
+  width: 210px;
   background-color: #4a473d;
-  width: 250px;
 }
 
 .baseline {
-  margin-top: 25px;
+  margin: 25px 0 0;
   font-size: 22px;
   font-weight: 300;
 }
+/* ----------- */
 
-/* ----- Search box ---- */
 
-.search input[type="search"] {
-  width: 100%;
 
-  padding: 0px 25px;
-  margin-top: 25px;
-
-  line-height: 40px;
-  border-radius: 20px;
-
-  background-color: #fff;
-  border: 1px solid #4a473d;
-  outline: none;
-
-  color: #4a473d;
-  font-size: 16px;
-  font-weight: 400;
-}
-
-/* ----- Media styling ----- */
+/* ----- Headlines Media Styling ----- */
 @media (max-width: 991px) {
-
   .headline {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    font-size: 28px;
+    margin: 15px;
+    font-size: 30px;
     letter-spacing: 2px;
   }
 
-  .headline-delimiter {
-    color: #4a473d;
-    background-color: #4a473d;
-    width: 100px;
-  }
-
   .baseline {
-    margin-top: 15px;
-    font-size: 16px;
+    margin: 15px 0 0;
+    font-size: 18px;
     font-weight: 300;
   }
 
@@ -85,27 +55,23 @@ body {
   }
 
   .bottom-buffer {
-    margin-bottom: 5px;
+    margin: 0 0 5px;
   }
-
 }
 /* ---------- */
+
+
 
 /* ----- Search ----- */
 .search input[type="search"] {
   width: 100%;
-
   padding: 0px 25px;
-  margin-top: 25px;
-
+  margin: 25px 0 0;
   line-height: 40px;
   border-radius: 20px;
-
   background-color: #fff;
   border: 1px solid #4a473d;
   outline: none;
-
-  color: #4a473d;
   font-size: 16px;
   font-weight: 400;
 }
@@ -114,100 +80,94 @@ body {
   box-shadow: 0px 0px 0px 1px #4a473d;
   font-weight: 400;
 }
+/* ---------- */
 
-/* Override bootstrap to show search cancel button */
-input[type="search"]::-webkit-search-cancel-button {
-  -webkit-appearance: searchfield-cancel-button;
 
-  /* Optional styling of cancel button */
-  /*
-  position:relative;
-  right:20px;
 
-  -webkit-appearance: none;
-  height: 20px;
-  width: 20px;
-  border-radius:10px;
-  background: red;
-  */
+/* ----- Search Media Styling ----- */
+@media (max-width: 991px) {
+  .search {
+    width: 250px;
+    margin: 0 auto;
+  }
+}
+/* ---------- */
+
+
+
+/* ----- Search Cancel (for mobile) ----- */
+@media (max-width: 750px) {
+  input[type="search"]::-webkit-search-cancel-button {
+    position: relative;
+    cursor: pointer;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button:before {
+    position: absolute;
+    left: -5px;
+    top: -19px;
+    content: "\f057";
+    font-family: FontAwesome;
+    font-size: 23px;
+    cursor: pointer;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button:active {
+        color: black;
+        transform: translate(0px, 1px) scale(0.95);
+    }
+  }
 }
 /* ---------- */
+
+
 
 /* ----- Input placeholder color ----- */
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #ccc;
-  font-weight: 300;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  color: #ccc;
-  font-weight: 300;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  color: #ccc;
-  font-weight: 300;
-}
-:-moz-placeholder { /* Firefox 18- */
+::-webkit-input-placeholder, ::-moz-placeholder, :-moz-placeholder, :-ms-input-placeholder  { /* Chrome/Opera/Safari/Firefox 18+/Firefox 18-/Internet Explorer */
   color: #ccc;
   font-weight: 300;
 }
 /* ---------- */
+
+
 
 /* ----- Content ----- */
 .container {
-  margin-top: 50px;
-  margin-bottom: 15px;
-  background-color: #ffffff;
+  width: 100%;
+  margin: 0 auto 15px;
   background-color: #f1f1f1;
   font-size: 16px;
-  width: 100%;
 }
 
 .content {
-  padding-top: 60px;
-  padding-bottom: 20px;
+  padding: 60px 0 20px;
 }
 /* ---------- */
 
-/* ----- Tags ----- */
-.tag-wrapper {
-  margin-top: 25px;
+
+
+/* ----- Product Colors ----- */
+.product-colors {
+  width: 28px;
+  height: 28px;
+  margin: 0 0 15px 5px;
+  border-radius: 50%;
 }
 
-.tag-row {
-  text-align: center;
-}
-
-.tag {
-  padding: 5px 14px;
-  /*
-  margin-right: 5px;
-  margin-bottom: 8px;
-  */
-  margin: 8px;
-  border-radius: 15px;
-
-  color: white;
-
-  cursor: pointer;
-  transition: transform .1s linear;
-
-  box-shadow: 0px 1px 2px 0px rgba(0,0,0,.3);
-}
-
-.tag:hover {
-    transform: translate(0px, -1px) scale(1.05);
-    box-shadow: 0px 2px 3px 0px rgba(0,0,0,.2);
-}
-
-.tag:active {
-    transform: translate(0px, 1px) scale(0.95);
-    box-shadow: 0px 0px 0px 0px rgba(0,0,0,.3);
-}
-
-.tag-global {
-  display: inline-block;
+.product-colors-text {
+  padding: -5px 0 0 45px;
 }
 /* ---------- */
+
+
+
+/* ----- Product Colors Media Styling ----- */
+@media (max-width: 991px) {
+  .product-colors-text {
+    font-size: 14px;
+  }
+}
+/* ---------- */
 
 
 
