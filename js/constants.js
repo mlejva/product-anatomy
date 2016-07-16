@@ -6,6 +6,8 @@ const COLORS_PER_ROW_MODAL = 2;
 const SEARCHBOX_ID = 'searchbox';
 
 const PLATFORMS = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
+
+const ENTER_KEY_CODE = 13;
 /* ---------- */
 
 /* ----- Constants for search ----- */

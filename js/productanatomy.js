@@ -449,8 +449,8 @@ $(document).ready(function() {
 
 
   /* ----- Global Events ---- */
-  $("#searchbox").keydown(function(event){
-    if(event.keyCode == 13) { // Enter was pressed
+  $("#searchbox").keydown(function(event) {
+    if (event.keyCode == ENTER_KEY_CODE) { // Enter was pressed
         search();
     }
   });
