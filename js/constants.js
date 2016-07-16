@@ -90,6 +90,8 @@ const TWITTER_BASE_ADDRESS = 'https://www.twitter.com/';
 /* ---------- */
 
 /* ----- Constants for tags ----- */
+const DIV_CLASS_TAG_WRAPPER = 'tag-wrapper';
+
 const DIV_CLASS_TAG = 'tag';
 
 const DIV_CLASS_TAG_GLOBAL = 'tag-global';
@@ -98,6 +100,8 @@ const DIV_CLASS_TAG_ROW = 'tag-row';
 const DIV_CLASS_TAG_STATIC = 'tag-static';
 
 const DIV_CLASS_TAG_MODAL = 'tag-modal';
+
+//const DIV_CLASS_TAG_ADDED = 'tag-added';
 
 const TAG_COLORS = ['orange', 'teal', 'cyan', 'goldenrod', 'purple', 'blue', 'pink', 'brown'];
 const PLATFORM_TAG_COLORS = {
