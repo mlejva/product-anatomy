@@ -221,7 +221,7 @@ $(document).ready(function() {
           if (foundersObject[product_founder] != '') {
             var twitter_url = foundersObject[product_founder];
             var twitter_url_href = '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>';
-            html_founders_modal += ' ' + twitter_url_href + '<br/>';
+            //html_founders_modal += ' ' + twitter_url_href + '<br/>'; // TODO: Twitter url
           }
 
           html_founders_modal += '</div>'; // Close row
@@ -241,8 +241,8 @@ $(document).ready(function() {
         cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER_MODAL + '\">' +
                           '<div class=\"row\">' +
                             '<b>' + DIV_TEXT_PRODUCT_FOUNDERS_MODAL + '</b>' +
-                              html_founders_modal +
                           '</div>' +
+                              html_founders_modal +
                         '</div>';
       }
 
