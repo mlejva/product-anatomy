@@ -1,5 +1,6 @@
 
 /* Global variables */
+var productsTotal = 0;
 /* ---------- */
 
 /* ----- Functions ----- */
@@ -63,6 +64,8 @@ $(document).ready(function() {
   var storage = getStorageReference();
   firebase.database().ref(FIREBASE_PRODUCTS_PATH).once('value').then(function(snapshot) {
     var products = snapshot.val();
+    productsTotal = Object.keys(products).length;
+    $('div.' + DIV_CLASS_SEARCH_RESULTS).append( SEARCH_RESULT_TEXT_PLURAL.replace(SEARCH_RESULT_TEXT_COUNT_REPLACE, productsTotal) );
 
     /* ----- Parsing product into static and modal cards  ----- */
     var cardNumber = 0;
@@ -381,7 +384,9 @@ $(document).ready(function() {
 
       // Add bottom button to static card //
       cardHTML += '<div class=\"card-footer ' + DIV_CLASS_BOTTOM_BUTTON_WRAPPER + '\">' +
-                    '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-info btn-block ' + BOTTOM_BUTTON + '\">About product</a>' +
+                    '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-info btn-block ' + DIV_CLASS_BOTTOM_BUTTON + '\">' +
+                      BOTTOM_BUTTON_TEXT +
+                    '</a>' +
                   '</div>';
 
       cardHTML += '</div></div>'; // Close divs
@@ -446,6 +451,11 @@ $(document).ready(function() {
 
 
   /* ----- Global Events ---- */
+  $("#searchbox").keydown(function(event){
+    if(event.keyCode == 13) { // Enter was pressed
+        search();
+    }
+  });
 
   // We want searchbox to search everytime input is changed
   document.getElementById(SEARCHBOX_ID).addEventListener('input', search);

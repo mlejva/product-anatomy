@@ -3,7 +3,6 @@ var search = function() {
   var products_modal = document.getElementsByClassName('modal'); // We want to search in modal cards
   var products_static = document.getElementsByClassName('card'); // But we want to hide static card
   var query = document.getElementById(SEARCHBOX_ID).value;
-  console.log(query);
   var match = new Function;
 
   if (!query.length) {
@@ -23,12 +22,33 @@ var search = function() {
     }
   }
 
+  var resultsCount = 0;
   for (var i = 0; i < products_modal.length; i++) {
-    if (match(products_modal[i]))
+    if (match(products_modal[i])) {
+      resultsCount++;
       products_static[i].style.display = '';
-    else
+    }
+    else {
       products_static[i].style.display = 'none';
+    }
   }
+
+  // Show how many results was found
+  // TODO: Text search results constants
+  $('div.' + DIV_CLASS_SEARCH_RESULTS).empty();
+  $('div.' + DIV_CLASS_NOTHING_FOUND).empty();
+  var resultsText = '';
+  if (resultsCount == 0) {
+    resultsText = '';
+    $('div.' + DIV_CLASS_NOTHING_FOUND).append(NOTHING_FOUND_TEXT);
+  }
+  else if (resultsCount == 1) {
+    resultsText =  SEARCH_RESULT_TEXT_SINGULAR;
+  }
+  else {
+    resultsText = SEARCH_RESULT_TEXT_PLURAL.replace(SEARCH_RESULT_TEXT_COUNT_REPLACE, resultsCount);
+  }
+  $('div.' + DIV_CLASS_SEARCH_RESULTS).append(resultsText);
 }
 /* ---------- */
 
@@ -36,9 +56,7 @@ var search = function() {
 var enableTagSearch = function(tags) {
   for (var i = 0; i < tags.length; i++) (function (tag) {
     tag.addEventListener('click', function (e) {
-      var classes = $(this).attr('class').split(/\s+/);
 
-      console.log(classes);
       $(this).closest('.modal').modal('hide');
       document.getElementById(SEARCHBOX_ID).value = tag.textContent;
       search();

@@ -8,6 +8,16 @@ const SEARCHBOX_ID = 'searchbox';
 const PLATFORMS = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
 /* ---------- */
 
+/* ----- Constants for search ----- */
+const DIV_CLASS_SEARCH_RESULTS = 'search-results';
+const DIV_CLASS_NOTHING_FOUND = 'nothing-found';
+
+const NOTHING_FOUND_TEXT = 'Oops, I guess nothing like this exists. Yet...';
+const SEARCH_RESULT_TEXT_SINGULAR = 'Showing anatomy of 1 product.'
+const SEARCH_RESULT_TEXT_COUNT_REPLACE = '<count>'
+const SEARCH_RESULT_TEXT_PLURAL = 'Showing anatomy of ' + SEARCH_RESULT_TEXT_COUNT_REPLACE + ' products.'
+/* ---------- */
+
 /* ----- Constants for static product card ----- */
 const DIV_CLASS_PRODUCT_LOGO_WRAPPER = 'logo-img-wrapper';
 const DIV_CLASS_PRODUCT_LOGO = 'logo-img';
@@ -30,7 +40,8 @@ const DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER = 'founders-names-wrapper';
 const DIV_TEXT_PRODUCT_FOUNDERS = 'Founded by ';
 
 const DIV_CLASS_BOTTOM_BUTTON_WRAPPER = 'bottom-button-wrapper';
-const BOTTOM_BUTTON = 'bottom-button';
+const DIV_CLASS_BOTTOM_BUTTON = 'bottom-button';
+const BOTTOM_BUTTON_TEXT = 'Show anatomy of product';
 /* ---------- */
 
 /* ----- Constant for modal product card ----- */
