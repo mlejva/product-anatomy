@@ -2,61 +2,41 @@
   border-bottom: none;
 }
 
+.modal-body {
+  margin: 0 35px 0;
+}
 
-
-/* ----- Modal Card Content ----- */
+/* ----- Modal card ----- */
 .close {
+  margin: 0 5px 0 0;
   font-weight: 400;
   font-size: 30px;
-
-  margin-right: 5px;
 }
 
 .img-responsive {
   width: 105px;
   height: 30px;
-
-  margin-left: 20px;
-  margin-top: 35px;
+  margin: 0px 0 0 20px;
 }
 
 .twitter-logo-modal {
-  margin-top: 36px;
-  margin-left: 5px;
+  margin: 35px 0 0 5px;
 }
 
-.product-name-modal {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-
-.product-url-modal {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-
-.product-description-modal {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-
-.product-launched-modal {
-  padding-left: 35px;
-  margin-bottom: 8px;
+.product-name-modal, .product-url-modal, .product-description-modal, .product-launched-modal {
+  margin: 0 0 8px;
 }
 /* ---------- */
 
 
-.product-founders-wrapper-modal {
-  padding-left: 35px;
-  padding-right: 35px;
-  margin-bottom: 8px;
+
+/* ----- Modal card content ----- */
+.product-founders-modal, .product-platforms-modal, .product-api-modal, .technology-wrapper {
+  margin: 0 0 8px;
 }
 
-/* ----- Founders ----- */
-.product-founders-names-modal {
-  margin-top: 5px;
-  padding-left: 35px;
+.founders-names-wrapper-modal {
+  margin: 5px 19px 0 0;
 }
 
 .fa-twitter {
@@ -66,78 +46,32 @@
 .fa-twitter:hover {
   color: #4099ff;
 }
-/* ---------- */
 
-
-
-/* ----- Platforms ----- */
-.product-platforms-modal {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-
-.product-api-modal {
-  padding-left: 35px;
-  margin-bottom: 8px;
-}
-/* ---------- */
-
-
-
-/* ----- Technology ----- */
-.product-technology-delimiter-modal {
+.technology-delimiter-modal, .design-delimiter-modal {
   width: 85%;
 }
 
-.product-technology-wrapper {
-  margin-bottom: 8px;
-  padding-left: 35px;
-}
-
-.product-technology-name {
-  margin-top: 8px;
-}
-/* ---------- */
-
-
-
-/* ----- Design ----- */
-.product-design-delimiter-modal {
-  width: 85%;
-}
-
-.product-fonts-modal {
-  margin-bottom: 12px;
-  padding-left: 5px;
-}
-
-.product-colors-modal-wrapper {
-  /*margin-left: 18px;*/
-}
-
-.product-colors-modal {
+.product-color-modal {
   width: 28px;
   height: 28px;
-  margin-left: 5px;
+  margin: 0 0 15px 5px;
   border-radius: 50%;
-  margin-bottom: 15px;
 }
 
-.product-colors-text-modal {
-  padding-left: 45px;
-  padding-top: -5px;
+.product-color-text-modal {
+ padding: -5px 45px 0 0;
+ margin-left: 45px;
 }
 /* ---------- */
 
 
 
-/* ----- Media Styling (for mobile) ----- */
+/* ----- Media styling (for mobile) ----- */
 @media (max-width: 750px) {
   .close {
+    margin: 10px 0 0 10px;
     font-weight: 400;
     font-size: 35px;
-    margin-right: 10px;
-    margin-top: 10px;
   }
 
   .close:active {

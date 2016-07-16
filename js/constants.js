@@ -54,12 +54,17 @@ const DIV_CLASS_PRODUCT_SUBTECHNOLOGY_MODAL = 'product-subtechnology';
 
 const DIV_CLASS_DESIGN_DELIMITER_MODAL = 'product-design-delimiter-modal';
 
+const DIV_CLASS_PRODUCT_FONTS_WRAPPER_MODAL = 'product-fonts-wrapper-modal';
+const DIV_CLASS_PRODUCT_PLATFORM_FONTS_NAME_MODAL = 'product-platform-fonts-name-modal';
+const DIV_CLASS_PRODUCT_PLATFORMS_FONTS_MODAL = 'product-platforms-fonts-modal';
 const DIV_CLASS_PRODUCT_FONTS_MODAL = 'product-fonts-modal';
 const DIV_TEXT_PRODUCT_FONTS_MODAL = 'Fonts ';
 
-const DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'product-colors-modal-wrapper';
-const DIV_CLASS_PRODUCT_COLORS_MODAL = 'product-colors-modal';
-const DIV_CLASS_PRODUCT_COLORS_TEXT_MODAL = 'product-colors-text-modal';
+const DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'product-colors-wrapper-modal';
+const DIV_CLASS_PRODUCT_PLATFORM_COLORS_NAME_MODAL = 'product-platform-colors-name-modal';
+const DIV_CLASS_PRODUCT_PLATFORM_COLORS_MODAL = 'product-platform-colors-modal';
+const DIV_CLASS_PRODUCT_COLOR_MODAL = 'product-color-modal';
+const DIV_CLASS_PRODUCT_COLOR_TEXT_MODAL = 'product-color-text-modal';
 /* ---------- */
 
 /* ----- Constants for Firebase ----- */
