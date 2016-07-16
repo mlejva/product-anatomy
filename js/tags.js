@@ -1,6 +1,7 @@
 // TODO: Instead of deleting all elements it should move elements to next row according to max in row
 var resizeGlobalTags = function() {
-  $('div.' + DIV_CLASS_TAG_WRAPPER).empty();
+  if ( $('div.' + DIV_CLASS_TAG_WRAPPER).length > 0 )
+    $('div.' + DIV_CLASS_TAG_WRAPPER).empty();
   var maxInRow = 0;
   var offset = 0;
   // TODO: Should be constants
@@ -36,9 +37,9 @@ var resizeGlobalTags = function() {
     else {
       in_current_row = 0;
       global_tags_html += '</div> </div> </div>';
-      global_tags_html += '<div class=\"row\">';
-      global_tags_html += '<div class=\"col-lg-' + maxInRow + ' col-lg-offset-' + offset + '\">';
-      global_tags_html += '<div class=\"' + DIV_CLASS_TAG_ROW + '\">';
+      global_tags_html += '<div class=\"row\">' +
+                            '<div class=\"col-lg-' + maxInRow + ' col-lg-offset-' + offset + '\">' +
+                              '<div class=\"' + DIV_CLASS_TAG_ROW + '\">';
       in_current_row++;
     }
     var tag_name = GLOBAL_TAGS[i];
@@ -51,9 +52,11 @@ var resizeGlobalTags = function() {
     }
     global_tags_html += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_GLOBAL + '\" style=\"background-color:' + tag_color + '\">' + tag_name + '</span>';
   }
-  global_tags_html += '</div> </div>';
-  //$('div.tag-wrapper').children('.row').append(global_tags_html);
+  global_tags_html += '</div></div>';
+
 
   $('div.' + DIV_CLASS_TAG_WRAPPER).append(global_tags_html);
-  tag_search();
+  // Add search functionality for global tags
+  var tagsGlobal = document.getElementsByClassName(DIV_CLASS_TAG_GLOBAL);
+  enableTagSearch(tagsGlobal);
 }

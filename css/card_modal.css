@@ -47,15 +47,14 @@
 /* ---------- */
 
 
-
-/* ----- Founders ----- */
-.product-founders-modal {
+.product-founders-wrapper-modal {
   padding-left: 35px;
   padding-right: 35px;
   margin-bottom: 8px;
 }
 
-.founders-names-wrapper-modal {
+/* ----- Founders ----- */
+.product-founders-names-modal {
   margin-top: 5px;
   padding-left: 35px;
 }
@@ -86,16 +85,16 @@
 
 
 /* ----- Technology ----- */
-.technology-delimiter-modal {
+.product-technology-delimiter-modal {
   width: 85%;
 }
 
-.technology-wrapper {
+.product-technology-wrapper {
   margin-bottom: 8px;
   padding-left: 35px;
 }
 
-.technology-name {
+.product-technology-name {
   margin-top: 8px;
 }
 /* ---------- */
@@ -103,7 +102,7 @@
 
 
 /* ----- Design ----- */
-.design-delimiter-modal {
+.product-design-delimiter-modal {
   width: 85%;
 }
 
@@ -112,8 +111,21 @@
   padding-left: 5px;
 }
 
-.colors-modal-wrapper {
+.product-colors-modal-wrapper {
   /*margin-left: 18px;*/
+}
+
+.product-colors-modal {
+  width: 28px;
+  height: 28px;
+  margin-left: 5px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.product-colors-text-modal {
+  padding-left: 45px;
+  padding-top: -5px;
 }
 /* ---------- */
 

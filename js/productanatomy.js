@@ -1,6 +1,5 @@
 
-/* Global variable */
-var tag_pressed = false;
+/* Global variables */
 /* ---------- */
 
 /* ----- Functions ----- */
@@ -22,8 +21,8 @@ var generateDynamicColorsHTML = function(maxInRow, colors) {
     }
     var widthOfColumn = BOOTSTRAP_MAX_WIDTH / maxInRow;
     html += '<div class=\"col-xs-' + widthOfColumn + '\">' +
-                            '<div class=\"' + DIV_CLASS_PRODUCT_COLORS + '\" style=\"background-color:#' + colors[i] + '\">' +
-                              '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_TEXT + '\">' +
+                            '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_MODAL + '\" style=\"background-color:#' + colors[i] + '\">' +
+                              '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_TEXT_MODAL + '\">' +
                                 colors[i].toUpperCase() +
                               '</div>' +
                             '</div>' +
@@ -54,7 +53,6 @@ var getStorageReference = function() {
 /* ---------- */
 
 $(document).ready(function() {
-
   // Resize tags according to the actual screen size
   resizeGlobalTags();
 
@@ -74,9 +72,7 @@ $(document).ready(function() {
 
       // Prepare static card for product
       var cardID = product[FIREBASE_PRODUCT_NAME].toLocaleLowerCase().replace(/ /g, '-'); // TODO: Should first check whether product has a name
-      var cardHTML = /*'<div class=\"col-lg-4\">' +*/
-                      /*'<div id=\"' + cardID + '\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"card\">';*/
-                      '<div id=\"' + cardID + '\" class=\"card\">';
+      var cardHTML = '<div id=\"' + cardID + '\" class=\"card\">';
       cardHTML += '<div class=\"card-block\">';
 
       // Prepare modal card for product
@@ -212,11 +208,10 @@ $(document).ready(function() {
           return ( a.toLowerCase() > b.toLowerCase() );
         });
 
-        var html_founders_modal = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER_MODAL + '\">';
+        var html_founders_modal = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_MODAL + '\">';
         // TODO: static version
         var html_founders_static = '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER + '\">';
         var index = 0;
-        html_founders_static += '<div class=\"row\">';
 
         for (var product_founder in foundersObject) {
           html_founders_modal += '<div class=\"row\">';
@@ -226,33 +221,12 @@ $(document).ready(function() {
           if (foundersObject[product_founder] != '') {
             var twitter_url = foundersObject[product_founder];
             var twitter_url_href = '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>';
-            html_founders_modal += ' ' + twitter_url_href + '<br/>';
+            //html_founders_modal += ' ' + twitter_url_href + '<br/>'; // TODO: Twitter url
           }
 
           html_founders_modal += '</div>'; // Close row
           index++;
         }
-
-        /*
-        for (var founder_property in product[FIREBASE_PRODUCT_FOUNDERS]) {
-          var founder = product[FIREBASE_PRODUCT_FOUNDERS][founder_property]; // Replace 'product[FIREBASE_PRODUCT_FOUNDERS][founder_property]' with 'founder'
-
-          html_founders_modal += '<div class=\"row\">';
-          // Check wether we have twitter url for this founder
-          html_founders_static += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
-          html_founders_modal += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + FOUNDER_TAG_COLOR + '\">' + founder + '</span>';
-          if (index < founders_twitter_url.length) {
-            var twitter_url = founders_twitter_url[index];
-            var twitter_url_href = '<a target="_blank" href=\"' + twitter_url + '\">' + '<i class=\"fa fa-twitter fa-lg\" aria-hidden=\"true\"></i>' + '</a>';
-            html_founders_modal += ' ' + twitter_url_href + '<br/>';
-          }
-
-
-          html_founders_modal += '</div>'; // Close row
-          index++;
-        }
-        */
-        html_founders_static += '</div>'; // Close row
 
         html_founders_modal += '</div>'; // Close founders-names-wrapper-modal
         html_founders_static += '</div>'; // Close founders-names-wrapper-static
@@ -264,11 +238,11 @@ $(document).ready(function() {
                       '</div>' +
                     '</div>';
 
-        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_MODAL + '\">' +
+        cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER_MODAL + '\">' +
                           '<div class=\"row\">' +
                             '<b>' + DIV_TEXT_PRODUCT_FOUNDERS_MODAL + '</b>' +
-                              html_founders_modal +
                           '</div>' +
+                              html_founders_modal +
                         '</div>';
       }
 
@@ -367,7 +341,7 @@ $(document).ready(function() {
               // TODO: Constants
               cardModalHTML += '<div class=\"product-platforms-fonts-modal\">' +
                                   '<div class=\"row\">' +
-                                    fontsPrintable +
+                                    '<b>' + DIV_TEXT_PRODUCT_FONTS_MODAL + '</b>' + fontsPrintable +
                                   '</div>' +
                                 '</div>';
 
@@ -383,8 +357,6 @@ $(document).ready(function() {
 
             for (var colors_platform_property in product[FIREBASE_PRODUCT_COLORS]) {
               var colors_platform = product[FIREBASE_PRODUCT_COLORS][colors_platform_property];
-              console.log(colors_platform);
-              console.log('----------');
 
               var colors = []
               for (var color_property in colors_platform) {
@@ -393,7 +365,7 @@ $(document).ready(function() {
                 }
                 else {
                   // TODO: Constants
-                  cardModalHTML += '<div class=\"product-platform-fonts-name-modal\">' +
+                  cardModalHTML += '<div class=\"product-platform-colors-name-modal\">' +
                                     '<div class=\"row\">' +
                                       '<b>' + colors_platform[color_property] + '</b>' +
                                     '</div>' +
@@ -408,33 +380,6 @@ $(document).ready(function() {
               cardModalHTML += productColorsHTML;
               cardModalHTML += '</div>';
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
-            var colors = [];
-            for (var color_property in product[FIREBASE_PRODUCT_COLORS]) {
-              colors.push(product[FIREBASE_PRODUCT_COLORS][color_property]);
-            }
-            colors.sort(function(a, b) {
-              return ( a.toLowerCase() > b.toLowerCase() );
-            });
-            var productColorsHTML = generateDynamicColorsHTML(COLORS_PER_ROW_MODAL, colors);
-            cardModalHTML += '<div class=\"' + DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL + '\">';
-            cardModalHTML += productColorsHTML;
-            cardModalHTML += '</div>';
-            */
           }
       }
 
@@ -446,7 +391,6 @@ $(document).ready(function() {
                   '</div>';
 
       cardHTML += '</div></div>'; // Close divs
-      //$('div.content').last().append(cardHTML);
       $('div.card-columns').last().append(cardHTML);
 
       cardModalHTML += '</div></div></div>'; // Close divs
@@ -497,21 +441,17 @@ $(document).ready(function() {
     }
     /* ---------- */
 
-    // Add search feature to each tag we created
-    tag_search();
+    // Add search functionality for modal and static tags
+    var tagsStatic = document.getElementsByClassName(DIV_CLASS_TAG_STATIC);
+    enableTagSearch(tagsStatic);
+    var tagsModal = document.getElementsByClassName(DIV_CLASS_TAG_MODAL);
+    enableTagSearch(tagsModal);
   }); // firebase END
 
 
   /* ----- Global Events ---- */
-  // Scroll to the top when modal is closed
-  $('.modal').on('hidden.bs.modal', function () {
-    if (tag_pressed) {
-      window.scrollTo(0, 0);
-      tag_pressed = false;
-    }
-  });
 
-  // Add search functionality
+  // We want searchbox to search everytime input is changed
   document.getElementById(SEARCHBOX_ID).addEventListener('input', search);
 
   $(window).bind('resize', function() {
