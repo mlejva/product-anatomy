@@ -33,6 +33,18 @@ var generateDynamicColorsHTML = function(maxInRow, colors) {
   html += '</div>'; // Close the last row (may not be full)
   return html;
 }
+function getParameterByName(name, url) {
+  if (!url)
+    url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'), results = regex.exec(url);
+  if (!results)
+    return null;
+  if (!results[2])
+    return '';
+
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 /* ---------- */
 
 /* ----- Firebase functions ----- */
@@ -54,6 +66,17 @@ var getStorageReference = function() {
 /* ---------- */
 
 $(document).ready(function() {
+
+  var askedProductID = getParameterByName('id');
+  console.log(askedProductID);
+  if (askedProductID != null) {
+    console.log('Displaying specific product');
+  }
+  else {
+    console.log('Displaying all products');
+  }
+
+
   // Resize tags according to the actual screen size
   resizeGlobalTags();
 
@@ -380,8 +403,18 @@ $(document).ready(function() {
           }
       }
 
-      cardHTML += '</div>'; // Close div modal-body
+      // TODO: Constants
+      // Add link button to modal card //
+      cardModalHTML += '<div id=\"id-' + product['id'] + '\" class=\"product-id\">' +
+                        '<div id=\"button-' + cardNumber + '\" class=\"card-link-button-wrapper text-center\" style=\"margin:50px 0 15px 0;\">' +
+                          '<button type=\"card-link-button button\" class=\"btn btn-info\">' +
+                            'Get link to this card' +
+                          '</button>' +
+                        '</div>' +
+                       '</div>';
 
+
+      cardHTML += '</div>'; // Close div modal-body
       // Add bottom button to static card //
       cardHTML += '<div class=\"card-footer ' + DIV_CLASS_BOTTOM_BUTTON_WRAPPER + '\">' +
                     '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-info btn-block ' + DIV_CLASS_BOTTOM_BUTTON + '\">' +
@@ -394,6 +427,16 @@ $(document).ready(function() {
 
       cardModalHTML += '</div></div></div>'; // Close divs
       $('div.content').last().append(cardModalHTML);
+
+
+      /* ----- Events for modal cards ----- */
+      // TODO: Constants
+      $('#button-' + cardNumber).click(function(e) {
+        var productID = $(this).closest('.product-id').attr('id').split('-')[1];
+        var productURL = 'product?id=' + productID; // TODO: Add base URL constant
+        alert(productURL);
+      });
+      /* ---------- */
     }
     /* ---------- */
 
