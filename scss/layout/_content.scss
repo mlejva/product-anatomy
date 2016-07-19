@@ -1,0 +1,50 @@
+.product-name,
+.product-description,
+.product-platforms,
+.founders-names-wrapper,
+.product-url,
+.product-founders {
+  margin: 10px 0;
+}
+
+.product-name-modal,
+.product-url-modal,
+.product-description-modal,
+.product-launched-modal {
+  margin: 0 0 8px;
+}
+
+.product-founders-modal,
+.product-platforms-modal,
+.product-api-modal,
+.technology-wrapper {
+  margin: 0 0 8px;
+}
+
+.founders-names-wrapper-modal {
+  margin: 5px 19px 0 0;
+}
+
+.product-color-modal {
+  width: 28px;
+  height: 28px;
+  margin: 0 0 15px 5px;
+  border-radius: $circle-borders;
+}
+
+.product-color-text-modal {
+ padding: -5px 45px 0 0;
+ margin-left: 45px;
+}
+
+@media (max-width: $desktop-size) {
+  .product-colors-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: $desktop-size) {
+  .product-colors-text {
+    font-size: 14px;
+  }
+}

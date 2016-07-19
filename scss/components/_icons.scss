@@ -1,0 +1,52 @@
+.twitter-logo-modal {
+  margin: 35px 0 0 5px;
+}
+
+.fa-twitter {
+  color: $twitter-color;
+}
+
+.fa-twitter:hover {
+  color: $twitter-hover-color;
+}
+
+.logo-img-wrapper {
+    margin: 30px 20px 0;
+
+    .logo-img {
+      height: 45px;
+      overflow: hidden;
+      max-width: 100%;
+      border-radius: 0;
+    }
+}
+
+.logo-img-wrapper-modal {
+  padding-right: 15px;
+  padding-left: 20px;
+
+  .logo-img-modal {
+    height: 45px;
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 0;
+  }
+}
+
+.close {
+  margin: 0 5px 0 0;
+  font-weight: $basic-font-weight;
+  font-size: 30px;
+}
+
+@media (max-width: $handheld-size) {
+  .close {
+    margin: 10px 0 0 10px;
+    font-weight: $basic-font-weight;
+    font-size: 35px;
+  }
+
+  .close:active {
+    transform: translate(0px, 1px) scale(0.95);
+  }
+}

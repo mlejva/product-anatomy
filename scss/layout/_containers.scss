@@ -1,0 +1,50 @@
+.modal-body {
+  margin: 0 35px 0;
+}
+
+.modal-content {
+  border: 0;
+}
+
+.card {
+  border-width: 0px;
+  border-radius: 7px;
+  position: relative;
+}
+
+.card-block {
+  margin: 0 25px 0;
+}
+
+@media (min-width: $mobile-size) {
+  .card-columns {
+    -webkit-column-count: $handheld-columns;
+    -moz-column-count: $handheld-columns;
+    column-count: $handheld-columns;
+    -webkit-column-gap: $handheld-column-gap;
+    -moz-column-gap: $handheld-column-gap;
+    column-gap: $handheld-column-gap;
+  }
+}
+
+@media (min-width: $desktop-size) {
+  .card-columns {
+    -webkit-column-count: $desktop-columns;
+    -moz-column-count: $desktop-columns;
+    column-count: $desktop-columns;
+    -webkit-column-gap: $handheld-column-gap;
+    -moz-column-gap: $handheld-column-gap;
+    column-gap: $handheld-column-gap;
+  }
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto 15px;
+  background-color: $background-color;
+  font-size: 16px;
+}
+
+.content {
+  padding: 25px 0 20px 0;
+}

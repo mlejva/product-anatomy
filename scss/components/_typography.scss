@@ -1,0 +1,43 @@
+.technology-delimiter-modal,
+.design-delimiter-modal {
+  width: 85%;
+}
+
+.headline {
+  text-align: center;
+  margin: 15px 0 25px;
+  font-size: 38px;
+  letter-spacing: 3px;
+}
+
+.headline-delimiter {
+  width: 210px;
+  background-color: $text-color;
+}
+
+.baseline {
+  text-align: center;
+  margin: 25px 0 0;
+  font-size: 22px;
+  font-weight: 300;
+}
+
+@media (max-width: $desktop-size) {
+  .headline {
+    margin: 15px;
+    font-size: 30px;
+    letter-spacing: 2px;
+  }
+
+  .baseline {
+    margin: 15px 0 0;
+    font-size: 18px;
+    font-weight: $light-font-weight;
+  }
+}
+
+@media (max-width: $handheld-size) {
+  * {
+    font-size: 20px
+  }
+}
