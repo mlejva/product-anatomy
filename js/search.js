@@ -55,9 +55,18 @@ var search = function() {
 /* ----- Search using tags ----- */
 var enableTagSearch = function(tags) {
   for (var i = 0; i < tags.length; i++) (function (tag) {
-    tag.addEventListener('click', function (e) {
+    tag.addEventListener('click', function(e) {
 
-      $(this).closest('.modal').modal('hide');
+
+      if ($(this).hasClass("tag-modal")) {
+        var thisModal = $(this).closest('.modal');
+        if (thisModal.hasClass('in')) {
+          thisModal.modal('hide');
+        }
+      }
+
+      document.getElementById("search-scroll").scrollIntoView(); //TODO: constant
+
       document.getElementById(SEARCHBOX_ID).value = tag.textContent;
       search();
     })
