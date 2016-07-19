@@ -1,68 +1,56 @@
+// =============================================================================
 // Search
-.search input[type="search"] {
-  width: 100%;
-  padding: 0px 25px;
-  margin: 25px 0 0;
-  line-height: 40px;
-  border-radius: 20px;
-  background-color: $secondary-background-color;
-  border: 1px solid $text-color;
-  outline: none;
-  font-size: 16px;
-  font-weight: $basic-font-weight;
-}
-
-.search input:focus {
-  box-shadow: 0px 0px 0px 1px $text-color;
-  font-weight: $basic-font-weight;
-}
+// =============================================================================
 
 
-// Search media styling
-@media (max-width: $desktop-size) {
-  .search {
+
+/* ----- Search ----- */
+.search {
+  @media (max-width: $desktop-size) {
     width: 250px;
     margin: 0 auto;
   }
-}
 
-
-// Search cancel
-@media (max-width: $handheld-size) {
-  input[type="search"]::-webkit-search-cancel-button {
-    position: relative;
-    cursor: pointer;
+  & input[type="search"] {
+    @include text(16px, $regular);
+    line-height: 40px;
+    width: 100%;
+    padding: 0px 25px;
+    margin: 25px 0 0;
+    background-color: $secondary-background-color;
+    border: 1px solid $text-color;
+    border-radius: 20px;
+    outline: none;
   }
 
-  input[type="search"]::-webkit-search-cancel-button:before {
-    position: absolute;
-    left: -5px;
-    top: -19px;
-    content: "\f057";
-    font-family: FontAwesome;
-    font-size: 23px;
-    cursor: pointer;
-  }
+  // Searchbox focus
+  & input:focus {
+    box-shadow: 0px 0px 0px 1px $text-color;
+    font-weight: $regular;
 
-  input[type="search"]::-webkit-search-cancel-button:active {
-        color: $text-color;
-        transform: translate(0px, 1px) scale(0.95);
+    @media (max-width: $handheld-size) {
+      &::-webkit-search-cancel-button {
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+          top: -19px;
+          left: -5px;
+          position: absolute;
+          content: "\f057";
+          font-family: FontAwesome;
+          font-size: 23px;
+          cursor: pointer;
+        }
+
+        &:active {
+              color: $text-color;
+              transform: translate(0px, 1px) scale(0.95);
+          }
+      }
     }
+  }
 }
-
-
-.search-results {
-  padding: 20px 0 0;
-  text-align: center;
-}
-
-.nothing-found {
-  margin: 60px 0 0 0;
-  text-align: center;
-  font-weight: $basic-font-weight;
-  font-size: 22px;
-}
-
 
 // Input placeholder color
 ::-webkit-input-placeholder,
@@ -70,5 +58,20 @@
 :-moz-placeholder,
 :-ms-input-placeholder  { // Chrome/Opera/Safari/Firefox 18+/Firefox 18-/Internet Explorer
   color: $placeholder-color;
-  font-weight: $light-font-weight;
+  font-weight: $light;
 }
+/* ---------- */
+
+
+
+/* ----- Search results ----- */
+.search-results {
+  padding: 20px 0 0;
+  text-align: center;
+}
+
+.nothing-found {
+  @include text (22px, $regular, center);
+  margin: 60px 0 0 0;
+}
+/* ---------- */

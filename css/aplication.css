@@ -1,26 +1,62 @@
-html, body {
-  padding: 0;
-  margin: 0;
+/* ----- Media ----- */
+/* ---------- */
+/* ----- Helping ----- */
+/* ---------- */
+/* ----- Font constants ----- */
+/* ---------- */
+/* ----- Style constants ----- */
+/* ---------- */
+/* ----- Colors constants ----- */
+/* ---------- */
+/* ----- Media constants ----- */
+/* ---------- */
+/* ----- Document ----- */
+html,
+body {
   font-family: "Lato", Arial, sans-serif;
   font-weight: 300;
   color: #4a473d;
+  padding: 0;
+  margin: 0;
   background-color: #f1f1f1; }
 
+/* ----- Show anatomy button ----- */
 .bottom-button-wrapper {
   position: relative;
   height: 45px;
   padding: 0;
   cursor: pointer; }
   .bottom-button-wrapper .bottom-button {
-    display: inline-block;
     width: 100%;
     height: 100%;
+    display: inline-block;
     border-radius: 0 0 5px 5px;
     background-color: #5bc0de; }
+    @media (max-width: 991px) {
+      .bottom-button-wrapper .bottom-button {
+        font-size: 18px; } }
 
-@media (max-width: 991px) {
-  .bottom-button {
-    font-size: 18px; } }
+/* ---------- */
+/* ----- Add product button ----- */
+.add-button {
+  margin: 10px 0 0; }
+
+/* ---------- */
+/* ----- Product logo image ----- */
+.product-img, .logo-img-wrapper .logo-img, .logo-img-wrapper-modal .logo-img-modal {
+  max-width: 100%;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 0; }
+
+.logo-img-wrapper {
+  margin: 30px 20px 0; }
+
+.logo-img-wrapper-modal {
+  padding: 0 15 0 20px; }
+
+/* ---------- */
+/* ----- Twitter icon----- */
 .twitter-logo-modal {
   margin: 35px 0 0 5px; }
 
@@ -30,115 +66,86 @@ html, body {
 .fa-twitter:hover {
   color: #4099ff; }
 
-.logo-img-wrapper {
-  margin: 30px 20px 0; }
-  .logo-img-wrapper .logo-img {
-    height: 45px;
-    overflow: hidden;
-    max-width: 100%;
-    border-radius: 0; }
-
-.logo-img-wrapper-modal {
-  padding-right: 15px;
-  padding-left: 20px; }
-  .logo-img-wrapper-modal .logo-img-modal {
-    height: 45px;
-    overflow: hidden;
-    max-width: 100%;
-    border-radius: 0; }
-
+/* ---------- */
+/* ----- Modal close icon ----- */
 .close {
-  margin: 0 5px 0 0;
+  font-size: 30px;
   font-weight: 400;
-  font-size: 30px; }
+  margin: 0 5px 0 0; }
+  @media (max-width: 750px) {
+    .close {
+      margin: 10px 0 0 10px;
+      font-size: 35px; }
+      .close .close:active {
+        transform: translate(0px, 1px) scale(0.95); } }
+
+/* ---------- */
+/* ----- Texts ----- */
+.headline {
+  font-size: 38px;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 3px;
+  margin: 15px 0 25px; }
+  @media (max-width: 991px) {
+    .headline {
+      font-size: 30px;
+      letter-spacing: 2px;
+      margin: 15px; } }
+
+.baseline {
+  font-size: 22px;
+  font-weight: 300;
+  text-align: center;
+  margin: 25px 0 0; }
 
 @media (max-width: 750px) {
-  .close {
-    margin: 10px 0 0 10px;
-    font-weight: 400;
-    font-size: 35px; }
-
-  .close:active {
-    transform: translate(0px, 1px) scale(0.95); } }
-.technology-delimiter-modal,
-.design-delimiter-modal {
-  width: 85%; }
-
-.headline {
-  text-align: center;
-  margin: 15px 0 25px;
-  font-size: 38px;
-  letter-spacing: 3px; }
-
+  * {
+    font-size: 20px; } }
+/* ---------- */
+/* ----- Delimeters ----- */
 .headline-delimiter {
   width: 210px;
   background-color: #4a473d; }
 
-.baseline {
-  text-align: center;
-  margin: 25px 0 0;
-  font-size: 22px;
-  font-weight: 300; }
+.technology-delimiter-modal,
+.design-delimiter-modal {
+  width: 85%; }
 
-@media (max-width: 991px) {
-  .headline {
-    margin: 15px;
-    font-size: 30px;
-    letter-spacing: 2px; }
-
-  .baseline {
-    margin: 15px 0 0;
-    font-size: 18px;
-    font-weight: 300; } }
-@media (max-width: 750px) {
-  * {
-    font-size: 20px; } }
-.search input[type="search"] {
-  width: 100%;
-  padding: 0px 25px;
-  margin: 25px 0 0;
-  line-height: 40px;
-  border-radius: 20px;
-  background-color: #ffffff;
-  border: 1px solid #4a473d;
-  outline: none;
-  font-size: 16px;
-  font-weight: 400; }
-
-.search input:focus {
-  box-shadow: 0px 0px 0px 1px #4a473d;
-  font-weight: 400; }
-
+/* ----- Search ----- */
 @media (max-width: 991px) {
   .search {
     width: 250px;
     margin: 0 auto; } }
-@media (max-width: 750px) {
-  input[type="search"]::-webkit-search-cancel-button {
-    position: relative;
-    cursor: pointer; }
-
-  input[type="search"]::-webkit-search-cancel-button:before {
-    position: absolute;
-    left: -5px;
-    top: -19px;
-    content: "\f057";
-    font-family: FontAwesome;
-    font-size: 23px;
-    cursor: pointer; }
-
-  input[type="search"]::-webkit-search-cancel-button:active {
-    color: #4a473d;
-    transform: translate(0px, 1px) scale(0.95); } }
-.search-results {
-  padding: 20px 0 0;
-  text-align: center; }
-
-.nothing-found {
-  margin: 60px 0 0 0;
-  text-align: center;
+.search input[type="search"] {
+  font-size: 16px;
   font-weight: 400;
-  font-size: 22px; }
+  line-height: 40px;
+  width: 100%;
+  padding: 0px 25px;
+  margin: 25px 0 0;
+  background-color: #ffffff;
+  border: 1px solid #4a473d;
+  border-radius: 20px;
+  outline: none; }
+.search input:focus {
+  box-shadow: 0px 0px 0px 1px #4a473d;
+  font-weight: 400; }
+  @media (max-width: 750px) {
+    .search input:focus::-webkit-search-cancel-button {
+      position: relative;
+      cursor: pointer; }
+      .search input:focus::-webkit-search-cancel-button:before {
+        top: -19px;
+        left: -5px;
+        position: absolute;
+        content: "\f057";
+        font-family: FontAwesome;
+        font-size: 23px;
+        cursor: pointer; }
+      .search input:focus::-webkit-search-cancel-button:active {
+        color: #4a473d;
+        transform: translate(0px, 1px) scale(0.95); } }
 
 ::-webkit-input-placeholder,
 ::-moz-placeholder,
@@ -147,6 +154,20 @@ html, body {
   color: #ccc;
   font-weight: 300; }
 
+/* ---------- */
+/* ----- Search results ----- */
+.search-results {
+  padding: 20px 0 0;
+  text-align: center; }
+
+.nothing-found {
+  font-size: 22px;
+  font-weight: 400;
+  text-align: center;
+  margin: 60px 0 0 0; }
+
+/* ---------- */
+/* ----- Tag containers ----- */
 .tag-global {
   display: inline-block; }
 
@@ -154,13 +175,18 @@ html, body {
   text-align: center; }
 
 .tag-wrapper {
-  margin-top: 25px; }
+  margin: 25px 0 0; }
 
+/* ---------- */
+/* ----- Tags ----- */
 .tag-static {
   display: inline-block;
   padding: 2px 8px;
   margin: 6px;
   border-radius: 15px; }
+
+.tag-modal {
+  display: inline-block; }
 
 .tag {
   padding: 5px 14px;
@@ -170,18 +196,15 @@ html, body {
   color: #ffffff;
   cursor: pointer;
   transition: transform .1s linear; }
+  .tag:hover {
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    transform: translate(0px, -1px) scale(1.02); }
+  .tag:active {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
+    transform: translate(0px, 1px) scale(0.98); }
 
-.tag-modal {
-  display: inline-block; }
-
-.tag:hover {
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
-  transform: translate(0px, -1px) scale(1.02); }
-
-.tag:active {
-  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
-  transform: translate(0px, 1px) scale(0.98); }
-
+/* ---------- */
+/* ----- Content ----- */
 .product-name,
 .product-description,
 .product-platforms,
@@ -213,28 +236,13 @@ html, body {
 
 .product-color-text-modal {
   padding: -5px 45px 0 0;
-  margin-left: 45px; }
+  margin: 0 0 0 45px; }
 
 @media (max-width: 991px) {
   .product-colors-text {
     font-size: 14px; } }
-@media (max-width: 991px) {
-  .product-colors-text {
-    font-size: 14px; } }
-.modal-body {
-  margin: 0 35px 0; }
-
-.modal-content {
-  border: 0; }
-
-.card {
-  border-width: 0px;
-  border-radius: 7px;
-  position: relative; }
-
-.card-block {
-  margin: 0 25px 0; }
-
+/* ---------- */
+/* ----- Card columns ----- */
 @media (min-width: 544px) {
   .card-columns {
     -webkit-column-count: 1;
@@ -251,6 +259,23 @@ html, body {
     -webkit-column-gap: 1.25em;
     -moz-column-gap: 1.25em;
     column-gap: 1.25em; } }
+/* ---------- */
+/* ----- Static containers ----- */
+.card {
+  border-width: 0px;
+  border-radius: 7px;
+  position: relative; }
+
+.card-block {
+  margin: 0 25px 0; }
+
+/* ----- Modal containers ----- */
+.modal-body {
+  margin: 0 35px 0; }
+
+.modal-content {
+  border: 0; }
+
 .container {
   width: 100%;
   margin: 0 auto 15px;
@@ -260,10 +285,14 @@ html, body {
 .content {
   padding: 25px 0 20px 0; }
 
+/* ---------- */
+/* ----- Headers ----- */
 .header {
   text-align: center; }
 
 .modal-header {
   border-bottom: none; }
+
+/* ---------- */
 
 /*# sourceMappingURL=aplication.css.map */

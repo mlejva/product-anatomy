@@ -1,0 +1,30 @@
+// =============================================================================
+// Mixins
+// =============================================================================
+
+
+
+/* ----- Media ----- */
+@mixin card-columns ($media-size, $media-columns, $media-columns-gap) {
+  @media (min-width: $media-size) {
+    .card-columns {
+      -webkit-column-count: $media-columns;
+      -moz-column-count: $media-columns;
+      column-count: $media-columns;
+      -webkit-column-gap: $media-columns-gap;
+      -moz-column-gap: $media-columns-gap;
+      column-gap: $media-columns-gap;
+    }
+  }
+}
+/* ---------- */
+
+
+/* ----- Helping ----- */
+@mixin text ($size: null, $weight: null, $align: null, $spacing: null) {
+  font-size: $size;
+  font-weight: $weight;
+  text-align: $align;
+  letter-spacing: $spacing;
+}
+/* ---------- */

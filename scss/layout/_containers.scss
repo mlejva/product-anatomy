@@ -1,11 +1,17 @@
-.modal-body {
-  margin: 0 35px 0;
-}
+// =============================================================================
+// Containers
+// =============================================================================
 
-.modal-content {
-  border: 0;
-}
 
+
+/* ----- Card columns ----- */
+@include card-columns ($mobile-size, $handheld-columns, $handheld-columns-gap);
+@include card-columns ($desktop-size, $desktop-columns, $desktop-columns-gap);
+/* ---------- */
+
+
+
+/* ----- Static containers ----- */
 .card {
   border-width: 0px;
   border-radius: 7px;
@@ -16,26 +22,14 @@
   margin: 0 25px 0;
 }
 
-@media (min-width: $mobile-size) {
-  .card-columns {
-    -webkit-column-count: $handheld-columns;
-    -moz-column-count: $handheld-columns;
-    column-count: $handheld-columns;
-    -webkit-column-gap: $handheld-column-gap;
-    -moz-column-gap: $handheld-column-gap;
-    column-gap: $handheld-column-gap;
-  }
+
+/* ----- Modal containers ----- */
+.modal-body {
+  margin: 0 35px 0;
 }
 
-@media (min-width: $desktop-size) {
-  .card-columns {
-    -webkit-column-count: $desktop-columns;
-    -moz-column-count: $desktop-columns;
-    column-count: $desktop-columns;
-    -webkit-column-gap: $handheld-column-gap;
-    -moz-column-gap: $handheld-column-gap;
-    column-gap: $handheld-column-gap;
-  }
+.modal-content {
+  border: 0;
 }
 
 .container {
@@ -48,3 +42,4 @@
 .content {
   padding: 25px 0 20px 0;
 }
+/* ---------- */

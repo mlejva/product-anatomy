@@ -1,8 +1,15 @@
-html, body {
+// =============================================================================
+// Whole document
+// =============================================================================
+
+
+/* ----- Document ----- */
+html,
+body {
+  font-family: $basic-font;
+  font-weight: $light;
+  color: $text-color;
   padding: 0;
   margin: 0;
-  font-family: $basic-font;
-  font-weight: $light-font-weight;
-  color: $text-color;
   background-color: $background-color;
 }

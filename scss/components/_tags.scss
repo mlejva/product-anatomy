@@ -1,3 +1,10 @@
+// =============================================================================
+// Tags
+// =============================================================================
+
+
+
+/* ----- Tag containers ----- */
 .tag-global {
   display: inline-block;
 }
@@ -7,14 +14,22 @@
 }
 
 .tag-wrapper {
-  margin-top: 25px;
+  margin: 25px 0 0;
 }
+/* ---------- */
 
+
+
+/* ----- Tags ----- */
 .tag-static {
   display: inline-block;
   padding: 2px 8px;
   margin: 6px;
   border-radius: 15px;
+}
+
+.tag-modal {
+  display: inline-block;
 }
 
 .tag {
@@ -25,18 +40,16 @@
   color: $secondary-background-color;
   cursor: pointer;
   transition: transform .1s linear;
-}
 
-.tag-modal {
-  display: inline-block;
-}
+  &:hover {
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,.2);
+    transform: translate(0px, -1px) scale(1.02);
+  }
 
-.tag:hover {
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,.2);
-  transform: translate(0px, -1px) scale(1.02);
-}
+  &:active {
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,.3);
+    transform: translate(0px, 1px) scale(0.98);
+  }
 
-.tag:active {
-  box-shadow: 0px 0px 0px 0px rgba(0,0,0,.3);
-  transform: translate(0px, 1px) scale(0.98);
 }
+/* ---------- */
