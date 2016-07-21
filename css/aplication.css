@@ -50,10 +50,8 @@ body {
   border-radius: 0; }
 
 .logo-img-wrapper {
-  margin: 30px 20px 0; }
-
-.logo-img-wrapper-modal {
-  padding: 0 15 0 20px; }
+  margin: 25px 30px 0;
+  padding: 20px 0 0; }
 
 /* ---------- */
 /* ----- Twitter icon----- */
@@ -70,11 +68,12 @@ body {
 /* ----- Modal close icon ----- */
 .close {
   font-size: 30px;
-  font-weight: 400;
-  margin: 0 5px 0 0; }
+  font-weight: 400; }
   @media (max-width: 750px) {
     .close {
       margin: 10px 0 0 10px;
+      width: 20px;
+      height: 20px;
       font-size: 35px; }
       .close .close:active {
         transform: translate(0px, 1px) scale(0.95); } }
@@ -102,6 +101,16 @@ body {
 @media (max-width: 750px) {
   * {
     font-size: 20px; } }
+.modal {
+  font-size: 20px; }
+
+.content {
+  font-size: 18px; }
+
+.tag {
+  font-size: 16px;
+  font-weight: 400; }
+
 /* ---------- */
 /* ----- Delimeters ----- */
 .headline-delimiter {
@@ -242,7 +251,15 @@ body {
   .product-colors-text {
     font-size: 14px; } }
 /* ---------- */
-/* ----- Card columns ----- */
+/* ----- Page containers ----- */
+.container {
+  width: 100%;
+  margin: 0 auto 15px;
+  background-color: #f1f1f1;
+  font-size: 16px; }
+
+/* ---------- */
+/* ----- Static containers ----- */
 @media (min-width: 544px) {
   .card-columns {
     -webkit-column-count: 1;
@@ -259,8 +276,9 @@ body {
     -webkit-column-gap: 1.25em;
     -moz-column-gap: 1.25em;
     column-gap: 1.25em; } }
-/* ---------- */
-/* ----- Static containers ----- */
+.content {
+  padding: 25px 0 20px 0; }
+
 .card {
   border-width: 0px;
   border-radius: 7px;
@@ -270,20 +288,17 @@ body {
   margin: 0 25px 0; }
 
 /* ----- Modal containers ----- */
-.modal-body {
-  margin: 0 35px 0; }
-
+@media (max-width: 750px) {
+  .modal-dialog {
+    max-width: 95%; } }
+@media (min-width: 991px) {
+  .modal-dialog {
+    min-width: 800px; } }
 .modal-content {
   border: 0; }
 
-.container {
-  width: 100%;
-  margin: 0 auto 15px;
-  background-color: #f1f1f1;
-  font-size: 16px; }
-
-.content {
-  padding: 25px 0 20px 0; }
+.modal-body {
+  margin: 0 50px 0; }
 
 /* ---------- */
 /* ----- Headers ----- */
@@ -291,7 +306,10 @@ body {
   text-align: center; }
 
 .modal-header {
-  border-bottom: none; }
+  border-bottom: none;
+  padding: 0;
+  margin: 0 25px 25px 50px;
+  padding: 25px 0 0 0; }
 
 /* ---------- */
 

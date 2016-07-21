@@ -80,7 +80,7 @@ $(document).ready(function() {
 
       // Prepare modal card for product
       var cardModalHTML = '<div id=\"card' + cardNumber + '\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">' +
-                            '<div class=\"modal-dialog modal-md\">' +
+                            '<div class=\"modal-dialog modal-md \">' +
                               '<div class=\"modal-content\">' +
                                 '<div class=\"modal-header\">' +
                                   '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>';

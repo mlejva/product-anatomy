@@ -4,14 +4,26 @@
 
 
 
-/* ----- Card columns ----- */
-@include card-columns ($mobile-size, $handheld-columns, $handheld-columns-gap);
-@include card-columns ($desktop-size, $desktop-columns, $desktop-columns-gap);
+/* ----- Page containers ----- */
+.container {
+  width: 100%;
+  margin: 0 auto 15px;
+  background-color: $background-color;
+  font-size: 16px;
+}
 /* ---------- */
 
 
 
 /* ----- Static containers ----- */
+//Card columns
+@include card-columns ($mobile-size, $handheld-columns, $handheld-columns-gap);
+@include card-columns ($desktop-size, $desktop-columns, $desktop-columns-gap);
+
+.content {
+  padding: 25px 0 20px 0;
+}
+
 .card {
   border-width: 0px;
   border-radius: 7px;
@@ -24,22 +36,23 @@
 
 
 /* ----- Modal containers ----- */
-.modal-body {
-  margin: 0 35px 0;
+@media (max-width: $handheld-size) {
+  .modal-dialog {
+    max-width: 95%;
+  }
+}
+
+@media (min-width: $desktop-size) {
+  .modal-dialog {
+    min-width: 800px;
+  }
 }
 
 .modal-content {
   border: 0;
 }
 
-.container {
-  width: 100%;
-  margin: 0 auto 15px;
-  background-color: $background-color;
-  font-size: 16px;
-}
-
-.content {
-  padding: 25px 0 20px 0;
+.modal-body {
+  margin: 0 50px 0;
 }
 /* ---------- */
