@@ -32,3 +32,22 @@
   margin: 10px 0 0;
 }
 /* ---------- */
+
+
+
+/* ----- Modal close button ----- */
+.modal-header {
+  .close {
+    margin-top: -12px;
+    @include text(30px, $regular);
+
+    @media (max-width: $handheld-size) {
+      font-size: 35px;
+
+      .close:active {
+        transform: translate(0px, 1px) scale(0.95);
+      }
+    }
+  }
+}
+/* ---------- */

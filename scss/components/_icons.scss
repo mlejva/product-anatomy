@@ -25,6 +25,7 @@
 
   .logo-img-modal {
     @extend .product-img;
+    min-width: 100%;
   }
 }
 /* ---------- */
@@ -42,24 +43,5 @@
 
 .fa-twitter:hover {
   color: $twitter-hover-color;
-}
-/* ---------- */
-
-
-
-/* ----- Modal close icon ----- */
-.close {
-  @include text(30px, $regular);
-
-  @media (max-width: $handheld-size) {
-    margin: 10px 0 0 10px;
-    width: 20px;
-    height: 20px;
-    font-size: 35px;
-
-    .close:active {
-      transform: translate(0px, 1px) scale(0.95);
-    }
-  }
 }
 /* ---------- */

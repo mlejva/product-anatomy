@@ -42,6 +42,18 @@ body {
   margin: 10px 0 0; }
 
 /* ---------- */
+/* ----- Modal close button ----- */
+.modal-header .close {
+  margin-top: -12px;
+  font-size: 30px;
+  font-weight: 400; }
+  @media (max-width: 750px) {
+    .modal-header .close {
+      font-size: 35px; }
+      .modal-header .close .close:active {
+        transform: translate(0px, 1px) scale(0.95); } }
+
+/* ---------- */
 /* ----- Product logo image ----- */
 .product-img, .logo-img-wrapper .logo-img, .logo-img-wrapper-modal .logo-img-modal {
   max-width: 100%;
@@ -53,6 +65,9 @@ body {
   margin: 0 30px 0;
   padding: 45px 0 0; }
 
+.logo-img-wrapper-modal .logo-img-modal {
+  min-width: 100%; }
+
 /* ---------- */
 /* ----- Twitter icon----- */
 .twitter-logo-modal {
@@ -63,20 +78,6 @@ body {
 
 .fa-twitter:hover {
   color: #4099ff; }
-
-/* ---------- */
-/* ----- Modal close icon ----- */
-.close {
-  font-size: 30px;
-  font-weight: 400; }
-  @media (max-width: 750px) {
-    .close {
-      margin: 10px 0 0 10px;
-      width: 20px;
-      height: 20px;
-      font-size: 35px; }
-      .close .close:active {
-        transform: translate(0px, 1px) scale(0.95); } }
 
 /* ---------- */
 /* ----- Texts ----- */
@@ -167,7 +168,8 @@ body {
 /* ----- Search results ----- */
 .search-results {
   padding: 20px 0 0;
-  text-align: center; }
+  text-align: center;
+  font-size: 20px; }
 
 .nothing-found {
   font-size: 22px;
@@ -300,6 +302,9 @@ body {
 .modal-body {
   margin: 0 50px 0; }
 
+@media (max-width: 750px) {
+  .modal-body {
+    margin: 0 25px 0; } }
 /* ---------- */
 /* ----- Headers ----- */
 .header {
