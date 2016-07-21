@@ -44,7 +44,9 @@ body {
 /* ---------- */
 /* ----- Modal close button ----- */
 .modal-header .close {
+  font-size: 25px;
   margin-bottom: 35px;
+  margin-top: 5px;
   font-size: 30px;
   font-weight: 400; }
   @media (max-width: 750px) {
@@ -168,7 +170,7 @@ body {
 /* ---------- */
 /* ----- Search results ----- */
 .search-results {
-  padding: 20px 0 0;
+  padding: 30px 0 0;
   text-align: center;
   font-size: 20px; }
 
@@ -254,6 +256,24 @@ body {
   .product-colors-text {
     font-size: 14px; } }
 /* ---------- */
+.product-fonts-wrapper-modal {
+  margin: 30px 0 0 0; }
+
+.product-platform-fonts-name-modal {
+  margin: 8px 0 0 0; }
+
+.product-platforms-fonts-modal {
+  margin: 3px 0 0 25px; }
+
+.product-colors-wrapper-modal {
+  margin: 30px 0 0 0; }
+
+.product-platform-colors-name-modal {
+  margin: 15px 0 0 0; }
+
+.product-color-modal {
+  margin: 8px 0px 8px 3px; }
+
 /* ----- Page containers ----- */
 .container {
   width: 100%;

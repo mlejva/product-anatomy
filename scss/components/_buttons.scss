@@ -38,7 +38,9 @@
 /* ----- Modal close button ----- */
 .modal-header {
   .close {
+    font-size: 25px;
     margin-bottom: 35px;
+    margin-top: 5px;
     @include text(30px, $regular);
 
     @media (max-width: $handheld-size) {
