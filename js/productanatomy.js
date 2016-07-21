@@ -418,7 +418,7 @@ $(document).ready(function() {
           // Check whether a product card for this logo is loaded in the html of a page
           if ( $('#' + productNameFromLogo).length > 0 ) {
             var logoHTML = '<div class=\"' + DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
-                              '<img class=\"' + DIV_CLASS_PRODUCT_LOGO + '\" class=\"logo-img\" src=\"' + downloadURL + '\" alt=\"Product Logo\"/>' +
+                              '<img class=\"' + DIV_CLASS_PRODUCT_LOGO + '\" class=\"' + DIV_CLASS_PRODUCT_LOGO + '\" src=\"' + downloadURL + '\" alt=\"Product Logo\"/>' +
                            '</div>';
             $('#' + productNameFromLogo).last().prepend(logoHTML);
           }

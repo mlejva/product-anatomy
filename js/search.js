@@ -52,18 +52,21 @@ var search = function() {
 }
 /* ---------- */
 
+
 /* ----- Search using tags ----- */
 var enableTagSearch = function(tags) {
   for (var i = 0; i < tags.length; i++) (function (tag) {
     tag.addEventListener('click', function(e) {
 
 
-      if ($(this).hasClass("tag-modal")) {
+      if ($(this).hasClass('tag-modal')) {
         var thisModal = $(this).closest('.modal');
         if (thisModal.hasClass('in')) {
           thisModal.modal('hide');
         }
       }
+
+
 
       document.getElementById("search-scroll").scrollIntoView(); //TODO: constant
 
