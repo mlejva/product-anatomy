@@ -53,23 +53,21 @@ var search = function() {
 /* ---------- */
 
 
+
 /* ----- Search using tags ----- */
 var enableTagSearch = function(tags) {
   for (var i = 0; i < tags.length; i++) (function (tag) {
     tag.addEventListener('click', function(e) {
 
-
       if ($(this).hasClass('tag-modal')) {
         var thisModal = $(this).closest('.modal');
-        if (thisModal.hasClass('in')) {
           thisModal.modal('hide');
-        }
       }
 
-
-
-      document.getElementById("search-scroll").scrollIntoView(); //TODO: constant
-
+      // TODO: When modal card closes and page scrolls to "search-scroll", the page returns to the modal static card
+      // TODO: Scroll is slower than search - user can't see the change in results
+      //window.scrollTo(0, 0); // Primitive scroll to the top of the page
+      document.getElementById("search-scroll").scrollIntoView(); // TODO: constant id="search-scroll"
       document.getElementById(SEARCHBOX_ID).value = tag.textContent;
       search();
     })
