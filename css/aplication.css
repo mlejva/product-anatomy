@@ -44,13 +44,13 @@ body {
 /* ---------- */
 /* ----- Modal close button ----- */
 .modal-header .close {
-  margin-top: -12px;
+  margin-bottom: 35px;
   font-size: 30px;
   font-weight: 400; }
   @media (max-width: 750px) {
     .modal-header .close {
-      font-size: 35px; }
-      .modal-header .close .close:active {
+      font-size: 45px; }
+      .modal-header .close:active {
         transform: translate(0px, 1px) scale(0.95); } }
 
 /* ---------- */
@@ -65,8 +65,9 @@ body {
   margin: 0 30px 0;
   padding: 45px 0 0; }
 
-.logo-img-wrapper-modal .logo-img-modal {
-  min-width: 100%; }
+.logo-img-wrapper-modal {
+  position: absolute;
+  bottom: 0; }
 
 /* ---------- */
 /* ----- Twitter icon----- */
@@ -300,7 +301,8 @@ body {
   border: 0; }
 
 .modal-body {
-  margin: 0 50px 0; }
+  margin: 0 50px 0;
+  padding-top: 25px; }
 
 @media (max-width: 750px) {
   .modal-body {
@@ -312,9 +314,12 @@ body {
 
 .modal-header {
   border-bottom: none;
-  padding: 0;
-  margin: 0 25px 25px 50px;
-  padding: 25px 0 0 0; }
+  margin: 0 20px 0px 50px;
+  padding: 10px 0 0 0;
+  position: relative; }
+  @media (max-width: 750px) {
+    .modal-header {
+      margin-left: 25px; } }
 
 /* ---------- */
 

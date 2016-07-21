@@ -38,13 +38,13 @@
 /* ----- Modal close button ----- */
 .modal-header {
   .close {
-    margin-top: -12px;
+    margin-bottom: 35px;
     @include text(30px, $regular);
 
     @media (max-width: $handheld-size) {
-      font-size: 35px;
+      font-size: 45px;
 
-      .close:active {
+      &:active {
         transform: translate(0px, 1px) scale(0.95);
       }
     }

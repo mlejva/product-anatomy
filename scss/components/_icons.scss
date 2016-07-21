@@ -18,14 +18,16 @@
 
     .logo-img {
       @extend .product-img;
+
     }
 }
 
 .logo-img-wrapper-modal {
+  position: absolute;
+  bottom: 0;
 
   .logo-img-modal {
     @extend .product-img;
-    min-width: 100%;
   }
 }
 /* ---------- */

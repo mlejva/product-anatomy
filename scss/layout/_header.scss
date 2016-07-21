@@ -11,8 +11,12 @@
 
 .modal-header {
   border-bottom: none;
-  padding: 0;
-  margin: 0 25px 25px 50px;
-  padding: 25px 0 0 0;
+  margin: 0 20px 0px 50px;
+  padding: 10px 0 0 0;
+  position: relative;
+
+  @media (max-width: $handheld-size) {
+    margin-left: 25px;
+  }
 }
 /* ---------- */
