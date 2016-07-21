@@ -2,7 +2,7 @@
 var search = function() {
   var products_modal = document.getElementsByClassName('modal'); // We want to search in modal cards
   var products_static = document.getElementsByClassName('card'); // But we want to hide static card
-  var query = document.getElementById(SEARCHBOX_ID).value;
+  var query = document.getElementById(CONST.SEARCHBOX_ID).value;
   var match = new Function;
 
   if (!query.length) {
@@ -35,20 +35,20 @@ var search = function() {
 
   // Show how many results was found
   // TODO: Text search results constants
-  $('div.' + DIV_CLASS_SEARCH_RESULTS).empty();
-  $('div.' + DIV_CLASS_NOTHING_FOUND).empty();
+  $('div.' + CONST.DIV_CLASS_SEARCH_RESULTS).empty();
+  $('div.' + CONST.DIV_CLASS_NOTHING_FOUND).empty();
   var resultsText = '';
   if (resultsCount == 0) {
     resultsText = '';
-    $('div.' + DIV_CLASS_NOTHING_FOUND).append(NOTHING_FOUND_TEXT);
+    $('div.' + CONST.DIV_CLASS_NOTHING_FOUND).append(CONST.NOTHING_FOUND_TEXT);
   }
   else if (resultsCount == 1) {
-    resultsText =  SEARCH_RESULT_TEXT_SINGULAR;
+    resultsText = CONST.SEARCH_RESULT_TEXT_SINGULAR;
   }
   else {
-    resultsText = SEARCH_RESULT_TEXT_PLURAL.replace(SEARCH_RESULT_TEXT_COUNT_REPLACE, resultsCount);
+    resultsText = CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, resultsCount);
   }
-  $('div.' + DIV_CLASS_SEARCH_RESULTS).append(resultsText);
+  $('div.' + CONST.DIV_CLASS_SEARCH_RESULTS).append(resultsText);
 }
 /* ---------- */
 
@@ -58,7 +58,7 @@ var enableTagSearch = function(tags) {
     tag.addEventListener('click', function (e) {
 
       $(this).closest('.modal').modal('hide');
-      document.getElementById(SEARCHBOX_ID).value = tag.textContent;
+      document.getElementById(CONST.SEARCHBOX_ID).value = tag.textContent;
       search();
     })
   })(tags[i]);

@@ -1,7 +1,7 @@
 // TODO: Instead of deleting all elements it should move elements to next row according to max in row
 var resizeGlobalTags = function() {
-  if ( $('div.' + DIV_CLASS_TAG_WRAPPER).length > 0 )
-    $('div.' + DIV_CLASS_TAG_WRAPPER).empty();
+  if ( $('div.' + CONST.DIV_CLASS_TAG_WRAPPER).length > 0 )
+    $('div.' + CONST.DIV_CLASS_TAG_WRAPPER).empty();
   var maxInRow = 0;
   var offset = 0;
   // TODO: Should be constants
@@ -25,9 +25,9 @@ var resizeGlobalTags = function() {
   // Add tags under searchbar
   var global_tags_html = '<div class=\"row\">';
   global_tags_html += '<div class=\"col-lg-' + maxInRow + ' col-lg-offset-' + offset + '\">';
-  global_tags_html += '<div class=\"' + DIV_CLASS_TAG_ROW + '\">';
+  global_tags_html += '<div class=\"' + CONST.DIV_CLASS_TAG_ROW + '\">';
   var in_current_row = 0;
-  tags = GLOBAL_TAGS.sort(function(a, b) {
+  tags = CONST.GLOBAL_TAGS.sort(function(a, b) {
     return (a.toLowerCase() > b.toLowerCase());
   });
   for (var i = 0; i < tags.length; i++) {
@@ -39,24 +39,24 @@ var resizeGlobalTags = function() {
       global_tags_html += '</div> </div> </div>';
       global_tags_html += '<div class=\"row\">' +
                             '<div class=\"col-lg-' + maxInRow + ' col-lg-offset-' + offset + '\">' +
-                              '<div class=\"' + DIV_CLASS_TAG_ROW + '\">';
+                              '<div class=\"' + CONST.DIV_CLASS_TAG_ROW + '\">';
       in_current_row++;
     }
-    var tag_name = GLOBAL_TAGS[i];
+    var tag_name = CONST.GLOBAL_TAGS[i];
     var tag_color;
-    if (isInArray(tag_name.toLocaleLowerCase(), PLATFORMS)) {
-        tag_color = PLATFORM_TAG_COLORS[tag_name.toLocaleLowerCase()];
+    if (isInArray(tag_name.toLocaleLowerCase(), CONST.PLATFORMS)) {
+        tag_color = CONST.PLATFORM_TAG_COLORS[tag_name.toLocaleLowerCase()];
     }
     else {
-      tag_color = randomColorFromString(tag_name, TAG_COLORS);
+      tag_color = randomColorFromString(tag_name, CONST.TAG_COLORS);
     }
-    global_tags_html += '<span class=\"' + DIV_CLASS_TAG + ' ' + DIV_CLASS_TAG_GLOBAL + '\" style=\"background-color:' + tag_color + '\">' + tag_name + '</span>';
+    global_tags_html += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_GLOBAL + '\" style=\"background-color:' + tag_color + '\">' + tag_name + '</span>';
   }
   global_tags_html += '</div></div>';
 
 
-  $('div.' + DIV_CLASS_TAG_WRAPPER).append(global_tags_html);
+  $('div.' + CONST.DIV_CLASS_TAG_WRAPPER).append(global_tags_html);
   // Add search functionality for global tags
-  var tagsGlobal = document.getElementsByClassName(DIV_CLASS_TAG_GLOBAL);
+  var tagsGlobal = document.getElementsByClassName(CONST.DIV_CLASS_TAG_GLOBAL);
   enableTagSearch(tagsGlobal);
 }
