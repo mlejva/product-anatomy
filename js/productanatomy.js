@@ -59,9 +59,12 @@ function displayProduct(product, cardNumber) {
     var cardProduct = buttonCard.data('product');
 
 
-    var productURL = 'https://product-anatomy.firebaseapp.com/product?id=' + productID;
+    var productURL = CONST.PAGE_BASE_URL + 'product?id=' + productID;
     //alert(productURL);
     window.history.pushState('', '', productURL);
+  });
+  $('div.modal').last().on('hidden.bs.modal', function() {
+    window.history.pushState('', '', CONST.PAGE_BASE_URL); 
   });
   /* ---------- */
 }

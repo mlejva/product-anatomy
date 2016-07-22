@@ -399,7 +399,7 @@ class Product {
     // Add launched //
     if (this.launched !== undefined && this.launched !== '') {
       modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_LAUNCHED + '\">' +
-                          '<div class=\"\">' +
+                          '<div class=\"row\">' +
                             '<b>' + CONST.DIV_TEXT_PRODUCT_LAUNCHED + '</b>' + this.launched +
                           '</div>' +
                         '</div>';
