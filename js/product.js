@@ -374,7 +374,7 @@ class Product {
                             '<div class=\"modal-content\">' +
                               '<div class=\"modal-header\">' +
                                 '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>';
-    var logoClass = this.name.toLowerCase().replace(/ /g, '-') + '-modal';
+var logoClass = this.id + '-modal';
     modalCardHTML += '<div class=\"media ' + logoClass + '\">' +
                         '<div class=\"media-left' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
                         '</div>' +
@@ -516,13 +516,13 @@ class Product {
   getProductLogoURL(product, callback) {
     var fTools = new FirebaseTools(CONST.CONFIG);
 
-    if (this.logoPath !== undefined && this.logoPath !== '') {
-      fTools.storage.ref().child(this.logoPath).getDownloadURL().then(function(url) {
+    if (product.logoPath !== undefined && product.logoPath !== '') {
+      fTools.storage.ref().child(product.logoPath).getDownloadURL().then(function(url) {
         callback(product, url);
       })
       .catch(function(error) {
-        presentErrorPage();
-        console.error('Error while trying to get product logo from storage: ' + error);
+        //presentErrorPage();
+        console.error('Error while trying to get product logo from storage: ' + error + 'for product id - ' + product.id);
       });
     }
     else {

@@ -11,6 +11,8 @@ CONST.ENTER_KEY_CODE = 13;
 
 CONST.DIV_CLASS_CONTENT = 'content';
 CONST.ERROR_MSG = 'It looks that something went horribly wrong, please DON\'T PANIC, take your towel and reload the page!';
+
+CONST.PAGE_BASE_URL = 'https://product-anatomy.firebaseapp.com/';
 /* ---------- */
 
 /* ----- Constants for Product object ----- */

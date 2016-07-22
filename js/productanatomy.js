@@ -16,9 +16,7 @@ function getParameterByName(name, url) {
 
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-
-
-function addLogoToProduct(product) {
+function addLogoToProductCards(product) {
     // TODO: Divne predavani produktu
     product.getProductLogoURL(product, function(prod, url) {
       // Format of logoPath
@@ -50,7 +48,7 @@ function displayProduct(product, cardNumber) {
   $('div.card-columns').last().append(productStaticCard);
   $('div.content').last().append(productModalCard);
 
-  addLogoToProduct(product);
+  addLogoToProductCards(product);
 
   /* ----- Cards events ----- */
   $('div.' + CONST.DIV_CLASS_BOTTOM_BUTTON_WRAPPER).last().on('click', function() { // There is no bottom-button-wrapper -> card-footer
@@ -61,9 +59,12 @@ function displayProduct(product, cardNumber) {
     var cardProduct = buttonCard.data('product');
 
 
-    var productURL = 'https://product-anatomy.firebaseapp.com/product?id=' + productID;
+    var productURL = CONST.PAGE_BASE_URL + 'product?id=' + productID;
     //alert(productURL);
     window.history.pushState('', '', productURL);
+  });
+  $('div.modal').last().on('hidden.bs.modal', function() {
+    window.history.pushState('', '', CONST.PAGE_BASE_URL);
   });
   /* ---------- */
 }
