@@ -21,21 +21,23 @@ function addLogoToProductCards(product) {
     product.getProductLogoURL(product, function(prod, url) {
       // Format of logoPath:
       // -> logoPath = 'path/product-name.png'
-
       // Add logo to static card
-      var logoStaticHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
-                              '<img src=\"' + url + '\" alt=\"Product Logo\"/>' +
-                            '</div>';
-      $('#' + prod.id).prepend(logoStaticHTML);
+      var logoStaticHTML = '<img src=\"' + url + '\" alt=\"Product Logo\"/>'
+
+      //$('#' + productName).last().prepend(logoStaticHTML);
+      $('#' + prod.id + ' .' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER).prepend(logoStaticHTML);
 
       // Add logo to modal card
-      var logoModalHTML = '<div class=\"media-left' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
-                            '<img src=\"' + url + '\" alt=\"Product Logo\"/>' +
-                          '</div>';
-      $('#' + prod.id + '-modal').prepend(logoModalHTML);
+      var logoModalHTML = '<img src=\"' + url + '\" alt=\"Product Logo\"/>'
+
+      //$('div.' + productName + '-modal').last().prepend(logoModalHTML);
+      $('#' + prod.id + '-modal' + ' .' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER).prepend(logoModalHTML);
     });
 }
+
+
 function displayProduct(product, cardNumber) {
+
   productStaticCard = $(product.getStaticCardFromProduct(cardNumber));
   productModalCard = $(product.getModalCardFromProduct(cardNumber));
 
