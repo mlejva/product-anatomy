@@ -1,4 +1,5 @@
 // TODO: Make my own random color function
+// TODO: Get rid of helpet_functions.js
 var randomColorFromString = function (str, colors) {
     function digitize (str) {
         var code = 0;
@@ -14,4 +15,11 @@ var randomColorFromString = function (str, colors) {
 
 var isInArray = function(value, array) {
   return array.indexOf(value) > -1;
+};
+
+var presentErrorPage = function() {
+  $('#' + CONST.SEARCH_RESULTS_ID).empty();
+  $('div.' + CONST.DIV_CLASS_CONTENT).empty();
+  $('#' + CONST.ANNOUNCEMENT_ID).empty();
+  $('#' + CONST.ANNOUNCEMENT_ID).append(CONST.ERROR_MSG);
 };
