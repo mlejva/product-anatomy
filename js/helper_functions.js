@@ -18,8 +18,8 @@ var isInArray = function(value, array) {
 };
 
 var presentErrorPage = function() {
-  $('div.' + CONST.DIV_CLASS_SEARCH_RESULTS).empty();
+  $('#' + CONST.SEARCH_RESULTS_ID).empty();
   $('div.' + CONST.DIV_CLASS_CONTENT).empty();
-  $('div.' + CONST.DIV_CLASS_ANNOUNCEMENT).empty();
-  $('div.' + CONST.DIV_CLASS_ANNOUNCEMENT).append(CONST.ERROR_MSG);
+  $('#' + CONST.ANNOUNCEMENT_ID).empty();
+  $('#' + CONST.ANNOUNCEMENT_ID).append(CONST.ERROR_MSG);
 };

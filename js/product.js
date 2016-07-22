@@ -350,7 +350,7 @@ class Product {
     staticCardHTML += '</div>'; // Close card-block
 
     // Add bottom button //
-    staticCardHTML += '<div class=\"card-footer\">' +
+    staticCardHTML += '<div class=\"card-footer' + ' ' + CONST.DIV_CLASS_BOTTOM_BUTTON_WRAPPER + '\">' +
                         '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-info btn-block\">' +
                           CONST.DIV_TEXT_BOTTOM_BUTTON +
                         '</a>' +
@@ -399,7 +399,7 @@ class Product {
     // Add launched //
     if (this.launched !== undefined && this.launched !== '') {
       modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_LAUNCHED + '\">' +
-                          '<div class=\"\">' +
+                          '<div class=\"row\">' +
                             '<b>' + CONST.DIV_TEXT_PRODUCT_LAUNCHED + '</b>' + this.launched +
                           '</div>' +
                         '</div>';

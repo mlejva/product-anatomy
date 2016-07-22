@@ -14,7 +14,7 @@ body {
   background-color: $background-color;
 }
 
-.announcement {
+#announcement {
   @include text(22px, $regular, center);
   margin: 60px 0 0 0;
 }

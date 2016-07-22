@@ -36,18 +36,18 @@ var search = function() {
   // Show how many results was found
   // TODO: Text search results constants
   $('#' + CONST.SEARCH_RESULTS_ID).empty();
-  $('#' + CONST.NOTHING_FOUND_ID).empty();
+  $('#' + CONST.ANNOUNCEMENT_ID).empty();
   var resultsText = '';
   if (resultsCount == 0) {
     resultsText = '';
-    $('#' + CONST.NOTHING_FOUND_ID).append(CONST.NOTHING_FOUND_TEXT);
+    $('#' + CONST.ANNOUNCEMENT_ID).append(CONST.NOTHING_FOUND_TEXT);
   }
   else if (resultsCount == 1) {
     resultsText = CONST.SEARCH_RESULT_TEXT_SINGULAR;
   }
   else {
     resultsText = CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, resultsCount);
-  }
+  }  
   $('#' + CONST.SEARCH_RESULTS_ID).append(resultsText);
 }
 /* ---------- */

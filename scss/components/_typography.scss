@@ -5,12 +5,16 @@
 
 /* ----- Texts ----- */
 .headline {
-  @include text(38px, $light, center, 3px);
   margin: 15px 0 25px;
+  a {
+    @include text(38px, $light, center, 3px);
+    color: $text-color;
+    text-decoration: none;
 
-  @media (max-width: $desktop-size) {
-    @include text(30px, $spacing: 2px);
-      margin: 15px;
+    @media (max-width: $desktop-size) {
+      @include text(30px, $spacing: 2px);
+        margin: 15px;
+    }
   }
 }
 

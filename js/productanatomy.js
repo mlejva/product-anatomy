@@ -51,7 +51,7 @@ function displayProduct(product, cardNumber) {
   addLogoToProduct(product);
 
   /* ----- Cards events ----- */
-  $('div.' + CONST.DIV_CLASS_BOTTOM_BUTTON_WRAPPER).last().on('click', function() {
+  $('div.' + CONST.DIV_CLASS_BOTTOM_BUTTON_WRAPPER).last().on('click', function() { // There is no bottom-button-wrapper -> card-footer
     var productID = product.id;
 
     var buttonCardID = product.name.toLocaleLowerCase().replace(/ /g, '-');

@@ -20,7 +20,7 @@ body {
   margin: 0;
   background-color: #f1f1f1; }
 
-.announcement {
+#announcement {
   font-size: 22px;
   font-weight: 400;
   text-align: center;
@@ -91,16 +91,19 @@ body {
 /* ---------- */
 /* ----- Texts ----- */
 .headline {
-  font-size: 38px;
-  font-weight: 300;
-  text-align: center;
-  letter-spacing: 3px;
   margin: 15px 0 25px; }
-  @media (max-width: 991px) {
-    .headline {
-      font-size: 30px;
-      letter-spacing: 2px;
-      margin: 15px; } }
+  .headline a {
+    font-size: 38px;
+    font-weight: 300;
+    text-align: center;
+    letter-spacing: 3px;
+    color: #4a473d;
+    text-decoration: none; }
+    @media (max-width: 991px) {
+      .headline a {
+        font-size: 30px;
+        letter-spacing: 2px;
+        margin: 15px; } }
 
 .baseline {
   font-size: 22px;
@@ -226,6 +229,7 @@ body {
 .modal .product-name,
 .modal .product-url,
 .modal .product-description,
+.modal .product-launched,
 .modal .product-launched-modal {
   margin: 0 0 8px; }
 .modal .product-founders,
