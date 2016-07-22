@@ -299,6 +299,11 @@ class Product {
     //var cardID = this.name.toLocaleLowerCase().replace(/ /g, '-');
     var cardID = this.id;
     var staticCardHTML = '<div id=\"' + cardID + '\" class=\"card\">';
+
+    // Add logo wrapper //
+    staticCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
+                          '</div>';
+
     staticCardHTML += '<div class=\"card-block\">';
 
     // Add name //
@@ -370,7 +375,11 @@ class Product {
                               '<div class=\"modal-header\">' +
                                 '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>';
     var logoClass = this.name.toLowerCase().replace(/ /g, '-') + '-modal';
-    modalCardHTML += '<div class=\"media ' + logoClass + '\"></div>';
+    modalCardHTML += '<div class=\"media ' + logoClass + '\">' +
+                        '<div class=\"media-left' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
+                        '</div>' +
+                     '</div>';
+
     modalCardHTML += '</div>'; // Close modal-header
 
     modalCardHTML += '<div class=\"modal-body\">';
