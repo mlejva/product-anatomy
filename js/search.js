@@ -34,13 +34,12 @@ var search = function() {
   }
 
   // Show how many results was found
-  // TODO: Text search results constants
   $('div.' + CONST.DIV_CLASS_SEARCH_RESULTS).empty();
-  $('div.' + CONST.DIV_CLASS_NOTHING_FOUND).empty();
+  $('div.' + CONST.DIV_CLASS_ANNOUNCEMENT).empty();
   var resultsText = '';
   if (resultsCount == 0) {
     resultsText = '';
-    $('div.' + CONST.DIV_CLASS_NOTHING_FOUND).append(CONST.NOTHING_FOUND_TEXT);
+    $('div.' + CONST.DIV_CLASS_ANNOUNCEMENT).append(CONST.NOTHING_FOUND_TEXT);
   }
   else if (resultsCount == 1) {
     resultsText = CONST.SEARCH_RESULT_TEXT_SINGULAR;

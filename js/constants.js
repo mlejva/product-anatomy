@@ -1,5 +1,3 @@
-// TODO: should be readonly
-
 CONST = {} // Create namespace for constants
 
 /* ----- General constants ----- */
@@ -7,16 +5,31 @@ CONST.BOOTSTRAP_MAX_WIDTH = 12;
 CONST.COLORS_PER_ROW = 2;
 CONST.COLORS_PER_ROW_MODAL = 2;
 
-CONST.SEARCHBOX_ID = 'searchbox';
-
 CONST.PLATFORMS = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
 
 CONST.ENTER_KEY_CODE = 13;
+
+CONST.DIV_CLASS_CONTENT = 'content';
+CONST.DIV_CLASS_ANNOUNCEMENT = 'announcement';
+CONST.ERROR_MSG = 'It looks that something went horribly wrong, please DON\'T PANIC, take your towel and reload the page!';
+/* ---------- */
+
+/* ----- Constants for Product object ----- */
+CONST.PROD_OBJ_NAME = 'name';
+CONST.PROD_OBJ__URL = 'url';
+CONST.PROD_OBJ_DESCRIPTION = 'description';
+CONST.PROD_OBJ_LAUNCHED = 'launched';
+CONST.PROD_OBJ_PLATFORMS = 'platforms';
+CONST.PROD_OBJ_FOUNDERS = 'founders';
+CONST.PROD_OBJ_TECH = 'productTech';
+CONST.PROD_OBJ_FONTS = 'productFonts';
+CONST.PROD_OBJ_COLORS = 'productColors'
 /* ---------- */
 
 /* ----- Constants for search ----- */
+CONST.SEARCHBOX_ID = 'searchbox';
+
 CONST.DIV_CLASS_SEARCH_RESULTS = 'search-results';
-CONST.DIV_CLASS_NOTHING_FOUND = 'nothing-found';
 
 CONST.NOTHING_FOUND_TEXT = 'Oops, I guess nothing like this exists. Yet...';
 CONST.SEARCH_RESULT_TEXT_SINGULAR = 'Showing anatomy of 1 product.';
@@ -57,6 +70,9 @@ CONST.DIV_TEXT_PRODUCT_NAME_MODAL = 'Name ';
 CONST.DIV_CLASS_PRODUCT_URL_MODAL = 'product-url-modal';
 
 CONST.DIV_CLASS_PRODUCT_DESCRIPTION_MODAL = 'product-description-modal';
+
+CONST.DIV_CLASS_PRODUCT_LAUNCHED = 'product-launched';
+CONST.DIV_TEXT_PRODUCT_LAUNCHED = 'Launched ';
 
 CONST.DIV_CLASS_PRODUCT_PLATFORMS_MODAL = 'product-platforms-modal';
 CONST.DIV_TEXT_PRODUCT_PLATFORMS_MODAL = 'Platforms ';

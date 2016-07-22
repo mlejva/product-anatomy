@@ -17,7 +17,6 @@ class FirebaseTools {
 
   // If count is not specified then ask for 10 products if possible
   // If productIDs are not specified then take first N products according to count variable
-  // TODO: Constant for count var
   getProducts(count, productIDs) {
     var products = [];
 

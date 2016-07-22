@@ -20,6 +20,12 @@ body {
   margin: 0;
   background-color: #f1f1f1; }
 
+.announcement {
+  font-size: 22px;
+  font-weight: 400;
+  text-align: center;
+  margin: 60px 0 0 0; }
+
 /* ----- Show anatomy button ----- */
 .bottom-button-wrapper {
   position: relative;
@@ -173,12 +179,6 @@ body {
   padding: 30px 0 0;
   text-align: center;
   font-size: 20px; }
-
-.nothing-found {
-  font-size: 22px;
-  font-weight: 400;
-  text-align: center;
-  margin: 60px 0 0 0; }
 
 /* ---------- */
 /* ----- Tag containers ----- */
