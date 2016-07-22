@@ -34,20 +34,21 @@ var search = function() {
   }
 
   // Show how many results was found
-  $('div.' + CONST.DIV_CLASS_SEARCH_RESULTS).empty();
-  $('div.' + CONST.DIV_CLASS_ANNOUNCEMENT).empty();
+  // TODO: Text search results constants
+  $('#' + CONST.SEARCH_RESULTS_ID).empty();
+  $('#' + CONST.ANNOUNCEMENT_ID).empty();
   var resultsText = '';
   if (resultsCount == 0) {
     resultsText = '';
-    $('div.' + CONST.DIV_CLASS_ANNOUNCEMENT).append(CONST.NOTHING_FOUND_TEXT);
+    $('#' + CONST.ANNOUNCEMENT_ID).append(CONST.NOTHING_FOUND_TEXT);
   }
   else if (resultsCount == 1) {
     resultsText = CONST.SEARCH_RESULT_TEXT_SINGULAR;
   }
   else {
     resultsText = CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, resultsCount);
-  }
-  $('div.' + CONST.DIV_CLASS_SEARCH_RESULTS).append(resultsText);
+  }  
+  $('#' + CONST.SEARCH_RESULTS_ID).append(resultsText);
 }
 /* ---------- */
 
@@ -66,7 +67,7 @@ var enableTagSearch = function(tags) {
       // TODO: When modal card closes and page scrolls to "search-scroll", the page returns to the modal static card
       // TODO: Scroll is slower than search - user can't see the change in results
       //window.scrollTo(0, 0); // Primitive scroll to the top of the page
-      document.getElementById("search-scroll").scrollIntoView(); // TODO: constant id="search-scroll"
+      document.getElementById(CONST.SEARCH_RESULTS_ID).scrollIntoView(); // TODO: constant id="search-scroll"
       document.getElementById(CONST.SEARCHBOX_ID).value = tag.textContent;
 
 
