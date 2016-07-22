@@ -1,8 +1,14 @@
 class Query {
-  constructor(id = null, name = null, founders = null) {
+  constructor(id, name, founders) {
+    if (id !== {}) {
       this.id = id;
+    }
+    else if (name !== {}) {
       this.name = name;
+    }
+    else if (founders !== {}) {
       this.founders = founders;
+    }
   }
 
   queryWithID(id) {

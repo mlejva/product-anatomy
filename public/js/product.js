@@ -29,12 +29,12 @@ var generateDynamicColorsHTML = function(maxInRow, colors) {
 }
 
 var getTechnologyDelimiter = function() {
-  let delimHTML = '<hr class=\"' + CONST.DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL + '\">';
+  var delimHTML = '<hr class=\"' + CONST.DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL + '\">';
   return delimHTML;
 }
 
 var getDesignDelimiter = function() {
-  let delimHTML = '<hr class=\"' + CONST.DIV_CLASS_DESIGN_DELIMITER_MODAL + '\">';
+  var delimHTML = '<hr class=\"' + CONST.DIV_CLASS_DESIGN_DELIMITER_MODAL + '\">';
   return delimHTML;
 }
 
@@ -58,28 +58,28 @@ var parsePlatformTechnology = function(platformObj) {
   */
 
 
-  let platformName = platformObj['name'];
-  let techHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL + '\">' +
+  var platformName = platformObj['name'];
+  var techHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL + '\">' +
                   '<div class="row">' +
                     '<b>' + platformName + '</b>' +
                   '</div>' +
                 '</div>';
-  for (let platformProperty in platformObj) {
+  for (var platformProperty in platformObj) {
 
       if (platformProperty !== 'name') {
-        let techTypeObj = platformObj[platformProperty];
+        var techTypeObj = platformObj[platformProperty];
 
-        let techTypeName = techTypeObj['name'];
+        var techTypeName = techTypeObj['name'];
         techHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_SUBTECHNOLOGY_MODAL + '\">' +
                       '<b>' + techTypeName + ' ' + '</b>';
 
         // Now for each tech type object we have to loop through it and prepare HTML
-        for (let techTypeProperty in techTypeObj) {
+        for (var techTypeProperty in techTypeObj) {
 
           if (techTypeProperty !== 'name') {
-            let technology = techTypeObj[techTypeProperty];
-            let tagColor = randomColorFromString(technology, CONST.TAG_COLORS);
-            let tagHTML = '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + tagColor + '\">' + technology + '</span>';
+            var technology = techTypeObj[techTypeProperty];
+            var tagColor = randomColorFromString(technology, CONST.TAG_COLORS);
+            var tagHTML = '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + tagColor + '\">' + technology + '</span>';
 
             techHTML += tagHTML;
           }
@@ -94,8 +94,8 @@ var parsePlatformTechnology = function(platformObj) {
 
 // Return HTML parsed fonts of given platforms
 var parsePlatformFonts = function(platformObj) {
-  let platformName = platformObj['name'];
-  let fontsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_FONTS_NAME_MODAL + '\">' +
+  var platformName = platformObj['name'];
+  var fontsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_FONTS_NAME_MODAL + '\">' +
                     '<div class=row>' +
                       '<b>' + platformName + ' ' + '</b>' +
                     '</div>' +
@@ -104,9 +104,9 @@ var parsePlatformFonts = function(platformObj) {
                     '<div class=\"row\">' +
                       '<b>' + CONST.DIV_TEXT_PRODUCT_FONTS_MODAL + '</b>';
 
-  for (let platformProperty in platformObj) {
+  for (var platformProperty in platformObj) {
       if (platformProperty !== 'name') {
-        let fontName = platformObj[platformProperty];
+        var fontName = platformObj[platformProperty];
 
         fontsHTML += fontName + ' ';
       }
@@ -119,18 +119,18 @@ var parsePlatformFonts = function(platformObj) {
 
 // Return HTML parsed colors of given platforms
 var parsePlatformColors = function(platformObj) {
-  let platformName = platformObj['name'];
-  let colorsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS_NAME_MODAL + '\">' +
+  var platformName = platformObj['name'];
+  var colorsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS_NAME_MODAL + '\">' +
                       '<div class=row>' +
                         '<b>' + platformName + ' ' + '</b>' +
                       '</div>' +
                     '</div>' +
                     '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS_MODAL + '\">';
-  let colors = [];
+  var colors = [];
 
-  for (let platformProperty in platformObj) {
+  for (var platformProperty in platformObj) {
     if (platformProperty !== 'name') {
-      let color = platformObj[platformProperty];
+      var color = platformObj[platformProperty];
       colors.push(color);
     }
   }
@@ -164,7 +164,7 @@ class Product {
       }
     }
     else {
-      for (let property in firebaseProduct) {
+      for (var property in firebaseProduct) {
         switch(property) {
           case CONST.FIREBASE_PRODUCT_ID:
             this.id = firebaseProduct[CONST.FIREBASE_PRODUCT_ID];
@@ -188,8 +188,8 @@ class Product {
 
           case CONST.FIREBASE_PRODUCT_PLATFORMS:
             this.platforms = [];
-            let platformObj = firebaseProduct[CONST.FIREBASE_PRODUCT_PLATFORMS];
-            for (let platform in platformObj) {
+            var platformObj = firebaseProduct[CONST.FIREBASE_PRODUCT_PLATFORMS];
+            for (var platform in platformObj) {
               this.platforms.push(platformObj[platform]);
             }
             // Sort platforms
@@ -200,8 +200,8 @@ class Product {
 
           case CONST.FIREBASE_PRODUCT_FOUNDERS:
             this.founders = [];
-            let foundersObj = firebaseProduct[CONST.FIREBASE_PRODUCT_FOUNDERS];
-            for (let founder in foundersObj) {
+            var foundersObj = firebaseProduct[CONST.FIREBASE_PRODUCT_FOUNDERS];
+            for (var founder in foundersObj) {
               this.founders.push(foundersObj[founder]);
             }
             // Sort founders
@@ -215,7 +215,7 @@ class Product {
           break;
 
           case CONST.FIREBASE_PRODUCT_FOUNDERS_TWITTER:
-            let twitterObj = firebaseProduct[CONST.FIREBASE_PRODUCT_FOUNDERS_TWITTER];
+            var twitterObj = firebaseProduct[CONST.FIREBASE_PRODUCT_FOUNDERS_TWITTER];
             this.foundersTwitter = twitterObj;
           break;
 
@@ -247,10 +247,10 @@ class Product {
           */
           case CONST.FIREBASE_PRODUCT_TECHNOLOGY:
             this['productTech'] = [];
-            let techObj = firebaseProduct[CONST.FIREBASE_PRODUCT_TECHNOLOGY];
-            for (let platform in techObj) {
+            var techObj = firebaseProduct[CONST.FIREBASE_PRODUCT_TECHNOLOGY];
+            for (var platform in techObj) {
               // platformObj contains everything from the 1st level
-              let platformObj = techObj[platform];
+              var platformObj = techObj[platform];
 
               //this[platform] = platformObj;
               this['productTech'].push(platformObj); // Save array of product tech
@@ -261,9 +261,9 @@ class Product {
           // except that it has only two levels depth
           case CONST.FIREBASE_PRODUCT_FONTS:
             this['productFonts'] = [];
-            let fontsObj = firebaseProduct[CONST.FIREBASE_PRODUCT_FONTS];
-            for (let platform in fontsObj) {
-              let platformObj = fontsObj[platform];
+            var fontsObj = firebaseProduct[CONST.FIREBASE_PRODUCT_FONTS];
+            for (var platform in fontsObj) {
+              var platformObj = fontsObj[platform];
 
               this['productFonts'].push(platformObj);
             }
@@ -271,9 +271,9 @@ class Product {
 
           case CONST.FIREBASE_PRODUCT_COLORS:
             this['productColors'] = [];
-            let colorsObj = firebaseProduct[CONST.FIREBASE_PRODUCT_COLORS];
-            for (let platform in colorsObj) {
-              let platformObj = colorsObj[platform];
+            var colorsObj = firebaseProduct[CONST.FIREBASE_PRODUCT_COLORS];
+            for (var platform in colorsObj) {
+              var platformObj = colorsObj[platform];
 
               this['productColors'].push(platformObj);
             }
@@ -290,9 +290,9 @@ class Product {
 
   // Returns HTML of static card
   getStaticCardFromProduct(cardNumber) {
-    //let cardID = this.name.toLocaleLowerCase().replace(/ /g, '-');
-    let cardID = this.id;
-    let staticCardHTML = '<div id=\"' + cardID + '\" class=\"card\">';
+    //var cardID = this.name.toLocaleLowerCase().replace(/ /g, '-');
+    var cardID = this.id;
+    var staticCardHTML = '<div id=\"' + cardID + '\" class=\"card\">';
     staticCardHTML += '<div class=\"card-block\">';
 
     // Add name //
@@ -320,9 +320,9 @@ class Product {
     staticCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORMS + '\">' +
                         '<div class=\"row\">' +
                           '<b>' + CONST.DIV_TEXT_PRODUCT_PLATFORMS + '</b>';
-    for (let i = 0; i < this.platforms.length; i++) {
-      let platform = this.platforms[i];
-      let platformColor = CONST.PLATFORM_TAG_COLORS[platform.toLowerCase()];
+    for (var i = 0; i < this.platforms.length; i++) {
+      var platform = this.platforms[i];
+      var platformColor = CONST.PLATFORM_TAG_COLORS[platform.toLowerCase()];
       staticCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + platformColor + '\">' + platform + '</span>';
     }
     staticCardHTML += '</div></div>' // Close DIV_CLASS_PRODUCT_PLATFORMS and row
@@ -333,8 +333,8 @@ class Product {
                         '<div class=\"row\">' +
                           '<b>' + CONST.DIV_TEXT_PRODUCT_FOUNDERS + '</b>' +
                           '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS + '\">';
-    for (let i = 0; i < this.founders.length; i++) {
-      let founder = this.founders[i];
+    for (var i = 0; i < this.founders.length; i++) {
+      var founder = this.founders[i];
       staticCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + CONST.FOUNDER_TAG_COLOR + '\">' +
                           founder +
                         '</span>';
@@ -358,12 +358,12 @@ class Product {
 
   // Returns HTML of modal card
   getModalCardFromProduct(cardNumber) {
-    let modalCardHTML = '<div id=\"card' + cardNumber + '\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">' +
+    var modalCardHTML = '<div id=\"card' + cardNumber + '\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">' +
                           '<div class=\"modal-dialog modal-md\">' +
                             '<div class=\"modal-content\">' +
                               '<div class=\"modal-header\">' +
                                 '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>';
-    let logoClass = this.name.toLowerCase().replace(/ /g, '-') + '-modal';
+    var logoClass = this.name.toLowerCase().replace(/ /g, '-') + '-modal';
     modalCardHTML += '<div class=\"media ' + logoClass + '\"></div>';
     modalCardHTML += '</div>'; // Close modal-header
 
@@ -394,9 +394,9 @@ class Product {
     modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORMS_MODAL + '\">' +
                       '<div class=\"row\">' +
                         '<b>' + CONST.DIV_TEXT_PRODUCT_PLATFORMS_MODAL + '</b>';
-    for (let i = 0; i < this.platforms.length; i++) {
-      let platform = this.platforms[i];
-      let platformColor = CONST.PLATFORM_TAG_COLORS[platform.toLowerCase()];
+    for (var i = 0; i < this.platforms.length; i++) {
+      var platform = this.platforms[i];
+      var platformColor = CONST.PLATFORM_TAG_COLORS[platform.toLowerCase()];
       modalCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + platformColor + '\">' + platform + '</span>';
     }
     modalCardHTML += '</div></div>'; // Close DIV_CLASS_PRODUCT_PLATFORMS_MODAL and row
@@ -408,8 +408,8 @@ class Product {
                         '<b>' + CONST.DIV_TEXT_PRODUCT_FOUNDERS_MODAL + '</b>' +
                       '</div>' +
                       '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS_NAMES_MODAL + '\">';
-    for (let i = 0; i < this.founders.length; i++) {
-      let founder = this.founders[i];
+    for (var i = 0; i < this.founders.length; i++) {
+      var founder = this.founders[i];
       modalCardHTML += '<div class=\"row\">';
       modalCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + CONST.FOUNDER_TAG_COLOR + '\">' +
                           founder +
@@ -442,10 +442,10 @@ class Product {
       modalCardHTML += getTechnologyDelimiter();
 
       modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER_MODAL + '\">';
-      for (let i = 0; i < this.productTech.length; i++) {
-        let platformObj = this.productTech[i];
+      for (var i = 0; i < this.productTech.length; i++) {
+        var platformObj = this.productTech[i];
 
-        let techHTML = parsePlatformTechnology(platformObj);
+        var techHTML = parsePlatformTechnology(platformObj);
 
         modalCardHTML += techHTML;
       }
@@ -462,10 +462,10 @@ class Product {
       if (this.productFonts !== undefined && this.productFonts !== []) {
         modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FONTS_WRAPPER_MODAL + '\">';
 
-        for (let i = 0; i < this.productFonts.length; i++) {
-          let platformObj = this.productFonts[i];
+        for (var i = 0; i < this.productFonts.length; i++) {
+          var platformObj = this.productFonts[i];
 
-          let fontsHTML = parsePlatformFonts(platformObj);
+          var fontsHTML = parsePlatformFonts(platformObj);
 
           modalCardHTML += fontsHTML;
         }
@@ -477,10 +477,10 @@ class Product {
       if (this.productColors !== undefined && this.productColors !== []) {
         modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL + '\">';
 
-        for (let i = 0; i < this.productColors.length; i++) {
-          let platformObj = this.productColors[i];
+        for (var i = 0; i < this.productColors.length; i++) {
+          var platformObj = this.productColors[i];
 
-          let colorsHTML = parsePlatformColors(platformObj);
+          var colorsHTML = parsePlatformColors(platformObj);
 
           modalCardHTML += colorsHTML;
         }
@@ -497,7 +497,7 @@ class Product {
   }
 
   getProductLogoURL(product, callback) {
-    let fTools = new FirebaseTools(CONST.CONFIG);
+    var fTools = new FirebaseTools(CONST.CONFIG);
 
     if (this.logoPath !== undefined && this.logoPath !== '') {
       fTools.storage.ref().child(this.logoPath).getDownloadURL().then(function(url) {

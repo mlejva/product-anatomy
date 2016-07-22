@@ -21,15 +21,15 @@ function addLogoToProduct(product) {
     // TODO: Divne predavani produktu
     product.getProductLogoURL(product, function(prod, url) {
       // Format of logoPath -> logoPath = 'path/product-name.png'
-      //let productName = product.logoPath.split('/')[1].split('.')[0];
+      //var productName = product.logoPath.split('/')[1].split('.')[0];
 
       // Add logo to static card
-      let logoStaticHTML = '<img class=\"card-img-top\" src=\"' + url + '\" alt=\"Product Logo\">';
+      var logoStaticHTML = '<img class=\"card-img-top\" src=\"' + url + '\" alt=\"Product Logo\">';
       //$('#' + productName).last().prepend(logoStaticHTML);
       $('#' + prod.id).last().prepend(logoStaticHTML);
 
       // Add logo to modal card
-      let logoModalHTML = '<span class=\"media-left\">' +
+      var logoModalHTML = '<span class=\"media-left\">' +
                             '<img class=\"img-responsive\" src=\"' + url + '\" alt=\"Product Logo\"/>' +
                           '</span>';
       //$('div.' + productName + '-modal').last().prepend(logoModalHTML);
@@ -56,15 +56,15 @@ function displayProduct(product, cardNumber) {
   addLogoToProduct(product);
 
   /* ----- Cards events ----- */
-  $('div.bottom-button-wrapper').last().on('click', function() {
-    let productID = product.id;
+  $('div.' + CONST.DIV_CLASS_BOTTOM_BUTTON_WRAPPER).last().on('click', function() {
+    var productID = product.id;
 
-    let buttonCardID = product.name.toLocaleLowerCase().replace(/ /g, '-');
-    let buttonCard = $('#' + buttonCardID);
-    let cardProduct = buttonCard.data('product');
+    var buttonCardID = product.name.toLocaleLowerCase().replace(/ /g, '-');
+    var buttonCard = $('#' + buttonCardID);
+    var cardProduct = buttonCard.data('product');
 
 
-    let productURL = 'https://product-anatomy.firebaseapp.com/product?id=' + productID;
+    var productURL = 'https://product-anatomy.firebaseapp.com/product?id=' + productID;
     //alert(productURL);
     window.history.pushState('', '', productURL);
   });
@@ -77,34 +77,33 @@ $(document).ready(function() {
   // Resize tags according to the actual screen size
   resizeGlobalTags();
 
-  let fTools = new FirebaseTools(CONST.CONFIG);
+  var fTools = new FirebaseTools(CONST.CONFIG);
 
-  let askedProductID = getParameterByName('id', window.location.href);
+  var askedProductID = getParameterByName('id', window.location.href);
   console.log(askedProductID);
   if (askedProductID != null) {
     console.log('Displaying specific product');
 
     // Display single product
-    let queryID = new Query(askedProductID);
+    var queryID = new Query(askedProductID, {}, {});
     fTools.getProductsByQuery(queryID, function(products) {
       displayProduct(products[0], 1);
     });
   }
   else {
-
     console.log('Displaying all products');
 
     fTools.database.ref(CONST.FIREBASE_PRODUCTS_PATH).once('value').then(function(snapshot) {
-      let fProducts = snapshot.val();
+      var fProducts = snapshot.val();
 
       productsTotal = Object.keys(fProducts).length;
       $('div.' + CONST.DIV_CLASS_SEARCH_RESULTS).append( CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, productsTotal) );
 
-      let cardNumber = 0;
+      var cardNumber = 0;
       // Loop through all of firebase products
-      for (let property in fProducts) {
+      for (var property in fProducts) {
         cardNumber++;
-        let product = new Product(fProducts[property], {});
+        var product = new Product(fProducts[property], {});
 
         displayProduct(product, cardNumber);
       }

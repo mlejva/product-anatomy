@@ -1,4 +1,4 @@
-// TODO: Instead of deleting all elements it should move elements to next row according to max in row
+// TODO: Instead of devaring all elements it should move elements to next row according to max in row
 var resizeGlobalTags = function() {
   if ( $('div.' + CONST.DIV_CLASS_TAG_WRAPPER).length > 0 )
     $('div.' + CONST.DIV_CLASS_TAG_WRAPPER).empty();

@@ -1,4 +1,4 @@
-let instance = null;
+var instance = null;
 
 class FirebaseTools {
 
@@ -18,21 +18,21 @@ class FirebaseTools {
   // If count is not specified then ask for 10 products if possible
   // If productIDs are not specified then take first N products according to count variable
   // TODO: Constant for count var
-  getProducts(count = 10, productIDs = []) {
-    let products = [];
+  getProducts(count, productIDs) {
+    var products = [];
 
     return products;
   }
 
   getProductsByQuery(query, callback) {
 
-    let products = [];
+    var products = [];
 
     if (query.id !== null) {
 
       console.log(CONST.FIREBASE_PRODUCTS_PATH + '/' + query.id);
       firebase.database().ref(CONST.FIREBASE_PRODUCTS_PATH + '/' + query.id).once('value').then(function(snapshot) {
-        let product = new Product(snapshot.val(), {});
+        var product = new Product(snapshot.val(), {});
         callback([product]);
       });
     }
