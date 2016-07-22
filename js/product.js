@@ -38,7 +38,7 @@ var getDesignDelimiter = function() {
   return delimHTML;
 }
 
-// Returns HTML parsed technology of given platform
+// Returns HTML parsed technology of given technology platform firebase object
 var parsePlatformTechnology = function(platformObj) {
   // platformObj contains platform specific technology
   /*
@@ -57,13 +57,13 @@ var parsePlatformTechnology = function(platformObj) {
   *   ...
   */
 
-
   var platformName = platformObj['name'];
   var techHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_NAME + '\">' +
                   '<div class="row">' +
                     '<b>' + platformName + '</b>' +
                   '</div>' +
                 '</div>';
+
   for (var platformProperty in platformObj) {
 
       if (platformProperty !== 'name') {
@@ -92,7 +92,7 @@ var parsePlatformTechnology = function(platformObj) {
   return techHTML;
 }
 
-// Return HTML parsed fonts of given platforms
+// Return HTML parsed fonts of given font platform firebase object
 var parsePlatformFonts = function(platformObj) {
   var platformName = platformObj['name'];
   var fontsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_NAME + '\">' +
@@ -117,7 +117,7 @@ var parsePlatformFonts = function(platformObj) {
   return fontsHTML;
 }
 
-// Return HTML parsed colors of given platforms
+// Return HTML parsed colors of given color platform firebase object
 var parsePlatformColors = function(platformObj) {
   var platformName = platformObj['name'];
   var colorsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_NAME + '\">' +
@@ -126,14 +126,17 @@ var parsePlatformColors = function(platformObj) {
                       '</div>' +
                     '</div>' +
                     '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS + '\">';
-  var colors = [];
 
+  var colors = [];
   for (var platformProperty in platformObj) {
     if (platformProperty !== 'name') {
       var color = platformObj[platformProperty];
       colors.push(color);
     }
   }
+  colors.sort(function(a, b) {
+    return a.toLowerCase() > b.toLowerCase();
+  });
 
 
   colorsHTML += generateDynamicColorsHTML(CONST.COLORS_PER_ROW_MODAL, colors);
@@ -149,15 +152,15 @@ class Product {
   constructor(firebaseProduct, opts) {
 
     if ( !firebaseProduct || (Object.keys(firebaseProduct).length === 0 && firebaseProduct.constructor === Object) ) {
-      // TODO: Constants
-      if ( ('name' in opts) && ('url' in opts) && ('description' in opts) && ('platforms' in opts) && ('founders' in opts) ) {
-        this.name = opts['name'];
-        this.url = opts['url'];
-        this.description = opts['description'];
-        this.platforms = opts['platforms'];
-        this.founders = opts['founders'];
-
-        // TODO: Create id for product
+      if ( (CONST.PROD_OBJ_NAME in opts) && (CONST.PROD_OBJ_URL in opts) &&
+           (CONST.PROD_OBJ_DESCRIPTION in opts) && (CONST.PROD_OBJ_PLATFORMS in opts) &&
+           (CONST.PROD_OBJ_FOUNDERS in opts) ) {
+        this.name = opts[CONST.PROD_OBJ_NAME];
+        this.url = opts[CONST.PROD_OBJ_URL];
+        this.description = opts[CONST.PROD_OBJ_DESCRIPTION];
+        this.platforms = opts[CONST.PROD_OBJ_PLATFORMS];
+        this.founders = opts[CONST.PROD_OBJ_FOUNDERS];
+        this.id = this.name.toLowerCase().replace(' ', '-');
       }
       else {
         throw '`opts` object in Product constructor must have defined `name`, `url`, `description`, `platforms` and `founders`';
@@ -184,6 +187,10 @@ class Product {
 
           case CONST.FIREBASE_PRODUCT_DESCRIPTION:
             this.description = firebaseProduct[CONST.FIREBASE_PRODUCT_DESCRIPTION];
+          break;
+
+          case CONST.FIREBASE_PRODUCT_LAUNCHED:
+            this.launched = firebaseProduct[CONST.FIREBASE_PRODUCT_LAUNCHED];
           break;
 
           case CONST.FIREBASE_PRODUCT_PLATFORMS:
@@ -219,7 +226,6 @@ class Product {
             this.foundersTwitter = twitterObj;
           break;
 
-          // TODO: Constants?
           /* Technology tree in database
             * technology
             * \
@@ -246,36 +252,36 @@ class Product {
             *  ...
           */
           case CONST.FIREBASE_PRODUCT_TECHNOLOGY:
-            this['productTech'] = [];
+            this[CONST.PROD_OBJ_TECH] = [];
             var techObj = firebaseProduct[CONST.FIREBASE_PRODUCT_TECHNOLOGY];
             for (var platform in techObj) {
               // platformObj contains everything from the 1st level
               var platformObj = techObj[platform];
 
               //this[platform] = platformObj;
-              this['productTech'].push(platformObj); // Save array of product tech
+              this[CONST.PROD_OBJ_TECH].push(platformObj); // Save array of product tech
             }
           break;
 
           // Font and color tree in database is same as technology database,
           // except that it has only two levels depth
           case CONST.FIREBASE_PRODUCT_FONTS:
-            this['productFonts'] = [];
+            this[CONST.PROD_OBJ_FONTS] = [];
             var fontsObj = firebaseProduct[CONST.FIREBASE_PRODUCT_FONTS];
             for (var platform in fontsObj) {
               var platformObj = fontsObj[platform];
 
-              this['productFonts'].push(platformObj);
+              this[CONST.PROD_OBJ_FONTS].push(platformObj);
             }
           break;
 
           case CONST.FIREBASE_PRODUCT_COLORS:
-            this['productColors'] = [];
+            this[CONST.PROD_OBJ_COLORS] = [];
             var colorsObj = firebaseProduct[CONST.FIREBASE_PRODUCT_COLORS];
             for (var platform in colorsObj) {
               var platformObj = colorsObj[platform];
 
-              this['productColors'].push(platformObj);
+              this[CONST.PROD_OBJ_COLORS].push(platformObj);
             }
           break;
         }
@@ -390,6 +396,15 @@ class Product {
                       '</div>' +
                     '</div>';
 
+    // Add launched //
+    if (this.launched !== undefined && this.launched !== '') {
+      modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_LAUNCHED + '\">' +
+                          '<div class=\"\">' +
+                            '<b>' + CONST.DIV_TEXT_PRODUCT_LAUNCHED + '</b>' + this.launched +
+                          '</div>' +
+                        '</div>';
+    }
+
     // Add platforms //
     modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORMS + '\">' +
                       '<div class=\"row\">' +
@@ -420,15 +435,9 @@ class Product {
     modalCardHTML += '</div>'; // Close DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER_MODAL
 
 
-    // TODO: Constants
     // Now we have to check whether product has certain properties
 
     // Add API //
-    /* TODO:
-    * Or should I write
-    *   if (object.propertyName === undefined) { } <--- use this
-    * http://stackoverflow.com/questions/27509/detecting-an-undefined-object-property
-    */
     if (this.api !== undefined && this.api !== '') {
       modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_API + '\">' +
                         '<div class=\"row\">' +
@@ -451,7 +460,6 @@ class Product {
       }
       modalCardHTML += '</div>'; // Close DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER_MODAL
     }
-
 
     // Add design - colors and fonts //
     if ( (this.productFonts !== undefined && this.productFonts !== []) ||
@@ -504,11 +512,12 @@ class Product {
         callback(product, url);
       })
       .catch(function(error) {
-        throw('Error while trying to get product logo from storage: ' + error);
+        presentErrorPage();
+        console.error('Error while trying to get product logo from storage: ' + error);
       });
     }
     else {
-      throw('Product does not have any logo in storage');
+      console.error('Product - ' + product.id + ' - does not have any logo in storage');
     }
   }
 }

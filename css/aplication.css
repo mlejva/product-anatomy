@@ -20,6 +20,12 @@ body {
   margin: 0;
   background-color: #f1f1f1; }
 
+.announcement {
+  font-size: 22px;
+  font-weight: 400;
+  text-align: center;
+  margin: 60px 0 0 0; }
+
 /* ----- Show anatomy button ----- */
 .card-footer {
   position: relative;

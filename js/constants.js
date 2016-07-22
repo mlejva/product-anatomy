@@ -1,5 +1,3 @@
-// TODO: should be readonly
-
 CONST = {} // Create namespace for constants
 
 /* ----- General constants ----- */
@@ -7,16 +5,31 @@ CONST.BOOTSTRAP_MAX_WIDTH = 12;
 CONST.COLORS_PER_ROW = 2;
 CONST.COLORS_PER_ROW_MODAL = 2;
 
-CONST.SEARCHBOX_ID = 'searchbox';
-
 CONST.PLATFORMS = ['website', 'ios', 'macos', 'windows', 'android', 'linux'];
 
 CONST.ENTER_KEY_CODE = 13;
+
+CONST.DIV_CLASS_CONTENT = 'content';
+CONST.DIV_CLASS_ANNOUNCEMENT = 'announcement';
+CONST.ERROR_MSG = 'It looks that something went horribly wrong, please DON\'T PANIC, take your towel and reload the page!';
+/* ---------- */
+
+/* ----- Constants for Product object ----- */
+CONST.PROD_OBJ_NAME = 'name';
+CONST.PROD_OBJ__URL = 'url';
+CONST.PROD_OBJ_DESCRIPTION = 'description';
+CONST.PROD_OBJ_LAUNCHED = 'launched';
+CONST.PROD_OBJ_PLATFORMS = 'platforms';
+CONST.PROD_OBJ_FOUNDERS = 'founders';
+CONST.PROD_OBJ_TECH = 'productTech';
+CONST.PROD_OBJ_FONTS = 'productFonts';
+CONST.PROD_OBJ_COLORS = 'productColors'
 /* ---------- */
 
 /* ----- Constants for search ----- */
 CONST.SEARCH_RESULTS_ID = 'search-results';
 CONST.NOTHING_FOUND_ID = 'nothing-found';
+CONST.SEARCHBOX_ID = 'searchbox';
 
 CONST.NOTHING_FOUND_TEXT = 'Oops, I guess nothing like this exists. Yet...';
 CONST.SEARCH_RESULT_TEXT_SINGULAR = 'Showing anatomy of 1 product.';
@@ -64,6 +77,7 @@ CONST.DIV_CLASS_PRODUCT_NAME = 'product-name';
 CONST.DIV_CLASS_PRODUCT_URL = 'product-url';
 CONST.DIV_CLASS_PRODUCT_DESCRIPTION = 'product-description';
 CONST.DIV_CLASS_PRODUCT_PLATFORMS = 'product-platforms';
+CONST.DIV_CLASS_PRODUCT_LAUNCHED = 'product-launched';
 
 CONST.DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER = 'product-founders-wrapper';
 CONST.DIV_CLASS_PRODUCT_FOUNDERS = 'product-founders';
@@ -90,6 +104,7 @@ CONST.DIV_COLOR_FOUNDER_TAG = '#d0021b';
 
 CONST.DIV_TEXT_BOTTOM_BUTTON = 'Show anatomy of product';
 CONST.DIV_TEXT_PRODUCT_PLATFORMS = 'Platforms ';
+CONST.DIV_TEXT_PRODUCT_LAUNCHED = 'Launched ';
 CONST.DIV_TEXT_PRODUCT_FOUNDERS = 'Founded by ';
 CONST.DIV_TEXT_PRODUCT_API = 'API ';
 CONST.DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
