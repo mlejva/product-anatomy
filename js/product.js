@@ -374,7 +374,7 @@ class Product {
                             '<div class=\"modal-content\">' +
                               '<div class=\"modal-header\">' +
                                 '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>';
-var logoClass = this.id + '-modal';
+    var logoClass = this.id + '-modal';
     modalCardHTML += '<div class=\"media ' + logoClass + '\">' +
                         '<div class=\"media-left' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
                         '</div>' +
