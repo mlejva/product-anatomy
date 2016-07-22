@@ -1,0 +1,46 @@
+// =============================================================================
+// Constants
+// =============================================================================
+
+
+
+/* ----- Font constants ----- */
+$fallback-font: Arial, sans-serif;
+$basic-font: 'Lato', $fallback-font;
+$regular: 400;
+$light: 300;
+// Font sizes: 14, 16, 22, 30, 38
+/* ---------- */
+
+
+
+/* ----- Style constants ----- */
+$circle-borders: 50%;
+/* ---------- */
+
+
+
+/* ----- Colors constants ----- */
+$text-color: #4a473d;
+$background-color: #f1f1f1;
+$secondary-background-color: #ffffff;
+$button-color: #5bc0de;
+$placeholder-color: #ccc;
+$twitter-color: #c8c8c4;
+$twitter-hover-color: #4099ff;
+/* ---------- */
+
+
+
+/* ----- Media constants ----- */
+//Media sizes
+$mobile-size: 544px;
+$handheld-size: 750px;
+$desktop-size: 991px;
+
+//Columns
+$handheld-columns: 1;
+$desktop-columns: 3;
+$handheld-columns-gap: 1.25em;
+$desktop-columns-gap: 1.25em;
+/* ---------- */

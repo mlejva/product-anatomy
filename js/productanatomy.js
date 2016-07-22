@@ -24,14 +24,16 @@ function addLogoToProduct(product) {
       //var productName = product.logoPath.split('/')[1].split('.')[0];
 
       // Add logo to static card
-      var logoStaticHTML = '<img class=\"card-img-top\" src=\"' + url + '\" alt=\"Product Logo\">';
+      var logoStaticHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
+                              '<img class=\"' + CONST.DIV_CLASS_PRODUCT_LOGO + '\" src=\"' + url + '\" alt=\"Product Logo\"/>' +
+                            '</div>';
       //$('#' + productName).last().prepend(logoStaticHTML);
       $('#' + prod.id).last().prepend(logoStaticHTML);
 
       // Add logo to modal card
-      var logoModalHTML = '<span class=\"media-left\">' +
-                            '<img class=\"img-responsive\" src=\"' + url + '\" alt=\"Product Logo\"/>' +
-                          '</span>';
+      var logoModalHTML = '<div class=\"media-left' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER_MODAL + '\">' +
+                            '<img class=\"img-responsive' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_MODAL + '\" src=\"' + url + '\" alt=\"Product Logo\"/>' +
+                          '</div>';
       //$('div.' + productName + '-modal').last().prepend(logoModalHTML);
       $('div.' + prod.id + '-modal').last().prepend(logoModalHTML);
     });

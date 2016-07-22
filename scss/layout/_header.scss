@@ -1,0 +1,22 @@
+// =============================================================================
+// Headers
+// =============================================================================
+
+
+
+/* ----- Headers ----- */
+.header {
+  text-align: center;
+}
+
+.modal-header {
+  border-bottom: none;
+  margin: 0 20px 0px 50px;
+  padding: 10px 0 0 0;
+  position: relative;
+
+  @media (max-width: $handheld-size) {
+    margin-left: 25px;
+  }
+}
+/* ---------- */

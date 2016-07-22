@@ -25,6 +25,9 @@ CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE = '<count>';
 /* ---------- */
 
 /* ----- Constants for static product card ----- */
+CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER = 'logo-img-wrapper';
+CONST.DIV_CLASS_PRODUCT_LOGO = 'logo-img';
+
 CONST.DIV_CLASS_PRODUCT_NAME = 'product-name';
 CONST.DIV_TEXT_PRODUCT_NAME =  'Name ';
 
@@ -45,6 +48,9 @@ CONST.BOTTOM_BUTTON_TEXT = 'Show anatomy of product';
 /* ---------- */
 
 /* ----- Constant for modal product card ----- */
+CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER_MODAL = 'logo-img-wrapper-modal';
+CONST.DIV_CLASS_PRODUCT_LOGO_MODAL = 'logo-img-modal';
+
 CONST.DIV_CLASS_PRODUCT_NAME_MODAL = 'product-name-modal';
 CONST.DIV_TEXT_PRODUCT_NAME_MODAL = 'Name ';
 

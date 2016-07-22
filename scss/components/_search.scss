@@ -1,0 +1,78 @@
+// =============================================================================
+// Search
+// =============================================================================
+
+
+
+/* ----- Search ----- */
+.search {
+  @media (max-width: $desktop-size) {
+    width: 250px;
+    margin: 0 auto;
+  }
+
+  & input[type="search"] {
+    @include text(16px, $regular);
+    line-height: 40px;
+    width: 100%;
+    padding: 0px 25px;
+    margin: 25px 0 0;
+    background-color: $secondary-background-color;
+    border: 1px solid $text-color;
+    border-radius: 20px;
+    outline: none;
+  }
+
+  // Searchbox focus
+  & input:focus {
+    box-shadow: 0px 0px 0px 1px $text-color;
+    font-weight: $regular;
+
+    @media (max-width: $handheld-size) {
+      &::-webkit-search-cancel-button {
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+          top: -19px;
+          left: -5px;
+          position: absolute;
+          content: "\f057";
+          font-family: FontAwesome;
+          font-size: 23px;
+          cursor: pointer;
+        }
+
+        &:active {
+          color: $text-color;
+          transform: translate(0px, 1px) scale(0.95);
+        }
+      }
+    }
+  }
+}
+
+// Input placeholder color
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-moz-placeholder,
+:-ms-input-placeholder  { // Chrome/Opera/Safari/Firefox 18+/Firefox 18-/Internet Explorer
+  color: $placeholder-color;
+  font-weight: $light;
+}
+/* ---------- */
+
+
+
+/* ----- Search results ----- */
+.search-results {
+  padding: 30px 0 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+.nothing-found {
+  @include text(22px, $regular, center);
+  margin: 60px 0 0 0;
+}
+/* ---------- */
