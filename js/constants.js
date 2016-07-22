@@ -15,8 +15,8 @@ CONST.ENTER_KEY_CODE = 13;
 /* ---------- */
 
 /* ----- Constants for search ----- */
-CONST.DIV_CLASS_SEARCH_RESULTS = 'search-results';
-CONST.DIV_CLASS_NOTHING_FOUND = 'nothing-found';
+CONST.SEARCH_RESULTS_ID = 'search-results';
+CONST.NOTHING_FOUND_ID = 'nothing-found';
 
 CONST.NOTHING_FOUND_TEXT = 'Oops, I guess nothing like this exists. Yet...';
 CONST.SEARCH_RESULT_TEXT_SINGULAR = 'Showing anatomy of 1 product.';
@@ -24,71 +24,77 @@ CONST.SEARCH_RESULT_TEXT_PLURAL = 'Showing anatomy of <count> products.';
 CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE = '<count>';
 /* ---------- */
 
-/* ----- Constants for static product card ----- */
-CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER = 'logo-img-wrapper';
-CONST.DIV_CLASS_PRODUCT_LOGO = 'logo-img';
 
+/* ----- Constants for product ----- */
+// SEARCH_RESULTS and NOTHING_FOUND are IDs now
+
+// deleted const: DIV_CLASS_PRODUCT_LOGO (selected with img div in css)
+//                DIV_CLASS_PRODUCT_LOGO_MODAL (selected with img div in css)
+//                DIV_CLASS_BOTTOM_BUTTON (selected with btn div in css)
+//                DIV_CLASS_BOTTOM_BUTTON_WRAPPER (selected with card-footer div in css)
+//                DIV_CLASS_PRODUCT_FONTS_MODAL
+
+// changed: DIV_CLASS_PRODUCT_LOGO_WRAPPER_MODAL          ---> DIV_CLASS_PRODUCT_LOGO_WRAPPER
+//          DIV_CLASS_PRODUCT_NAME_MODAL                  ---> DIV_CLASS_PRODUCT_NAME
+//          DIV_CLASS_PRODUCT_DESCRIPTION_MODAL           ---> DIV_CLASS_PRODUCT_DESCRIPTION
+//          DIV_TEXT_PRODUCT_PLATFORMS_MODAL              ---> DIV_TEXT_PRODUCT_PLATFORMS
+//          DIV_CLASS_PRODUCT_PLATFORMS_MODAL             ---> DIV_CLASS_PRODUCT_PLATFORMS
+//          DIV_TEXT_PRODUCT_FOUNDERS_MODAL               ---> DIV_TEXT_PRODUCT_FOUNDERS
+//          DIV_CLASS_PRODUCT_API_MODAL                   ---> DIV_CLASS_PRODUCT_API
+//          DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL          ---> DIV_CLASS_DELIMITER
+//          DIV_CLASS_DESIGN_DELIMITER_MODAL              ---> DIV_CLASS_DELIMITER
+//          DIV_CLASS_PRODUCT_FOUNDER_NAMES_WRAPPER       ---> DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER
+//          DIV_CLASS_PRODUCT_FOUNDERS_NAMES_MODAL        ---> DIV_CLASS_PRODUCT_FOUNDERS
+//          DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER_MODAL      ---> DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER
+//          DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER_MODAL    ---> DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER
+//          DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL       ---> DIV_CLASS_PRODUCT_PLATFORM_NAME
+//          DIV_CLASS_PRODUCT_SUBTECHNOLOGY_MODAL         ---> DIV_CLASS_PRODUCT_TECHNOLOGY
+//          DIV_CLASS_PRODUCT_FONTS_WRAPPER_MODAL         ---> DIV_CLASS_PRODUCT_FONTS_WRAPPER
+//          DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL        ---> DIV_CLASS_PRODUCT_COLORS_WRAPPER
+//          DIV_CLASS_PRODUCT_PLATFORM_FONTS_NAME_MODAL   ---> DIV_CLASS_PRODUCT_PLATFORM_NAME
+//          DIV_CLASS_PRODUCT_PLATFORMS_FONTS_MODAL       ---> DIV_CLASS_PRODUCT_PLATFORM_FONTS
+//          DIV_CLASS_PRODUCT_PLATFORM_COLORS_NAME_MODAL  ---> DIV_CLASS_PRODUCT_PLATFORM_NAME
+//          DIV_CLASS_PRODUCT_PLATFORM_COLORS_MODAL       ---> DIV_CLASS_PRODUCT_PLATFORM_COLORS
+//          DIV_CLASS_PRODUCT_COLOR_TEXT_MODAL            ---> DIV_CLASS_PRODUCT_COLOR_TEXT
+//          DIV_CLASS_PRODUCT_COLOR_MODAL                 ---> DIV_CLASS_PRODUCT_COLOR
+
+
+CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER = 'logo-wrapper';
 CONST.DIV_CLASS_PRODUCT_NAME = 'product-name';
-CONST.DIV_TEXT_PRODUCT_NAME =  'Name ';
-
 CONST.DIV_CLASS_PRODUCT_URL = 'product-url';
-
 CONST.DIV_CLASS_PRODUCT_DESCRIPTION = 'product-description';
-
 CONST.DIV_CLASS_PRODUCT_PLATFORMS = 'product-platforms';
-CONST.DIV_TEXT_PRODUCT_PLATFORMS = 'Platforms ';
 
+CONST.DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER = 'product-founders-wrapper';
 CONST.DIV_CLASS_PRODUCT_FOUNDERS = 'product-founders';
-CONST.DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER = 'founders-names-wrapper';
+
+CONST.DIV_CLASS_PRODUCT_API = 'product-api';
+
+CONST.DIV_CLASS_PRODUCT_PLATFORM_NAME = 'product-platform-name';
+
+CONST.DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER = 'product-technology-wrapper';
+CONST.DIV_CLASS_PRODUCT_TECHNOLOGY = 'product-technology';
+
+CONST.DIV_CLASS_PRODUCT_FONTS_WRAPPER = 'product-fonts-wrapper';
+CONST.DIV_CLASS_PRODUCT_PLATFORM_FONTS = 'product-platform-fonts';
+
+CONST.DIV_CLASS_PRODUCT_COLORS_WRAPPER = 'product-colors-wrapper';
+CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS = 'product-platform-colors';
+CONST.DIV_CLASS_PRODUCT_COLOR = 'product-color';
+CONST.DIV_CLASS_PRODUCT_COLOR_TEXT = 'product-color-text';
+
+
+CONST.DIV_CLASS_DELIMITER = 'product-delimiter';
+
+CONST.DIV_COLOR_FOUNDER_TAG = '#d0021b';
+
+CONST.DIV_TEXT_BOTTOM_BUTTON = 'Show anatomy of product';
+CONST.DIV_TEXT_PRODUCT_PLATFORMS = 'Platforms ';
 CONST.DIV_TEXT_PRODUCT_FOUNDERS = 'Founded by ';
-
-CONST.DIV_CLASS_BOTTOM_BUTTON_WRAPPER = 'bottom-button-wrapper';
-CONST.DIV_CLASS_BOTTOM_BUTTON = 'bottom-button';
-CONST.BOTTOM_BUTTON_TEXT = 'Show anatomy of product';
+CONST.DIV_TEXT_PRODUCT_API = 'API ';
+CONST.DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
 /* ---------- */
 
-/* ----- Constant for modal product card ----- */
-CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER_MODAL = 'logo-img-wrapper-modal';
-CONST.DIV_CLASS_PRODUCT_LOGO_MODAL = 'logo-img-modal';
-
-CONST.DIV_CLASS_PRODUCT_NAME_MODAL = 'product-name-modal';
-CONST.DIV_TEXT_PRODUCT_NAME_MODAL = 'Name ';
-
-CONST.DIV_CLASS_PRODUCT_URL_MODAL = 'product-url-modal';
-
-CONST.DIV_CLASS_PRODUCT_DESCRIPTION_MODAL = 'product-description-modal';
-
-CONST.DIV_CLASS_PRODUCT_PLATFORMS_MODAL = 'product-platforms-modal';
-CONST.DIV_TEXT_PRODUCT_PLATFORMS_MODAL = 'Platforms ';
-
-CONST.DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER_MODAL = 'product-founders-wrapper-modal';
-CONST.DIV_CLASS_PRODUCT_FOUNDERS_NAMES_MODAL = 'product-founders-names-modal';
-CONST.DIV_TEXT_PRODUCT_FOUNDERS_MODAL = 'Founded by ';
-CONST.FOUNDER_TAG_COLOR = '#d0021b';
-
-CONST.DIV_CLASS_PRODUCT_API_MODAL = 'product-api-modal';
-CONST.DIV_TEXT_PRODUCT_API_MODAL = 'API ';
-
-CONST.DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL = 'product-technology-delimiter-modal';
-
-CONST.DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER_MODAL = 'product-technology-wrapper';
-CONST.DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL = 'product-technology-name';
-CONST.DIV_CLASS_PRODUCT_SUBTECHNOLOGY_MODAL = 'product-subtechnology';
-
-CONST.DIV_CLASS_DESIGN_DELIMITER_MODAL = 'product-design-delimiter-modal';
-
-CONST.DIV_CLASS_PRODUCT_FONTS_WRAPPER_MODAL = 'product-fonts-wrapper-modal';
-CONST.DIV_CLASS_PRODUCT_PLATFORM_FONTS_NAME_MODAL = 'product-platform-fonts-name-modal';
-CONST.DIV_CLASS_PRODUCT_PLATFORMS_FONTS_MODAL = 'product-platforms-fonts-modal';
-CONST.DIV_CLASS_PRODUCT_FONTS_MODAL = 'product-fonts-modal';
-CONST.DIV_TEXT_PRODUCT_FONTS_MODAL = 'Fonts ';
-
-CONST.DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL = 'product-colors-wrapper-modal';
-CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS_NAME_MODAL = 'product-platform-colors-name-modal';
-CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS_MODAL = 'product-platform-colors-modal';
-CONST.DIV_CLASS_PRODUCT_COLOR_MODAL = 'product-color-modal';
-CONST.DIV_CLASS_PRODUCT_COLOR_TEXT_MODAL = 'product-color-text-modal';
-/* ---------- */
 
 /* ----- Constants for Firebase ----- */
 CONST.CONFIG = {
@@ -120,17 +126,17 @@ CONST.FIREBASE_PRODUCT_TWITTER_USERNAME = 'twitter-username';
 CONST.TWITTER_BASE_ADDRESS = 'https =//www.twitter.com/';
 /* ---------- */
 
+
 /* ----- Constants for tags ----- */
+CONST.DIV_CLASS_TAG_ROW = 'tag-row';
+
 CONST.DIV_CLASS_TAG_WRAPPER = 'tag-wrapper';
 
 CONST.DIV_CLASS_TAG = 'tag';
+CONST.DIV_CLASS_TAG_GLOBAL = 'tag-global'; // DELETE
+CONST.DIV_CLASS_TAG_STATIC = 'tag-static'; // DELETE
+CONST.DIV_CLASS_TAG_MODAL = 'tag-modal'; // DELETE
 
-CONST.DIV_CLASS_TAG_GLOBAL = 'tag-global';
-CONST.DIV_CLASS_TAG_ROW = 'tag-row';
-
-CONST.DIV_CLASS_TAG_STATIC = 'tag-static';
-
-CONST.DIV_CLASS_TAG_MODAL = 'tag-modal';
 
 //CONST.DIV_CLASS_TAG_ADDED = 'tag-added';
 

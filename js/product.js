@@ -16,8 +16,8 @@ var generateDynamicColorsHTML = function(maxInRow, colors) {
     }
     var widthOfColumn = CONST.BOOTSTRAP_MAX_WIDTH / maxInRow;
     html += '<div class=\"col-xs-' + widthOfColumn + '\">' +
-                            '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLOR_MODAL + '\" style=\"background-color:#' + colors[i] + '\">' +
-                              '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLOR_TEXT_MODAL + '\">' +
+                            '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLOR + '\" style=\"background-color:#' + colors[i] + '\">' +
+                              '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLOR_TEXT + '\">' +
                                 colors[i].toUpperCase() +
                               '</div>' +
                             '</div>' +
@@ -29,12 +29,12 @@ var generateDynamicColorsHTML = function(maxInRow, colors) {
 }
 
 var getTechnologyDelimiter = function() {
-  var delimHTML = '<hr class=\"' + CONST.DIV_CLASS_TECHNOLOGY_DELIMITER_MODAL + '\">';
+  var delimHTML = '<hr class=\"' + CONST.DIV_CLASS_DELIMITER + '\">';
   return delimHTML;
 }
 
 var getDesignDelimiter = function() {
-  var delimHTML = '<hr class=\"' + CONST.DIV_CLASS_DESIGN_DELIMITER_MODAL + '\">';
+  var delimHTML = '<hr class=\"' + CONST.DIV_CLASS_DELIMITER + '\">';
   return delimHTML;
 }
 
@@ -59,7 +59,7 @@ var parsePlatformTechnology = function(platformObj) {
 
 
   var platformName = platformObj['name'];
-  var techHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_TECHNOLOGY_NAME_MODAL + '\">' +
+  var techHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_NAME + '\">' +
                   '<div class="row">' +
                     '<b>' + platformName + '</b>' +
                   '</div>' +
@@ -70,7 +70,7 @@ var parsePlatformTechnology = function(platformObj) {
         var techTypeObj = platformObj[platformProperty];
 
         var techTypeName = techTypeObj['name'];
-        techHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_SUBTECHNOLOGY_MODAL + '\">' +
+        techHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_TECHNOLOGY + '\">' +
                       '<b>' + techTypeName + ' ' + '</b>';
 
         // Now for each tech type object we have to loop through it and prepare HTML
@@ -95,14 +95,14 @@ var parsePlatformTechnology = function(platformObj) {
 // Return HTML parsed fonts of given platforms
 var parsePlatformFonts = function(platformObj) {
   var platformName = platformObj['name'];
-  var fontsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_FONTS_NAME_MODAL + '\">' +
+  var fontsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_NAME + '\">' +
                     '<div class=row>' +
                       '<b>' + platformName + ' ' + '</b>' +
                     '</div>' +
                   '</div>' +
-                  '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORMS_FONTS_MODAL + '\">' +
+                  '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_FONTS + '\">' +
                     '<div class=\"row\">' +
-                      '<b>' + CONST.DIV_TEXT_PRODUCT_FONTS_MODAL + '</b>';
+                      '<b>' + CONST.DIV_TEXT_PRODUCT_FONTS + '</b>';
 
   for (var platformProperty in platformObj) {
       if (platformProperty !== 'name') {
@@ -120,12 +120,12 @@ var parsePlatformFonts = function(platformObj) {
 // Return HTML parsed colors of given platforms
 var parsePlatformColors = function(platformObj) {
   var platformName = platformObj['name'];
-  var colorsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS_NAME_MODAL + '\">' +
+  var colorsHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_NAME + '\">' +
                       '<div class=row>' +
                         '<b>' + platformName + ' ' + '</b>' +
                       '</div>' +
                     '</div>' +
-                    '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS_MODAL + '\">';
+                    '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORM_COLORS + '\">';
   var colors = [];
 
   for (var platformProperty in platformObj) {
@@ -329,13 +329,13 @@ class Product {
 
     // Add founders //
     // TODO: Add twitter of founders
-    staticCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS_NAMES_WRAPPER + '\">' +
+    staticCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER + '\">' +
                         '<div class=\"row\">' +
                           '<b>' + CONST.DIV_TEXT_PRODUCT_FOUNDERS + '</b>' +
                           '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS + '\">';
     for (var i = 0; i < this.founders.length; i++) {
       var founder = this.founders[i];
-      staticCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + CONST.FOUNDER_TAG_COLOR + '\">' +
+      staticCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + CONST.DIV_COLOR_FOUNDER_TAG + '\">' +
                           founder +
                         '</span>';
     }
@@ -344,9 +344,9 @@ class Product {
     staticCardHTML += '</div>'; // Close card-block
 
     // Add bottom button //
-    staticCardHTML += '<div class=\"card-footer ' + CONST.DIV_CLASS_BOTTOM_BUTTON_WRAPPER + '\">' +
-                        '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-info btn-block ' + CONST.DIV_CLASS_BOTTOM_BUTTON + '\">' +
-                          CONST.BOTTOM_BUTTON_TEXT +
+    staticCardHTML += '<div class=\"card-footer\">' +
+                        '<a href=\"#\" data-toggle=\"modal\" data-target=\"#card' + cardNumber + '\" class=\"btn btn-info btn-block\">' +
+                          CONST.DIV_TEXT_BOTTOM_BUTTON +
                         '</a>' +
                       '</div>';
 
@@ -370,30 +370,30 @@ class Product {
     modalCardHTML += '<div class=\"modal-body\">';
 
     // Add name //
-    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_NAME_MODAL + '\">' +
+    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_NAME + '\">' +
                       '<div class=\"row\">' +
                         '<b>' + this.name + '</b>' +
                       '</div>' +
                     '</div>';
 
     // Add website URL //
-    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_URL_MODAL + '\">' +
+    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_URL + '\">' +
                       '<div class=\"row\">' +
                         '<a target="_blank" href=\"' + this.url + '\">' + this.url + '</a>' +
                       '</div>' +
                     '</div>';
 
     // Add description //
-    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_DESCRIPTION_MODAL + '\">' +
+    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_DESCRIPTION + '\">' +
                       '<div class=\"row\">' +
                         this.description +
                       '</div>' +
                     '</div>';
 
     // Add platforms //
-    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORMS_MODAL + '\">' +
+    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_PLATFORMS + '\">' +
                       '<div class=\"row\">' +
-                        '<b>' + CONST.DIV_TEXT_PRODUCT_PLATFORMS_MODAL + '</b>';
+                        '<b>' + CONST.DIV_TEXT_PRODUCT_PLATFORMS + '</b>';
     for (var i = 0; i < this.platforms.length; i++) {
       var platform = this.platforms[i];
       var platformColor = CONST.PLATFORM_TAG_COLORS[platform.toLowerCase()];
@@ -403,15 +403,15 @@ class Product {
 
     // Add founders //
     // TODO: Add twitter of founders
-    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER_MODAL + '\">' +
+    modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER + '\">' +
                       '<div class=\"row\">' +
-                        '<b>' + CONST.DIV_TEXT_PRODUCT_FOUNDERS_MODAL + '</b>' +
+                        '<b>' + CONST.DIV_TEXT_PRODUCT_FOUNDERS + '</b>' +
                       '</div>' +
-                      '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS_NAMES_MODAL + '\">';
+                      '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS + '\">';
     for (var i = 0; i < this.founders.length; i++) {
       var founder = this.founders[i];
       modalCardHTML += '<div class=\"row\">';
-      modalCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + CONST.FOUNDER_TAG_COLOR + '\">' +
+      modalCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + CONST.DIV_COLOR_FOUNDER_TAG + '\">' +
                           founder +
                         '</span>';
       modalCardHTML += '</div>' // Close row
@@ -430,9 +430,9 @@ class Product {
     * http://stackoverflow.com/questions/27509/detecting-an-undefined-object-property
     */
     if (this.api !== undefined && this.api !== '') {
-      modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_API_MODAL + '\">' +
+      modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_API + '\">' +
                         '<div class=\"row\">' +
-                          '<b>' + CONST.DIV_TEXT_PRODUCT_API_MODAL + '</b>' + '<a target="_blank" href=\"' + this.api + '\">' + this.api + '</a>' +
+                          '<b>' + CONST.DIV_TEXT_PRODUCT_API + '</b>' + '<a target="_blank" href=\"' + this.api + '\">' + this.api + '</a>' +
                         '</div>' +
                       '</div>';
     }
@@ -441,7 +441,7 @@ class Product {
     if (this.productTech !== undefined && this.productTech !== []) {
       modalCardHTML += getTechnologyDelimiter();
 
-      modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER_MODAL + '\">';
+      modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_TECHNOLOGY_WRAPPER + '\">';
       for (var i = 0; i < this.productTech.length; i++) {
         var platformObj = this.productTech[i];
 
@@ -460,7 +460,7 @@ class Product {
 
       // Add fonts
       if (this.productFonts !== undefined && this.productFonts !== []) {
-        modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FONTS_WRAPPER_MODAL + '\">';
+        modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FONTS_WRAPPER + '\">';
 
         for (var i = 0; i < this.productFonts.length; i++) {
           var platformObj = this.productFonts[i];
@@ -475,7 +475,7 @@ class Product {
 
       // Add colors
       if (this.productColors !== undefined && this.productColors !== []) {
-        modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLORS_WRAPPER_MODAL + '\">';
+        modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLORS_WRAPPER + '\">';
 
         for (var i = 0; i < this.productColors.length; i++) {
           var platformObj = this.productColors[i];

@@ -65,13 +65,13 @@
 
 
 /* ----- Search results ----- */
-.search-results {
+#search-results {
   padding: 30px 0 0;
   text-align: center;
   font-size: 20px;
 }
 
-.nothing-found {
+#nothing-found {
   @include text(22px, $regular, center);
   margin: 60px 0 0 0;
 }

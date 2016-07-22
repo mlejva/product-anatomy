@@ -12,24 +12,28 @@
   border-radius: 0;
 }
 
-.logo-img-wrapper {
+.card {
+  .logo-wrapper {
     margin: 0 30px 0;
     padding: 45px 0 0;
 
-    .logo-img {
+    img {
       @extend .product-img;
-
     }
-}
-
-.logo-img-wrapper-modal {
-  position: absolute;
-  bottom: 0;
-
-  .logo-img-modal {
-    @extend .product-img;
   }
 }
+
+.modal {
+  .logo-wrapper {
+    position: absolute;
+    bottom: 0;
+
+    img {
+      @extend .product-img;
+    }
+  }
+}
+
 /* ---------- */
 
 

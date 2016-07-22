@@ -25,14 +25,14 @@ function addLogoToProduct(product) {
 
       // Add logo to static card
       var logoStaticHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
-                              '<img class=\"' + CONST.DIV_CLASS_PRODUCT_LOGO + '\" src=\"' + url + '\" alt=\"Product Logo\"/>' +
+                              '<img src=\"' + url + '\" alt=\"Product Logo\"/>' +
                             '</div>';
       //$('#' + productName).last().prepend(logoStaticHTML);
       $('#' + prod.id).last().prepend(logoStaticHTML);
 
       // Add logo to modal card
-      var logoModalHTML = '<div class=\"media-left' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER_MODAL + '\">' +
-                            '<img class=\"img-responsive' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_MODAL + '\" src=\"' + url + '\" alt=\"Product Logo\"/>' +
+      var logoModalHTML = '<div class=\"media-left' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
+                            '<img src=\"' + url + '\" alt=\"Product Logo\"/>' +
                           '</div>';
       //$('div.' + productName + '-modal').last().prepend(logoModalHTML);
       $('div.' + prod.id + '-modal').last().prepend(logoModalHTML);
@@ -99,7 +99,7 @@ $(document).ready(function() {
       var fProducts = snapshot.val();
 
       productsTotal = Object.keys(fProducts).length;
-      $('div.' + CONST.DIV_CLASS_SEARCH_RESULTS).append( CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, productsTotal) );
+      $('#' + CONST.SEARCH_RESULTS_ID).append( CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, productsTotal) );
 
       var cardNumber = 0;
       // Loop through all of firebase products
