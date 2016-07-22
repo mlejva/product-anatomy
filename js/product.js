@@ -370,8 +370,8 @@ class Product {
                               '<div class=\"modal-header\">' +
                                 '<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times; </button>';
     //var logoClass = this.name.toLowerCase().replace(/ /g, '-') + '-modal';
-    var logoClass = this.id + '-modal';
-    modalCardHTML += '<div class=\"media ' + logoClass + '\"></div>';
+    var logoID = this.id + '-modal';
+    modalCardHTML += '<div id=\"' + logoID + '\" class=\"media\"></div>';
     modalCardHTML += '</div>'; // Close modal-header
 
     modalCardHTML += '<div class=\"modal-body\">';

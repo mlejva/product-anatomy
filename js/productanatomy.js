@@ -19,21 +19,20 @@ function getParameterByName(name, url) {
 function addLogoToProductCards(product) {
     // TODO: Divne predavani produktu
     product.getProductLogoURL(product, function(prod, url) {
-      // Format of logoPath
+      // Format of logoPath:
       // -> logoPath = 'path/product-name.png'
-      if (product.name.toLowerCase() === 'facebook')
-        console.log(url);
+
       // Add logo to static card
       var logoStaticHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
                               '<img src=\"' + url + '\" alt=\"Product Logo\"/>' +
                             '</div>';
-      $('#' + prod.id).last().prepend(logoStaticHTML);
+      $('#' + prod.id).prepend(logoStaticHTML);
 
       // Add logo to modal card
       var logoModalHTML = '<div class=\"media-left' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
                             '<img src=\"' + url + '\" alt=\"Product Logo\"/>' +
                           '</div>';
-      $('div.' + prod.id + '-modal').last().prepend(logoModalHTML);
+      $('#' + prod.id + '-modal').prepend(logoModalHTML);
     });
 }
 function displayProduct(product, cardNumber) {
