@@ -17,7 +17,7 @@ CONST.PAGE_BASE_URL = 'https://product-anatomy.firebaseapp.com/';
 
 /* ----- Constants for Product object ----- */
 CONST.PROD_OBJ_NAME = 'name';
-CONST.PROD_OBJ__URL = 'url';
+CONST.PROD_OBJ_URL = 'url';
 CONST.PROD_OBJ_DESCRIPTION = 'description';
 CONST.PROD_OBJ_LAUNCHED = 'launched';
 CONST.PROD_OBJ_PLATFORMS = 'platforms';
@@ -90,7 +90,7 @@ CONST.CONFIG = {
 
 CONST.FIREBASE_PRODUCTS_PATH = '/products';
 
-CONST.FIREBASE_PRODUCT_ID = 'id';
+CONST.FIREBASE_PRODUCT_ID = 'objectID';
 CONST.FIREBASE_PRODUCT_NAME = 'name';
 CONST.FIREBASE_PRODUCT_PLATFORMS = 'platforms';
 CONST.FIREBASE_PRODUCT_FONTS = 'fonts';

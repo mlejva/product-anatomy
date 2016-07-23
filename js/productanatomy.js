@@ -21,21 +21,16 @@ function addLogoToProductCards(product) {
     product.getProductLogoURL(product, function(prod, url) {
       // Format of logoPath:
       // -> logoPath = 'path/product-name.png'
+
       // Add logo to static card
       var logoStaticHTML = '<img src=\"' + url + '\" alt=\"Product Logo\"/>'
-
-      //$('#' + productName).last().prepend(logoStaticHTML);
       $('#' + prod.id + ' .' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER).prepend(logoStaticHTML);
 
       // Add logo to modal card
       var logoModalHTML = '<img src=\"' + url + '\" alt=\"Product Logo\"/>'
-
-      //$('div.' + productName + '-modal').last().prepend(logoModalHTML);
       $('#' + prod.id + '-modal' + ' .' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER).prepend(logoModalHTML);
     });
 }
-
-
 function displayProduct(product, cardNumber) {
 
   productStaticCard = $(product.getStaticCardFromProduct(cardNumber));
@@ -51,6 +46,7 @@ function displayProduct(product, cardNumber) {
   addLogoToProductCards(product);
 
   /* ----- Cards events ----- */
+  // Click on footer button
   $('div.' + CONST.DIV_CLASS_BOTTOM_BUTTON_WRAPPER).last().on('click', function() { // There is no bottom-button-wrapper -> card-footer
     var productID = product.id;
 
@@ -63,6 +59,7 @@ function displayProduct(product, cardNumber) {
     //alert(productURL);
     window.history.pushState('', '', productURL);
   });
+  // When is modal closed
   $('div.modal').last().on('hidden.bs.modal', function() {
     window.history.pushState('', '', CONST.PAGE_BASE_URL);
   });
@@ -103,13 +100,14 @@ $(document).ready(function() {
         displayProduct(product, cardNumber);
       }
 
-      var tagsStatic = document.getElementsByClassName(CONST.DIV_CLASS_TAG_STATIC);
-      enableTagSearch(tagsStatic);
-      var tagsModal = document.getElementsByClassName(CONST.DIV_CLASS_TAG_MODAL);
-      enableTagSearch(tagsModal);
-
     }); // ftools.database END
   }
+
+  // Enable tags
+  var tagsStatic = document.getElementsByClassName(CONST.DIV_CLASS_TAG_STATIC);
+  enableTagSearch(tagsStatic);
+  var tagsModal = document.getElementsByClassName(CONST.DIV_CLASS_TAG_MODAL);
+  enableTagSearch(tagsModal);
 
 
   /* ----- Global Events ---- */
