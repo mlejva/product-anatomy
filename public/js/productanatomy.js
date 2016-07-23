@@ -16,28 +16,28 @@ function getParameterByName(name, url) {
 
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-function addLogoToProduct(product) {
+function addLogoToProductCards(product) {
     // TODO: Divne predavani produktu
     product.getProductLogoURL(product, function(prod, url) {
-      // Format of logoPath
+      // Format of logoPath:
       // -> logoPath = 'path/product-name.png'
-
       // Add logo to static card
-      var logoStaticHTML = '<div class=\"' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
-                              '<img src=\"' + url + '\" alt=\"Product Logo\"/>' +
-                            '</div>';
+      var logoStaticHTML = '<img src=\"' + url + '\" alt=\"Product Logo\"/>'
+
       //$('#' + productName).last().prepend(logoStaticHTML);
-      $('#' + prod.id).last().prepend(logoStaticHTML);
+      $('#' + prod.id + ' .' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER).prepend(logoStaticHTML);
 
       // Add logo to modal card
-      var logoModalHTML = '<div class=\"media-left' + ' ' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER + '\">' +
-                            '<img src=\"' + url + '\" alt=\"Product Logo\"/>' +
-                          '</div>';
+      var logoModalHTML = '<img src=\"' + url + '\" alt=\"Product Logo\"/>'
+
       //$('div.' + productName + '-modal').last().prepend(logoModalHTML);
-      $('div.' + prod.id + '-modal').last().prepend(logoModalHTML);
+      $('#' + prod.id + '-modal' + ' .' + CONST.DIV_CLASS_PRODUCT_LOGO_WRAPPER).prepend(logoModalHTML);
     });
 }
+
+
 function displayProduct(product, cardNumber) {
+
   productStaticCard = $(product.getStaticCardFromProduct(cardNumber));
   productModalCard = $(product.getModalCardFromProduct(cardNumber));
 
@@ -48,7 +48,7 @@ function displayProduct(product, cardNumber) {
   $('div.card-columns').last().append(productStaticCard);
   $('div.content').last().append(productModalCard);
 
-  addLogoToProduct(product);
+  addLogoToProductCards(product);
 
   /* ----- Cards events ----- */
   $('div.' + CONST.DIV_CLASS_BOTTOM_BUTTON_WRAPPER).last().on('click', function() { // There is no bottom-button-wrapper -> card-footer
@@ -64,7 +64,7 @@ function displayProduct(product, cardNumber) {
     window.history.pushState('', '', productURL);
   });
   $('div.modal').last().on('hidden.bs.modal', function() {
-    window.history.pushState('', '', CONST.PAGE_BASE_URL); 
+    window.history.pushState('', '', CONST.PAGE_BASE_URL);
   });
   /* ---------- */
 }
