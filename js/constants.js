@@ -28,6 +28,7 @@ CONST.PROD_OBJ_COLORS = 'productColors'
 /* ---------- */
 
 /* ----- Constants for search ----- */
+CONST.SEARCH_WINDOW = 'search';
 CONST.SEARCH_RESULTS_ID = 'search-results';
 CONST.ANNOUNCEMENT_ID = 'announcement';
 CONST.SEARCHBOX_ID = 'searchbox';
@@ -52,7 +53,9 @@ CONST.DIV_CLASS_PRODUCT_LAUNCHED = 'product-launched';
 CONST.DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER = 'product-founders-wrapper';
 CONST.DIV_CLASS_PRODUCT_FOUNDERS = 'product-founders';
 
+CONST.DIV_CLASS_PRODUCT_DEV = 'product-dev';
 CONST.DIV_CLASS_PRODUCT_API = 'product-api';
+CONST.DIV_CLASS_PRODUCT_REPOSITORY = 'product-repository';
 
 CONST.DIV_CLASS_PRODUCT_PLATFORM_NAME = 'product-platform-name';
 
@@ -75,6 +78,7 @@ CONST.DIV_TEXT_BOTTOM_BUTTON = 'Show anatomy of product';
 CONST.DIV_TEXT_PRODUCT_PLATFORMS = 'Platforms ';
 CONST.DIV_TEXT_PRODUCT_LAUNCHED = 'Launched ';
 CONST.DIV_TEXT_PRODUCT_FOUNDERS = 'Founded by ';
+CONST.DIV_TEXT_PRODUCT_DEV = 'Developer site ';
 CONST.DIV_TEXT_PRODUCT_API = 'API ';
 CONST.DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
 /* ---------- */
@@ -100,7 +104,9 @@ CONST.FIREBASE_PRODUCT_DESCRIPTION = 'description';
 CONST.FIREBASE_PRODUCT_LAUNCHED = 'launched';
 CONST.FIREBASE_PRODUCT_FOUNDERS = 'founders';
 CONST.FIREBASE_PRODUCT_FOUNDERS_TWITTER = 'founders-twitter';
+CONST.FIREBASE_PRODUCT_DEV = 'dev';
 CONST.FIREBASE_PRODUCT_API = 'api';
+CONST.FIREBASE_PRODUCT_REPOSITORY = 'repository';
 CONST.FIREBASE_PRODUCT_TECHNOLOGY = 'technology';
 CONST.FIREBASE_PRODUCT_LOGO_URL = 'logo-url';
 CONST.FIREBASE_PRODUCT_TWITTER_USERNAME = 'twitter-username';
