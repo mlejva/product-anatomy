@@ -69,7 +69,7 @@ var enableTagSearch = function(tags) {
       // TODO: When modal card closes and page scrolls to "search-scroll", the page returns to the modal static card
       // TODO: Scroll is slower than search - user can't see the change in results
       //window.scrollTo(0, 0); // Primitive scroll to the top of the page
-      document.getElementById(CONST.SEARCH_RESULTS_ID).scrollIntoView(); // TODO: constant id="search-scroll"
+      document.getElementById(CONST.SEARCH_WINDOW).scrollIntoView(); // TODO: constant id="search-scroll"
       document.getElementById(CONST.SEARCHBOX_ID).value = tag.textContent;
 
 

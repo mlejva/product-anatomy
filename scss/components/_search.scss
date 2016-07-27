@@ -5,7 +5,8 @@
 
 
 /* ----- Search ----- */
-.search {
+#search {
+  padding-top: 25px;
   @media (max-width: $desktop-size) {
     width: 250px;
     margin: 0 auto;
@@ -15,8 +16,8 @@
     @include text(16px, $regular);
     line-height: 40px;
     width: 100%;
-    padding: 0px 25px;
-    margin: 25px 0 0;
+    padding: 0 25px;
+    margin: 0 0 0;
     background-color: $secondary-background-color;
     border: 1px solid $text-color;
     border-radius: 20px;

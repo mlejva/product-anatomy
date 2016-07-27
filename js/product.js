@@ -16,12 +16,12 @@ var generateDynamicColorsHTML = function(maxInRow, colors) {
     }
     var widthOfColumn = CONST.BOOTSTRAP_MAX_WIDTH / maxInRow;
     html += '<div class=\"col-xs-' + widthOfColumn + '\">' +
-                            '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLOR + '\" style=\"background-color:#' + colors[i] + '\">' +
-                              '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLOR_TEXT + '\">' +
-                                colors[i].toUpperCase() +
-                              '</div>' +
-                            '</div>' +
-                          '</div>';
+                '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLOR + '\" style=\"background-color:#' + colors[i] + '\">' +
+                  '<div class=\"' + CONST.DIV_CLASS_PRODUCT_COLOR_TEXT + '\">' +
+                    colors[i].toUpperCase() +
+                  '</div>' +
+                '</div>' +
+              '</div>';
   }
 
   html += '</div>'; // Close the last row (may not be full)
@@ -217,8 +217,16 @@ class Product {
             });
           break;
 
+          case CONST.FIREBASE_PRODUCT_DEV:
+            this.dev = firebaseProduct[CONST.FIREBASE_PRODUCT_DEV];
+          break;
+
           case CONST.FIREBASE_PRODUCT_API:
             this.api = firebaseProduct[CONST.FIREBASE_PRODUCT_API];
+          break;
+
+          case CONST.FIREBASE_PRODUCT_REPOSITORY:
+            this.repository = firebaseProduct[CONST.FIREBASE_PRODUCT_REPOSITORY];
           break;
 
           case CONST.FIREBASE_PRODUCT_FOUNDERS_TWITTER:
@@ -446,6 +454,15 @@ class Product {
 
     // Now we have to check whether product has certain properties
 
+    // Add Dev //
+    if (this.dev !== undefined && this.dev !== '') {
+      modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_DEV + '\">' +
+                        '<div class=\"row\">' +
+                          '<b>' + CONST.DIV_TEXT_PRODUCT_DEV + '</b>' + '<a target="_blank" href=\"' + this.dev + '\">' + this.dev + '</a>' +
+                        '</div>' +
+                      '</div>';
+    }
+
     // Add API //
     if (this.api !== undefined && this.api !== '') {
       modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_API + '\">' +
@@ -454,6 +471,16 @@ class Product {
                         '</div>' +
                       '</div>';
     }
+
+    // Add Repository //
+    if (this.repository !== undefined && this.repository !== '') {
+      modalCardHTML += '<div class=\"' + CONST.DIV_CLASS_PRODUCT_REPOSITORY + '\">' +
+                        '<div class=\"row\">' +
+                          '<a target="_blank" href=\"' + this.repository + '\">' + this.repository + '</a>' +
+                        '</div>' +
+                      '</div>';
+    }
+
 
     // Add technologies //
     if (this.productTech !== undefined && this.productTech !== []) {

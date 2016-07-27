@@ -1,6 +1,7 @@
 /* ----- Global variables ----- */
 var client = algoliasearch(CONST.ALGOLIA_APP_ID, CONST.ALGOLIA_SEARCH_API_KEY);
 var index = client.initIndex(CONST.ALGOLIA_INDEX_PRODUCTS);
+var modalClosed = false;
 /* ---------- */
 
 /* ----- Functions ----- */
@@ -65,7 +66,8 @@ function addProductCards(product, cardNumber) {
 
   // When is modal closed
   $('div.modal').last().on('hidden.bs.modal', function() {
-    window.history.back()
+    modalClosed = true;
+    window.history.back();
   });
   /* ---------- */
 
@@ -73,7 +75,7 @@ function addProductCards(product, cardNumber) {
 /* ---------- */
 
 /* ----- Functions for search ----- */
-function displaySearchHitCount(hitCount) {
+function displaySearchHitCount(hitCount, query) {
   $('#' + CONST.SEARCH_RESULTS_ID).empty();
   $('#' + CONST.ANNOUNCEMENT_ID).empty();
   var resultsText = '';
@@ -82,16 +84,15 @@ function displaySearchHitCount(hitCount) {
     $('#' + CONST.ANNOUNCEMENT_ID).append(CONST.NOTHING_FOUND_TEXT);
   }
   else if (hitCount == 1) {
-    resultsText = CONST.SEARCH_RESULT_TEXT_SINGULAR;
+    resultsText = CONST.SEARCH_RESULT_TEXT_SINGULAR.replace(CONST.SEARCH_RESULT_TEXT_QUERY_REPLACE, query);
   }
   else {
-    resultsText = CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, hitCount);
+    resultsText = CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, hitCount).replace(CONST.SEARCH_RESULT_TEXT_QUERY_REPLACE, query);
   }
+  console.log(resultsText);
   $('#' + CONST.SEARCH_RESULTS_ID).append(resultsText);
 }
 function presentProductsFromSearch(algoliaProducts) {
-  displaySearchHitCount(algoliaProducts.length);
-
   $('div.card-columns').empty();
   $('.modal').remove(); // Remove all modal cards
 
@@ -110,6 +111,7 @@ function searchInDatabaseAndPresentHits(searchQuery) {
     }
     else {
       presentProductsFromSearch(content.hits);
+      displaySearchHitCount(content.hits.length, searchQuery);
     }
   });
 }
@@ -138,9 +140,6 @@ $(document).ready(function() {
     // Display all products
     fTools.database.ref(CONST.FIREBASE_PRODUCTS_PATH).once('value').then(function(snapshot) {
       var fProducts = snapshot.val();
-
-      var productsTotal = Object.keys(fProducts).length;
-      $('#' + CONST.SEARCH_RESULTS_ID).append( CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, productsTotal) );
 
       var cardNumber = 0;
       // Loop through all of firebase products
@@ -197,7 +196,9 @@ $(document).ready(function() {
     //resizeGlobalTags();
   });
   $(window).bind('popstate', function() {
-    window.location.href = document.location;
+    if (!modalClosed)
+      window.location.href = document.location;
+    modalClosed = false;
   });
   /* ---------- */
 
