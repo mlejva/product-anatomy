@@ -17,7 +17,7 @@ CONST.PAGE_BASE_URL = 'https://product-anatomy.firebaseapp.com/';
 
 /* ----- Constants for Product object ----- */
 CONST.PROD_OBJ_NAME = 'name';
-CONST.PROD_OBJ__URL = 'url';
+CONST.PROD_OBJ_URL = 'url';
 CONST.PROD_OBJ_DESCRIPTION = 'description';
 CONST.PROD_OBJ_LAUNCHED = 'launched';
 CONST.PROD_OBJ_PLATFORMS = 'platforms';
@@ -28,6 +28,7 @@ CONST.PROD_OBJ_COLORS = 'productColors'
 /* ---------- */
 
 /* ----- Constants for search ----- */
+CONST.SEARCH_FORM_ID = 'search-form';
 CONST.SEARCH_RESULTS_ID = 'search-results';
 CONST.ANNOUNCEMENT_ID = 'announcement';
 CONST.SEARCHBOX_ID = 'searchbox';
@@ -79,6 +80,11 @@ CONST.DIV_TEXT_PRODUCT_API = 'API ';
 CONST.DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
 /* ---------- */
 
+/* ----- Constants for Algolia ----- */
+CONST.ALGOLIA_APP_ID = 'E6GMBD7AHH';
+CONST.ALGOLIA_SEARCH_API_KEY = 'b16f75ff361831fb81ba036f782904eb';
+CONST.ALGOLIA_INDEX_PRODUCTS = 'products';
+/* ---------- */
 
 /* ----- Constants for Firebase ----- */
 CONST.CONFIG = {
@@ -90,7 +96,7 @@ CONST.CONFIG = {
 
 CONST.FIREBASE_PRODUCTS_PATH = '/products';
 
-CONST.FIREBASE_PRODUCT_ID = 'id';
+CONST.FIREBASE_PRODUCT_ID = 'objectID';
 CONST.FIREBASE_PRODUCT_NAME = 'name';
 CONST.FIREBASE_PRODUCT_PLATFORMS = 'platforms';
 CONST.FIREBASE_PRODUCT_FONTS = 'fonts';

@@ -28,6 +28,7 @@ CONST.PROD_OBJ_COLORS = 'productColors'
 /* ---------- */
 
 /* ----- Constants for search ----- */
+CONST.SEARCH_FORM_ID = 'search-form';
 CONST.SEARCH_RESULTS_ID = 'search-results';
 CONST.ANNOUNCEMENT_ID = 'announcement';
 CONST.SEARCHBOX_ID = 'searchbox';
@@ -79,6 +80,11 @@ CONST.DIV_TEXT_PRODUCT_API = 'API ';
 CONST.DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
 /* ---------- */
 
+/* ----- Constants for Algolia ----- */
+CONST.ALGOLIA_APP_ID = 'E6GMBD7AHH';
+CONST.ALGOLIA_SEARCH_API_KEY = 'b16f75ff361831fb81ba036f782904eb';
+CONST.ALGOLIA_INDEX_PRODUCTS = 'products';
+/* ---------- */
 
 /* ----- Constants for Firebase ----- */
 CONST.CONFIG = {

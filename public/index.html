@@ -20,8 +20,13 @@
     <script src='https://use.fontawesome.com/2e49726a88.js'></script>
     <!-- Firebase script -->
     <script src='https://www.gstatic.com/firebasejs/3.1.0/firebase.js'></script>
+    <!-- Algolia search -->
+    <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <!-- Algolia autocomplete -->
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
 
     <link rel='stylesheet' type='text/css' href='css/aplication.css'>
+    <link rel='stylesheet' type='text/css' href='css/autocomplete_css_to_delete.css'>
 
     <script src='js/constants.js'></script>
     <script src='js/helper_functions.js'></script>
@@ -31,6 +36,7 @@
     <script src='js/search.js'></script>
     <script src='js/tags.js'></script>
     <script src='js/productanatomy.js'></script>
+
   </head>
 
   <body>
@@ -40,7 +46,7 @@
       <div class='row'>
         <div class='header'>
           <div class='headline'>
-            <a href='https://product-anatomy.firebaseapp.com'>Product Anatomy</a>
+            <a href=''>Product Anatomy</a>
           </div>
           <hr class='headline-delimiter'>
           <div class='baseline'>Share how your projects are made.</div>
@@ -51,7 +57,9 @@
       <div class='row'>
         <div class='col-lg-4 col-lg-offset-4'> <!-- offset -> (12-4)/2 = 4 -->
           <div class='search'>
-            <input type='search' id='searchbox' placeholder='Slack, javascript, etc.' autofocus>
+            <form action='#' id='search-form'>
+              <input type='search' id='searchbox' placeholder='Slack, javascript, etc.' />
+            </form>
           </div>
         </div>
       </div>
