@@ -1,5 +1,7 @@
 // TODO: Search in database instead of local search at user
-var search = function() {
+
+/*
+var search = function(query) {
   var products_modal = document.getElementsByClassName('modal'); // We want to search in modal cards
   var products_static = document.getElementsByClassName('card'); // But we want to hide static card
   var query = document.getElementById(CONST.SEARCHBOX_ID).value;

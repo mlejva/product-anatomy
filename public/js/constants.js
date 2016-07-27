@@ -17,7 +17,7 @@ CONST.PAGE_BASE_URL = 'https://product-anatomy.firebaseapp.com/';
 
 /* ----- Constants for Product object ----- */
 CONST.PROD_OBJ_NAME = 'name';
-CONST.PROD_OBJ__URL = 'url';
+CONST.PROD_OBJ_URL = 'url';
 CONST.PROD_OBJ_DESCRIPTION = 'description';
 CONST.PROD_OBJ_LAUNCHED = 'launched';
 CONST.PROD_OBJ_PLATFORMS = 'platforms';
@@ -28,14 +28,17 @@ CONST.PROD_OBJ_COLORS = 'productColors'
 /* ---------- */
 
 /* ----- Constants for search ----- */
+CONST.SEARCH_FORM_ID = 'search-form';
+CONST.SEARCH_WINDOW = 'search';
 CONST.SEARCH_RESULTS_ID = 'search-results';
 CONST.ANNOUNCEMENT_ID = 'announcement';
 CONST.SEARCHBOX_ID = 'searchbox';
 
 CONST.NOTHING_FOUND_TEXT = 'Oops, I guess nothing like this exists. Yet...';
-CONST.SEARCH_RESULT_TEXT_SINGULAR = 'Showing anatomy of 1 product.';
-CONST.SEARCH_RESULT_TEXT_PLURAL = 'Showing anatomy of <count> products.';
+CONST.SEARCH_RESULT_TEXT_SINGULAR = '1 result for \"<query>\"';
+CONST.SEARCH_RESULT_TEXT_PLURAL = '<count> results for \"<query>\"';
 CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE = '<count>';
+CONST.SEARCH_RESULT_TEXT_QUERY_REPLACE = '<query>';
 /* ---------- */
 
 
@@ -52,7 +55,9 @@ CONST.DIV_CLASS_PRODUCT_LAUNCHED = 'product-launched';
 CONST.DIV_CLASS_PRODUCT_FOUNDERS_WRAPPER = 'product-founders-wrapper';
 CONST.DIV_CLASS_PRODUCT_FOUNDERS = 'product-founders';
 
+CONST.DIV_CLASS_PRODUCT_DEV = 'product-dev';
 CONST.DIV_CLASS_PRODUCT_API = 'product-api';
+CONST.DIV_CLASS_PRODUCT_REPOSITORY = 'product-repository';
 
 CONST.DIV_CLASS_PRODUCT_PLATFORM_NAME = 'product-platform-name';
 
@@ -75,10 +80,16 @@ CONST.DIV_TEXT_BOTTOM_BUTTON = 'Show anatomy of product';
 CONST.DIV_TEXT_PRODUCT_PLATFORMS = 'Platforms ';
 CONST.DIV_TEXT_PRODUCT_LAUNCHED = 'Launched ';
 CONST.DIV_TEXT_PRODUCT_FOUNDERS = 'Founded by ';
+CONST.DIV_TEXT_PRODUCT_DEV = 'Developer site ';
 CONST.DIV_TEXT_PRODUCT_API = 'API ';
 CONST.DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
 /* ---------- */
 
+/* ----- Constants for Algolia ----- */
+CONST.ALGOLIA_APP_ID = 'E6GMBD7AHH';
+CONST.ALGOLIA_SEARCH_API_KEY = 'b16f75ff361831fb81ba036f782904eb';
+CONST.ALGOLIA_INDEX_PRODUCTS = 'products';
+/* ---------- */
 
 /* ----- Constants for Firebase ----- */
 CONST.CONFIG = {
@@ -90,7 +101,7 @@ CONST.CONFIG = {
 
 CONST.FIREBASE_PRODUCTS_PATH = '/products';
 
-CONST.FIREBASE_PRODUCT_ID = 'id';
+CONST.FIREBASE_PRODUCT_ID = 'objectID';
 CONST.FIREBASE_PRODUCT_NAME = 'name';
 CONST.FIREBASE_PRODUCT_PLATFORMS = 'platforms';
 CONST.FIREBASE_PRODUCT_FONTS = 'fonts';
@@ -100,7 +111,9 @@ CONST.FIREBASE_PRODUCT_DESCRIPTION = 'description';
 CONST.FIREBASE_PRODUCT_LAUNCHED = 'launched';
 CONST.FIREBASE_PRODUCT_FOUNDERS = 'founders';
 CONST.FIREBASE_PRODUCT_FOUNDERS_TWITTER = 'founders-twitter';
+CONST.FIREBASE_PRODUCT_DEV = 'dev';
 CONST.FIREBASE_PRODUCT_API = 'api';
+CONST.FIREBASE_PRODUCT_REPOSITORY = 'repository';
 CONST.FIREBASE_PRODUCT_TECHNOLOGY = 'technology';
 CONST.FIREBASE_PRODUCT_LOGO_URL = 'logo-url';
 CONST.FIREBASE_PRODUCT_TWITTER_USERNAME = 'twitter-username';

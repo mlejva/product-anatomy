@@ -1,5 +1,7 @@
 // TODO: Search in database instead of local search at user
-var search = function() {
+
+/*
+var search = function(query) {
   var products_modal = document.getElementsByClassName('modal'); // We want to search in modal cards
   var products_static = document.getElementsByClassName('card'); // But we want to hide static card
   var query = document.getElementById(CONST.SEARCHBOX_ID).value;
@@ -47,7 +49,7 @@ var search = function() {
   }
   else {
     resultsText = CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, resultsCount);
-  }  
+  }
   $('#' + CONST.SEARCH_RESULTS_ID).append(resultsText);
 }
 /* ---------- */
@@ -67,7 +69,7 @@ var enableTagSearch = function(tags) {
       // TODO: When modal card closes and page scrolls to "search-scroll", the page returns to the modal static card
       // TODO: Scroll is slower than search - user can't see the change in results
       //window.scrollTo(0, 0); // Primitive scroll to the top of the page
-      document.getElementById(CONST.SEARCH_RESULTS_ID).scrollIntoView(); // TODO: constant id="search-scroll"
+      document.getElementById(CONST.SEARCH_WINDOW).scrollIntoView(); // TODO: constant id="search-scroll"
       document.getElementById(CONST.SEARCHBOX_ID).value = tag.textContent;
 
 

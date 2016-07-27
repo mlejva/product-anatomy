@@ -29,7 +29,6 @@ class FirebaseTools {
 
     if (query.id !== null) {
 
-      console.log(CONST.FIREBASE_PRODUCTS_PATH + '/' + query.id);
       firebase.database().ref(CONST.FIREBASE_PRODUCTS_PATH + '/' + query.id).once('value').then(function(snapshot) {
         var product = new Product(snapshot.val(), {});
         callback([product]);

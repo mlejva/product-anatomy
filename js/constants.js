@@ -17,7 +17,7 @@ CONST.PAGE_BASE_URL = 'https://product-anatomy.firebaseapp.com/';
 
 /* ----- Constants for Product object ----- */
 CONST.PROD_OBJ_NAME = 'name';
-CONST.PROD_OBJ__URL = 'url';
+CONST.PROD_OBJ_URL = 'url';
 CONST.PROD_OBJ_DESCRIPTION = 'description';
 CONST.PROD_OBJ_LAUNCHED = 'launched';
 CONST.PROD_OBJ_PLATFORMS = 'platforms';
@@ -28,15 +28,17 @@ CONST.PROD_OBJ_COLORS = 'productColors'
 /* ---------- */
 
 /* ----- Constants for search ----- */
+CONST.SEARCH_FORM_ID = 'search-form';
 CONST.SEARCH_WINDOW = 'search';
 CONST.SEARCH_RESULTS_ID = 'search-results';
 CONST.ANNOUNCEMENT_ID = 'announcement';
 CONST.SEARCHBOX_ID = 'searchbox';
 
 CONST.NOTHING_FOUND_TEXT = 'Oops, I guess nothing like this exists. Yet...';
-CONST.SEARCH_RESULT_TEXT_SINGULAR = 'Showing anatomy of 1 product.';
-CONST.SEARCH_RESULT_TEXT_PLURAL = 'Showing anatomy of <count> products.';
+CONST.SEARCH_RESULT_TEXT_SINGULAR = '1 result for \"<query>\"';
+CONST.SEARCH_RESULT_TEXT_PLURAL = '<count> results for \"<query>\"';
 CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE = '<count>';
+CONST.SEARCH_RESULT_TEXT_QUERY_REPLACE = '<query>';
 /* ---------- */
 
 
@@ -83,6 +85,11 @@ CONST.DIV_TEXT_PRODUCT_API = 'API ';
 CONST.DIV_TEXT_PRODUCT_FONTS = 'Fonts ';
 /* ---------- */
 
+/* ----- Constants for Algolia ----- */
+CONST.ALGOLIA_APP_ID = 'E6GMBD7AHH';
+CONST.ALGOLIA_SEARCH_API_KEY = 'b16f75ff361831fb81ba036f782904eb';
+CONST.ALGOLIA_INDEX_PRODUCTS = 'products';
+/* ---------- */
 
 /* ----- Constants for Firebase ----- */
 CONST.CONFIG = {
