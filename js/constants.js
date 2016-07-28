@@ -130,12 +130,8 @@ CONST.DIV_CLASS_TAG_ROW = 'tag-row';
 CONST.DIV_CLASS_TAG_WRAPPER = 'tag-wrapper';
 
 CONST.DIV_CLASS_TAG = 'tag';
-CONST.DIV_CLASS_TAG_GLOBAL = 'tag-global'; // DELETE
-CONST.DIV_CLASS_TAG_STATIC = 'tag-static'; // DELETE
-CONST.DIV_CLASS_TAG_MODAL = 'tag-modal'; // DELETE
-
-
-//CONST.DIV_CLASS_TAG_ADDED = 'tag-added';
+CONST.DIV_CLASS_TAG_GLOBAL = 'tag-global';
+CONST.DIV_CLASS_TAG_NEW = 'tag-new'; // Pseudo class to specify tags that were just added
 
 CONST.TAG_COLORS = ['orange', 'goldenrod', 'purple', 'blue', 'brown', '#0000CD', '#5F9EA0', '#808000', '#D2691E', 'red'];
 CONST.PLATFORM_TAG_COLORS = {

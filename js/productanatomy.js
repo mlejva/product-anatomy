@@ -47,6 +47,11 @@ function addProductCards(product, cardNumber) {
   $('div.card-columns').last().append(productStaticCard);
   $('div.content').last().append(productModalCard);
 
+  // Enable tags
+  var staticModalTags = document.getElementsByClassName(CONST.DIV_CLASS_TAG_NEW); // Get only newly added tags
+  enableTagSearch(staticModalTags);
+  $('div.' + CONST.DIV_CLASS_TAG_NEW).removeClass(CONST.DIV_CLASS_TAG_NEW); // Remove pseudo class of newly added tags
+
   addLogoToProductCards(product);
 
   /* ----- Cards events ----- */
@@ -72,55 +77,42 @@ function addProductCards(product, cardNumber) {
   /* ---------- */
 
 }
-/* ---------- */
-
-/* ----- Functions for search ----- */
-function displaySearchHitCount(hitCount, query) {
-  $('#' + CONST.SEARCH_RESULTS_ID).empty();
-  $('#' + CONST.ANNOUNCEMENT_ID).empty();
-  var resultsText = '';
-  if (hitCount == 0) {
-    resultsText = '';
-    $('#' + CONST.ANNOUNCEMENT_ID).append(CONST.NOTHING_FOUND_TEXT);
-  }
-  else if (hitCount == 1) {
-    resultsText = CONST.SEARCH_RESULT_TEXT_SINGULAR.replace(CONST.SEARCH_RESULT_TEXT_QUERY_REPLACE, query);
-  }
-  else {
-    resultsText = CONST.SEARCH_RESULT_TEXT_PLURAL.replace(CONST.SEARCH_RESULT_TEXT_COUNT_REPLACE, hitCount).replace(CONST.SEARCH_RESULT_TEXT_QUERY_REPLACE, query);
-  }
-  console.log(resultsText);
-  $('#' + CONST.SEARCH_RESULTS_ID).append(resultsText);
-}
-function presentProductsFromSearch(algoliaProducts) {
-  $('div.card-columns').empty();
-  $('.modal').remove(); // Remove all modal cards
-
-  for (var i = 0; i < algoliaProducts.length; i++) {
-    var product = new Product(algoliaProducts[i], {});
-    addProductCards(product, i);
-  }
-}
-function searchInDatabaseAndPresentHits(searchQuery) {
-  index.search(searchQuery, function searchDone(err, content) {
-    if (err) {
-      // TODO: Error handling
-      console.log(err.message);
-      console.log(err.debugData);
-      return;
-    }
-    else {
-      presentProductsFromSearch(content.hits);
-      displaySearchHitCount(content.hits.length, searchQuery);
-    }
+function addGlobalPlatformTags(platformNames) {
+  var globalTagsHTML = '<div class=\"row\">' +
+                        '<div class=\"col-lg-8 col-lg-offset-2\">' +
+                          '<div class=\"' + CONST.DIV_CLASS_TAG_ROW + '\">';
+  platformNames.sort(function(a, b) {
+    return a.toLowerCase() > b.toLowerCase();
   });
+
+  for (var i = 0; i < platformNames.length; i++) {
+    var tagName = platformNames[i];
+
+    var tagColor = '';
+
+    if (isInArray(tagName.toLocaleLowerCase(), CONST.PLATFORMS))
+      tagColor = CONST.PLATFORM_TAG_COLORS[tagName.toLocaleLowerCase()];
+    else
+      tagColor = randomColorFromString(tag_name, CONST.TAG_COLORS);
+
+    globalTagsHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_GLOBAL + '\" style=\"background-color:' + tagColor + '\">' +
+                        tagName +
+                      '</span>';
+  }
+
+  globalTagsHTML += '</div></div></div>'; // Close row, column and DIV_CLASS_TAG_ROW
+
+  $('div.' + CONST.DIV_CLASS_TAG_WRAPPER).append(globalTagsHTML);
+  // Add search functionality for global tags
+  var tagsGlobal = document.getElementsByClassName(CONST.DIV_CLASS_TAG_GLOBAL);
+  enableTagSearch(tagsGlobal);
 }
 /* ---------- */
 
 $(document).ready(function() {
 
-  // Resize tags according to the actual screen size
-  resizeGlobalTags();
+  // Add global tags under searchbar
+  addGlobalPlatformTags(CONST.GLOBAL_TAGS);
   var fTools = new FirebaseTools(CONST.CONFIG);
   // TODO: Constants?
   var askedProductID = getParameterByName('id', window.location.href);
@@ -152,11 +144,6 @@ $(document).ready(function() {
     }); // ftools.database END
   }
 
-  // Enable tags
-  var tagsStatic = document.getElementsByClassName(CONST.DIV_CLASS_TAG_STATIC);
-  enableTagSearch(tagsStatic);
-  var tagsModal = document.getElementsByClassName(CONST.DIV_CLASS_TAG_MODAL);
-  enableTagSearch(tagsModal);
 
 
   /* ----- Search Events ----- */
@@ -178,7 +165,6 @@ $(document).ready(function() {
     var searchURL = CONST.PAGE_BASE_URL + 'product?id=' + suggestion[CONST.FIREBASE_PRODUCT_ID]; // Change URL to ID URL so user can use it to present specific object
     window.history.pushState('', '', searchURL);
   });
-
   // User pressed enter while typing search query
   $('#' + CONST.SEARCH_FORM_ID).submit(function(event) {
     var searchQuery = document.getElementById(CONST.SEARCHBOX_ID).value;
@@ -192,9 +178,6 @@ $(document).ready(function() {
   /* ---------- */
 
   /* ----- Global Events ---- */
-  $(window).bind('resize', function() {
-    //resizeGlobalTags();
-  });
   $(window).bind('popstate', function() {
     if (!modalClosed)
       window.location.href = document.location;

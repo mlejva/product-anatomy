@@ -79,7 +79,7 @@ var parsePlatformTechnology = function(platformObj) {
           if (techTypeProperty !== 'name') {
             var technology = techTypeObj[techTypeProperty];
             var tagColor = randomColorFromString(technology, CONST.TAG_COLORS);
-            var tagHTML = '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + tagColor + '\">' + technology + '</span>';
+            var tagHTML = '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_NEW + '\" style=\"background-color:' + tagColor + '\">' + technology + '</span>';
 
             techHTML += tagHTML;
           }
@@ -342,7 +342,7 @@ class Product {
     for (var i = 0; i < this.platforms.length; i++) {
       var platform = this.platforms[i];
       var platformColor = CONST.PLATFORM_TAG_COLORS[platform.toLowerCase()];
-      staticCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + platformColor + '\">' + platform + '</span>';
+      staticCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_NEW + '\" style=\"background-color:' + platformColor + '\">' + platform + '</span>';
     }
     staticCardHTML += '</div></div>' // Close DIV_CLASS_PRODUCT_PLATFORMS and row
 
@@ -354,7 +354,7 @@ class Product {
                           '<div class=\"' + CONST.DIV_CLASS_PRODUCT_FOUNDERS + '\">';
     for (var i = 0; i < this.founders.length; i++) {
       var founder = this.founders[i];
-      staticCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_STATIC + '\" style=\"background-color:' + CONST.DIV_COLOR_FOUNDER_TAG + '\">' +
+      staticCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_NEW + '\" style=\"background-color:' + CONST.DIV_COLOR_FOUNDER_TAG + '\">' +
                           founder +
                         '</span>';
     }
@@ -429,7 +429,7 @@ class Product {
     for (var i = 0; i < this.platforms.length; i++) {
       var platform = this.platforms[i];
       var platformColor = CONST.PLATFORM_TAG_COLORS[platform.toLowerCase()];
-      modalCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + platformColor + '\">' + platform + '</span>';
+      modalCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_NEW + '\" style=\"background-color:' + platformColor + '\">' + platform + '</span>';
     }
     modalCardHTML += '</div></div>'; // Close DIV_CLASS_PRODUCT_PLATFORMS_MODAL and row
 
@@ -443,7 +443,7 @@ class Product {
     for (var i = 0; i < this.founders.length; i++) {
       var founder = this.founders[i];
       modalCardHTML += '<div class=\"row\">';
-      modalCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_MODAL + '\" style=\"background-color:' + CONST.DIV_COLOR_FOUNDER_TAG + '\">' +
+      modalCardHTML += '<span class=\"' + CONST.DIV_CLASS_TAG + ' ' + CONST.DIV_CLASS_TAG_NEW + '\" style=\"background-color:' + CONST.DIV_COLOR_FOUNDER_TAG + '\">' +
                           founder +
                         '</span>';
       modalCardHTML += '</div>' // Close row
