@@ -5,6 +5,27 @@ var modalClosed = false;
 /* ---------- */
 
 /* ----- Functions ----- */
+function randomColorFromString(str, colors) {
+    function digitize (str) {
+        var code = 0;
+        if (str === undefined) { return code; }
+        for (var i = 0; i < str.length; i++)
+            code += str.toLowerCase().charCodeAt(i);
+        return code;
+    }
+
+    var code = digitize(str);
+    return colors[(code % colors.length)];
+};
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
+};
+function presentErrorPage() {
+  $('#' + CONST.SEARCH_RESULTS_ID).empty();
+  $('div.' + CONST.DIV_CLASS_CONTENT).empty();
+  $('#' + CONST.ANNOUNCEMENT_ID).empty();
+  $('#' + CONST.ANNOUNCEMENT_ID).append(CONST.ERROR_MSG);
+};
 function getParameterByName(name, url) {
   if (!url)
     url = window.location.href;
